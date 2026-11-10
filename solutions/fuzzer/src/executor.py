@@ -1,10 +1,12 @@
 """A silent concrete interpreter for the JPAMB bytecode subset."""
 
-from javaint import java_div, java_rem, to_i32
+from javaint import java_div, java_rem, to_i32, to_u16
 
 import jpamb
 import jvm
 import jvm.state as jvmc
+
+MAX_ARRAY_SIZE = 100_000
 
 
 def binary(op, a: int, b: int) -> int | str:
@@ -148,6 +150,49 @@ def step(bc: jpamb.Bytecode, state: jvmc.State) -> tuple[jvmc.PC, jvmc.State | s
                 caller.pc += 1
             else:
                 output = "ok"
+
+        case jvm.NewArray(type=t, dim=1):
+            size = frame.stack.pop().value
+            if size < 0 or size > MAX_ARRAY_SIZE:
+                raise NotImplementedError(f"array size {size} is not modelled")
+            ref = state.heap.new(jvmc.HeapArray(t, [0] * size))
+            frame.stack.push(ref)
+            frame.pc += 1
+
+        case jvm.ArrayLength():
+            ref = frame.stack.pop()
+            if ref.value == 0:
+                output = "null pointer"
+            else:
+                frame.stack.push(jvmc.StackInt(len(state.heap[ref].values)))
+                frame.pc += 1
+
+        case jvm.ArrayLoad(type=jvm.Int() | jvm.Char()):
+            index = frame.stack.pop().value
+            ref = frame.stack.pop()
+            if ref.value == 0:
+                output = "null pointer"
+            else:
+                values = state.heap[ref].values
+                if 0 <= index < len(values):
+                    frame.stack.push(jvmc.StackInt(values[index]))
+                    frame.pc += 1
+                else:
+                    output = "out of bounds"
+
+        case jvm.ArrayStore(type=t) if isinstance(t, (jvm.Int, jvm.Char)):
+            value = frame.stack.pop().value
+            index = frame.stack.pop().value
+            ref = frame.stack.pop()
+            if ref.value == 0:
+                output = "null pointer"
+            else:
+                values = state.heap[ref].values
+                if 0 <= index < len(values):
+                    values[index] = to_u16(value) if isinstance(t, jvm.Char) else value
+                    frame.pc += 1
+                else:
+                    output = "out of bounds"
 
         case _:
             raise NotImplementedError(opr.help())
