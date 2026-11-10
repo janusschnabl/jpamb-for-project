@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fuzzer"
+version = "0.1.0"
+description = "The start of a fuzzer"
+requires-python = ">=3.13"
+dependencies = [
+  "jpamb",
+]
+
+
+[project.scripts]
+fuzzer-interpreter = "executor:interpret"
+
+[tool.uv.sources]
+jpamb = { path = "../../", editable = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
