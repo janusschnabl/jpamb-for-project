@@ -270,3 +270,26 @@ def execute(bc, methodid, input, max_steps: int = 1000) -> str:
         if isinstance(state, str):
             return state
     return "*"
+
+def interpret():
+    """Entry point for 'jpamb interpret': run one case and emit the trace."""
+    methodid, input, max_steps = jpamb.getcase(
+        "fuzzer-interpreter",
+        "1.0",
+        "Group 21",
+        ["dynamic", "python"],
+        for_science=True,
+    )
+
+    suite, eff = jpamb.setup()
+    bc = jpamb.Bytecode(suite, eff, {})
+
+    state = initial(bc, methodid, input)
+    last = jpamb.emit_init(state)
+
+    for _ in range(max_steps):
+        pc, state = step(bc, state)
+        last = jpamb.emit_step(last, pc, state)
+        if isinstance(state, str):
+            break
+    
