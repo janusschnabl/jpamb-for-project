@@ -1,8 +1,8 @@
+from executor import run
+
 import jpamb
 import jvm
 from jpamb.case import Input, Int
-
-from executor import run
 
 suite, eff = jpamb.setup()
 bc = jpamb.Bytecode(suite, eff, {})

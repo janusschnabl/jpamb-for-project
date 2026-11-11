@@ -1,9 +1,9 @@
 from pathlib import Path
 
+from executor import run
+
 import jpamb
 from jpamb.case import Case
-
-from executor import run
 
 suite, eff = jpamb.setup()
 bc = jpamb.Bytecode(suite, eff, {})

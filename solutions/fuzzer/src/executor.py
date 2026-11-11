@@ -1,7 +1,8 @@
 """A silent concrete interpreter for the JPAMB bytecode subset."""
 
-from javaint import java_div, java_rem, to_i32, to_u16, to_i16
 from dataclasses import dataclass
+
+from javaint import java_div, java_rem, to_i16, to_i32, to_u16
 
 import jpamb
 import jvm
