@@ -1,12 +1,14 @@
 """A silent concrete interpreter for the JPAMB bytecode subset."""
 
 from javaint import java_div, java_rem, to_i32, to_u16, to_i16
+from dataclasses import dataclass
 
 import jpamb
 import jvm
 import jvm.state as jvmc
 
 MAX_ARRAY_SIZE = 100_000
+DEFAULT_MAX_STEPS = 50_000
 
 
 def binary(op, a: int, b: int) -> int | str:
@@ -270,6 +272,30 @@ def execute(bc, methodid, input, max_steps: int = 1000) -> str:
         if isinstance(state, str):
             return state
     return "*"
+
+@dataclass(frozen=True)
+class RunResult:
+    input: jpamb.Input
+    outcome: str | None         # "ok", "out of bounds", ..., "*"; None if interpreter failed
+    coverage: set               # the PCs that were executed
+    steps: int
+    failure: str | None = None
+
+def run(bc, methodid, input, max_steps: int = DEFAULT_MAX_STEPS) -> RunResult:
+    """Run one input and report outcome, the instructions visited and the step count. Interpreter failures are reported, never raised."""
+    coverage = set()
+    steps = 0
+    try:
+        state = initial(bc, methodid, input)
+        for _ in range(max_steps):
+            pc, state = step(bc, state)
+            steps += 1
+            coverage.add(pc)
+            if isinstance(state, str):
+                return RunResult(input, state, coverage, steps)
+        return RunResult(input, "*", coverage, steps)
+    except Exception as e:
+        return RunResult(input, None, coverage, steps, failure=f"{type(e).__name__}: {e}")
 
 def interpret():
     """Entry point for 'jpamb interpret': run one case and emit the trace."""
