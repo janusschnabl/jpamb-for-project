@@ -18,7 +18,7 @@ tally = collections.defaultdict(collections.Counter)
 for case in cases:
     klass = case.methodid.classname.name
     try:
-        outcome = execute(bc, case.methodid, case.input)
+        outcome = execute(bc, case.methodid, case.input, max_steps=100_000)
     except NotImplementedError as e:
         tally[klass]["unsupported"] += 1
         tally[klass][f"  missing: {str(e)[:70]}"] += 1

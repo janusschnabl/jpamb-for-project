@@ -1,6 +1,6 @@
 """A silent concrete interpreter for the JPAMB bytecode subset."""
 
-from javaint import java_div, java_rem, to_i32, to_u16
+from javaint import java_div, java_rem, to_i32, to_u16, to_i16
 
 import jpamb
 import jvm
@@ -193,6 +193,41 @@ def step(bc: jpamb.Bytecode, state: jvmc.State) -> tuple[jvmc.PC, jvmc.State | s
                     frame.pc += 1
                 else:
                     output = "out of bounds"
+
+        case jvm.InvokeStatic(method=m):
+            callee = jvmc.Frame.from_method(bc.getmethod(m))
+            for i in reversed(range(len(m.extension.params))):
+                callee.locals[i] = frame.stack.pop()
+            state.frames.push(callee)
+
+        case jvm.Push(type=jvm.Object(), value=v):
+            frame.stack.push(state.heap.new(jvmc.HeapString(v)))
+            frame.pc += 1
+
+        case jvm.InvokeVirtual(method=m) if (
+            m.classname == jvm.ClassName("java.lang.String")
+            and m.extension.name == "equals"
+        ):
+            arg = frame.stack.pop()
+            receiver = frame.stack.pop()
+            if receiver.value == 0:
+                output = "null pointer"
+            else:
+                this = state.heap[receiver]
+                other = None if arg.value == 0 else state.heap[arg]
+                equal = isinstance(other, jvmc.HeapString) and other.content == this.content
+                frame.stack.push(jvmc.StackInt(1 if equal else 0))
+                frame.pc += 1
+
+        case jvm.Cast(from_=jvm.Int(), to_=jvm.Short()):
+            v = frame.stack.pop()
+            frame.stack.push(jvmc.StackInt(to_i16(v.value)))
+            frame.pc += 1
+
+        case jvm.Cast(from_=jvm.Int(), to_=jvm.Char()):
+            v = frame.stack.pop()
+            frame.stack.push(jvmc.StackInt(to_u16(v.value)))
+            frame.pc += 1
 
         case _:
             raise NotImplementedError(opr.help())
