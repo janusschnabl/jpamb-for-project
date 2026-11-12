@@ -3,6 +3,7 @@
 Depends only on jpamb, jvm and own executor and mutators modules."""
 
 import random
+import time
 from collections import Counter
 from dataclasses import dataclass
 
@@ -39,8 +40,10 @@ def fuzz(
         dictionary: Dictionary = Dictionary(),
         focus: set | None = None,
         max_steps: int = DEFAULT_MAX_STEPS,
+        time_limit: float | None = None,
 ) -> FuzzResult:
     rng = random.Random(seed)
+    deadline = None if time_limit is None else time.perf_counter() + time_limit
     start = initial_input(methodid)
     corpus = []                         # Inputs we mutate from
     tried = set()                       # Every input we have run. Never run twice
@@ -59,6 +62,8 @@ def fuzz(
     attempts = 0
     for candidate in candidates():
         if executions >= budget or attempts >= budget * ATTEMPT_FACTOR:
+            break
+        if deadline is not None and time.perf_counter() > deadline:
             break
         attempts += 1
         if candidate in tried:

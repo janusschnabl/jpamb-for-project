@@ -14,6 +14,7 @@ dependencies = [
 
 [project.scripts]
 fuzzer-interpreter = "executor:interpret"
+fuzzer-analysis = "fuzz_analysis:analyse"
 
 [tool.uv.sources]
 jpamb = { path = "../../", editable = true }

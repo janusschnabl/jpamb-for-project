@@ -56,3 +56,7 @@ def test_empty_focus_means_nothing_counts_as_progress():
     r = fuzz(bc, method(DIVIDE), budget=50, seed=0, focus=set())
     assert r.corpus_size == 0
     assert "divide by zero" in r.witnesses
+
+def test_time_limit_stops_the_run():
+    r = fuzz(bc, method(HARD), budget=10**9, seed=0, time_limit=0.2)
+    assert 0 < r.executions < 10**9

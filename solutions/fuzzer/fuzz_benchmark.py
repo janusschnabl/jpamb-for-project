@@ -4,6 +4,7 @@ import sys
 import time
 from pathlib import Path
 
+from fuzz_constants import class_constants
 from fuzzer import fuzz
 from mutators import Dictionary
 
@@ -19,18 +20,6 @@ lines = Path("target/stats/cases.txt").read_text().splitlines()
 cases = [Case.decode(line) for line in lines if line.strip()]
 
 
-def class_constants(classname) -> Dictionary:
-    """A throwaway stand-in for Tier 0: every int and string constant in the class."""
-    ints, strings = set(), set()
-    for method in suite.findclass(classname, eff=eff)["methods"]:
-        for op in (method.get("code") or {}).get("bytecode", []):
-            value = op["value"] if op["opr"] == "push" else None
-            if value is not None:
-                if value["type"] == "integer":
-                    ints.add(value["value"])
-                elif value["type"] == "string":
-                    strings.add(value["value"])
-    return Dictionary(tuple(sorted(ints)), tuple(sorted(strings)))
 
 
 expected_total = found_with_k = found_without_k = 0
@@ -39,7 +28,7 @@ for methodid, method_cases in Case.by_entry(cases):
     expected = {c.result for c in method_cases} & ERRORS
     if not expected:
         continue
-    k = class_constants(methodid.classname)
+    k = class_constants(suite, eff, methodid.classname)
     with_k = expected & set(fuzz(bc, methodid, BUDGET, 0, k).witnesses)
     without_k = expected & set(fuzz(bc, methodid, BUDGET, 0).witnesses)
     expected_total += len(expected)
