@@ -32,6 +32,9 @@ jpamb.cases.Dependent.divisionLoop:(I)V                      (0) -> ok
 jpamb.cases.Dependent.divisionLoop:(I)V                      (1024) -> assertion error
 jpamb.cases.Dependent.normalizedDistance:(II)I               (0, 0) -> ok
 jpamb.cases.Dependent.safeDivByN:(I)I                        (0) -> ok
+jpamb.cases.Fuzzing.secretThenDivide:([C)I                   ([C:'s', 'e', 'c', 'r', 'e', 't']) -> divide by zero
+jpamb.cases.Fuzzing.secretThenDivide:([C)I                   ([C:'s', 'e', 'c', 'r', 'e', 'x']) -> ok
+jpamb.cases.Fuzzing.secretThenDivide:([C)I                   ([C:]) -> ok
 jpamb.cases.Loops.forever:()V                                () -> *
 jpamb.cases.Loops.neverAsserts:()V                           () -> *
 jpamb.cases.Loops.neverDivides:()I                           () -> *
