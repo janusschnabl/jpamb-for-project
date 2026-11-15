@@ -65,7 +65,7 @@ class Lattice(Poset):
 
     @classmethod
     def bot(cls) -> Self:
-        return cls.abstract([])
+        return cls.alpha([])
 
     @abstractmethod
     def __or__(self, other: Self) -> Self: ...
@@ -124,15 +124,15 @@ class Abstraction(ABC):
 
     @classmethod
     @abstractmethod
-    def abstract(cls, values: Iterable[jvms.StackValue]) -> Self:
-        raise NotImplementedError(f"abstract: {cls}")
+    def alpha(cls, values: Iterable[jvms.StackValue]) -> Self:
+        raise NotImplementedError(f"alpha: {cls}")
 
     @abstractmethod
     def __contains__(self, value: jvms.StackValue) -> bool: ...
 
 
 def is_galoi(a: set[jvms.StackValue], b: Abstraction):
-    alpha_a = b.abstract(a)
+    alpha_a = b.alpha(a)
 
     for value in a:
         assert value in alpha_a, f"{value} not in {a}"
@@ -168,7 +168,7 @@ class SignSet(Abstraction, Lattice):
         return cls(frozenset(b for z, b in zip("-0+", [-1, 0, 1]) if z in code))
 
     @classmethod
-    def abstract(cls, values: Iterable[jvms.StackValue]) -> Self:
+    def alpha(cls, values: Iterable[jvms.StackValue]) -> Self:
         signs = set()
         for value in values:
             signs.add(to_sign(value))
@@ -266,7 +266,7 @@ class Interval(Abstraction, Lattice):
         return str(self)
 
     @classmethod
-    def abstract(cls, values: Iterable[jvms.StackValue]) -> Self:
+    def alpha(cls, values: Iterable[jvms.StackValue]) -> Self:
         numbers = []
         for value in values:
             match value:

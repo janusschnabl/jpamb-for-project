@@ -3,7 +3,7 @@ from collections import deque
 from collections.abc import Iterable
 from dataclasses import dataclass
 
-from abstractions import SignSet
+from abstractions import Interval
 
 import jpamb
 import sexpr
@@ -13,8 +13,8 @@ from jvm.state import PC, StackInt
 
 @dataclass(frozen=True)
 class State(sexpr.AsSExpr):
-    locals: tuple[SignSet, ...]
-    stack: tuple[SignSet, ...]
+    locals: tuple[Interval, ...]
+    stack: tuple[Interval, ...]
 
     def __post_init__(self):
         assert isinstance(self.locals, tuple)
@@ -33,8 +33,8 @@ class State(sexpr.AsSExpr):
             tuple(s1 | s2 for s1, s2 in zip(self.stack, other.stack)),
         )
 
-    def push(self, value: SignSet):
-        assert isinstance(value, SignSet), f"Expected sign set but got {value}"
+    def push(self, value: Interval):
+        assert isinstance(value, Interval), f"Expected sign set but got {value}"
         return State(self.locals, self.stack + (value,))
 
     def pop(self, number=1):
@@ -62,21 +62,18 @@ def manystep(
             assert field.extension.name == "$assertionsDisabled"
 
             # Hack - Assuming assertions are never disabled
-            va = SignSet.abstract([StackInt(0)])
+            va = Interval.alpha([StackInt(0)])
 
             yield (pc + 1, state.push(va))
 
         case jvm.Ifz(condition=op, target=target):
             [val], after = state.pop(1)
-
-            for res in SignSet.compare(val, SignSet.abstract([StackInt(0)]), op):
-                match res:
-                    case True:
-                        yield (pc % target, after)
-                    case False:
-                        yield (pc + 1, after)
-                    case err:
-                        yield err
+            split = val.compare(Interval(0, 0), op)
+            
+            if split.if_true.possible:
+                yield (pc % target, after)    # jump taken
+            if split.if_false.possible:
+                yield (pc + 1, after)         # fall through
 
         case jvm.Load(index=i):
             va = state.load(i)
@@ -87,7 +84,7 @@ def manystep(
 
         case jvm.Binary(operant=op):
             [v1, v2], after = state.pop(2)
-            for res in SignSet.arithmetic(v1, v2, op):
+            for res in Interval.arithmetic(v1, v2, op):
                 if isinstance(res, str):
                     yield res
                 else:
@@ -111,20 +108,20 @@ def initialstate(
     inputs: jpamb.Input | None,
 ) -> dict[PC, State]:
     method = bc.getmethod(methodid)
-    locals = [SignSet.bot()] * method.max_locals
+    locals = [Interval.bot()] * method.max_locals
 
     if inputs is None:
         for i, p in enumerate(methodid.extension.params):
-            locals[i] = SignSet.top()
+            locals[i] = Interval.top()
     else:
         for i, x in enumerate(inputs.values):
             match x:
                 case jpamb.case.Boolean(value=value):
-                    locals[i] = SignSet.abstract([StackInt(int(value))])
+                    locals[i] = Interval.alpha([StackInt(int(value))])
                 case jpamb.case.Int(value=value):
-                    locals[i] = SignSet.abstract([StackInt(int(value))])
+                    locals[i] = Interval.alpha([StackInt(int(value))])
                 case jpamb.case.Array():
-                    locals[i] = SignSet.from_sign("+")
+                    locals[i] = Interval.from_sign("+")
                 case _:
                     raise NotImplementedError(f"Unsupported value {x!r}")
 

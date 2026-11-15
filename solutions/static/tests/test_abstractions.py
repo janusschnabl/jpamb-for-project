@@ -62,9 +62,9 @@ def arithmetic(opr, x, y):
 def test_signset_arithmetic(
     opr: jvm.BinaryOpr, xs: set[jvms.StackInt], ys: set[jvms.StackInt]
 ):
-    real = ab.SignSet.abstract(arithmetic(opr, x, y) for x in xs for y in ys)
-    (abstracted, _errs) = ab.SignSet.abstract(xs).arithmetic(
-        ab.SignSet.abstract(ys), opr
+    real = ab.SignSet.alpha(arithmetic(opr, x, y) for x in xs for y in ys)
+    (abstracted, _errs) = ab.SignSet.alpha(xs).arithmetic(
+        ab.SignSet.alpha(ys), opr
     )
     assert real <= abstracted
 
@@ -88,7 +88,7 @@ def test_signset_compare(
     opr: jvm.CmpOpr, xs: set[jvms.StackInt], ys: set[jvms.StackInt]
 ):
     real = {compare(opr, x, y) for x in xs for y in ys}
-    abstracted = set(ab.SignSet.abstract(xs).compare(ab.SignSet.abstract(ys), opr))
+    abstracted = set(ab.SignSet.alpha(xs).compare(ab.SignSet.alpha(ys), opr))
     assert real <= abstracted
 
 
@@ -168,8 +168,8 @@ def jvm_arithmetic(opr: jvm.BinaryOpr, x: int, y: int) -> int:
 def test_interval_arithmetic(opr: jvm.BinaryOpr, xs: set[int], ys: set[int]):
     """Soundness: every concrete result lies in the abstract result, and a
     division by zero that can happen is reported."""
-    a = ab.Interval.abstract(map(jvms.StackInt, xs))
-    b = ab.Interval.abstract(map(jvms.StackInt, ys))
+    a = ab.Interval.alpha(map(jvms.StackInt, xs))
+    b = ab.Interval.alpha(map(jvms.StackInt, ys))
     result, errors = a.arithmetic(b, opr)
     for x in xs:
         for y in ys:
