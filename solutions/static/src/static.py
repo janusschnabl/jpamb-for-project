@@ -157,6 +157,24 @@ def manystep(
                 yield (pc + 1, after.push(Ref(null=True, length=Interval(0, INT_MAX))))
             else:
                 raise NotImplementedError(f"Unsupported return type {ret}")
+            
+        case jvm.ArrayLength():
+            [ref], after = state.pop()
+            
+            if ref.null:
+                yield "null pointer"
+            
+            if not ref.length.is_bot:
+                yield (pc + 1, after.push(ref.length))
+        
+        case jvm.If(condition=op, target=target):
+            [v1, v2], after = state.pop(2)
+            split = v1.compare(v2, op)
+            
+            if split.if_true.possible:
+                yield (pc % target, after)
+            if split.if_false.possible:
+                yield (pc + 1, after) 
 
         case jvm.Binary(operant=op):
             [v1, v2], after = state.pop(2)
