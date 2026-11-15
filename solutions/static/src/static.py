@@ -175,7 +175,53 @@ def manystep(
                 yield (pc % target, after)
             if split.if_false.possible:
                 yield (pc + 1, after) 
+                
+        case jvm.ArrayLoad(type=t):
+            [ref, index], after = state.pop(2)
+            
+            if ref.null:
+                yield "null pointer"
+            
+            allowed_indices = ref.length.min - 1
+            
+            if not index <= Interval(0, allowed_indices):
+                yield "out of bounds"
+        
+            possible = index & Interval(0, allowed_indices)
+            if not possible.is_bot:
+                yield (pc + 1, after.push(type_range(t)))
 
+        case jvm.Incr(index=i, amount=c):
+            local_val = state.load(i)
+            result, _ = local_val.arithmetic(Interval(c, c), jvm.BinaryOpr.Add)
+            yield (pc + 1, state.store(i, result))
+            
+        case jvm.Push(type=jvm.Int(), value=v):
+            val = Interval.alpha([StackInt(v)])
+            yield (pc + 1, state.push(val))
+            
+        case jvm.Push(type=jvm.Reference()):
+            yield (pc + 1, state.push(Ref(null=True, length=Interval.bot())))      
+        
+        case jvm.Negate():
+            [val], after = state.pop(1)
+            negated, _ = Interval(0, 0).arithmetic(val, jvm.BinaryOpr.Sub)
+            yield (pc + 1, after.push(negated))
+            
+        case jvm.Cast(from_=jvm.Int(), to_=to):
+            rng = type_range(to)
+            if rng is None:
+                raise NotImplementedError(f"Unsupported cast to {to}")
+
+            [val], after = state.pop(1)
+
+            if val <= rng:
+                casted = val
+            else:
+                casted = rng
+
+            yield (pc + 1, after.push(casted))
+            
         case jvm.Binary(operant=op):
             [v1, v2], after = state.pop(2)
             result, errors = v1.arithmetic(v2, op)
