@@ -54,6 +54,14 @@ class State(sexpr.AsSExpr):
             tuple(s1 | s2 for s1, s2 in zip(self.stack, other.stack)),
         )
 
+    def widen(self, other):
+        # Widening: like __or__, but with widen instead of the join, for
+        # every local and every stack value.
+        return State(
+            tuple(s1.widen(s2) for s1, s2 in zip(self.locals, other.locals)),
+            tuple(s1.widen(s2) for s1, s2 in zip(self.stack, other.stack)),
+        )
+
     def push(self, value: Interval | Ref):
         assert isinstance(value, (Interval, Ref)), f"Expected a value but got {value}"
         return State(self.locals, self.stack + (value,))
@@ -243,6 +251,14 @@ def manystep(
         case _:
             raise NotImplementedError(f"Instruction not handled: {opr}")
 
+def loop_heads(bc: jpamb.Bytecode, methodid: jvm.AbsMethodID) -> set[int]:
+    heads = set()
+    for i, op in enumerate(bc.getmethod(methodid).opcodes):
+        match op:
+            case jvm.Goto(target=t) | jvm.If(target=t) | jvm.Ifz(target=t):
+                if t <= i:
+                    heads.add(t)
+    return heads
 
 def initialstate(
     bc: jpamb.Bytecode,
@@ -280,13 +296,14 @@ class AbstractInterpreter:
     bc: jpamb.Bytecode
     worklist: deque[PC]
     states: dict[PC, State]
+    heads: set[int]  # the loop heads: where we widen instead of join
 
     @staticmethod
     def initial(bc: jpamb.Bytecode, methodid: jvm.AbsMethodID, inputs):
         states = initialstate(bc, methodid, inputs)
         worklist = deque(states.keys())
 
-        return AbstractInterpreter(bc, worklist, states)
+        return AbstractInterpreter(bc, worklist, states, loop_heads(bc, methodid))
 
     def step(self) -> tuple[PC, set[str]]:
         pc = self.worklist.pop()
@@ -310,8 +327,10 @@ class AbstractInterpreter:
                 before = self.states.get(pc_, None)
                 if before is None:
                     after = st
+                elif pc_.offset in self.heads:
+                    after = before.widen(before | st)  # loop head: widen
                 else:
-                    after = before | st
+                    after = before | st  # everywhere else: plain join
                 if before is None or after != before:
                     self.states[pc_] = after
                     self.worklist.append(pc_)
@@ -334,7 +353,6 @@ def interpret():
     ai = AbstractInterpreter.initial(bc, methodid, input)
 
     x = jpamb.emit_init(ai.states)
-
     while steps > 0 and ai.worklist:
         pc, final = ai.step()
         for f in final:
@@ -359,28 +377,17 @@ def analyse():
     suite, eff = jpamb.setup()
     bc = jpamb.Bytecode(suite, eff, {})
 
-    steps = 300
-
     final = set()
     try:
         ai = AbstractInterpreter.initial(bc, methodid, None)
-        while steps > 0 and ai.worklist:
+        # No step limit: widening at the loop heads guarantees that the
+        # worklist runs empty, i.e. that we reach a fixed point.
+        while ai.worklist:
             _pc, finals = ai.step()
             final |= finals
-            steps -= 1
     except NotImplementedError as e:
         # Something we cannot analyse yet: "maybe" is the only safe answer.
         print(f"Not analysed: {e}", file=sys.stderr)
-        for f in jpamb.QUERIES:
-            print(f"{f};maybe")
-        return
-
-    if ai.worklist:
-        # TEMPORARY, until widening: we ran out of steps before reaching a
-        # fixed point.  The states still on the worklist were never explored,
-        # and they might lead to an error we have not seen.  "no" would be a
-        # guess, so "maybe" is the only safe answer.
-        print("Not analysed: no fixed point within the step limit", file=sys.stderr)
         for f in jpamb.QUERIES:
             print(f"{f};maybe")
         return

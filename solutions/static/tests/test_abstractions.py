@@ -216,3 +216,25 @@ def test_interval_arithmetic_with_bottom(opr: jvm.BinaryOpr, a: ab.Interval):
     bot = ab.Interval.bot()
     assert a.arithmetic(bot, opr)[0] == bot
     assert bot.arithmetic(a, opr)[0] == bot
+
+
+# ---------------------------------------------------------------- widening
+
+
+@given(st_interval(), st_interval())
+def test_widening_is_an_upper_bound(a: ab.Interval, b: ab.Interval):
+    w = a.widen(b)
+    assert a <= w and b <= w
+
+
+@given(st.lists(st_interval(), max_size=40))
+def test_widening_chain_stabilises(values: list[ab.Interval]):
+    """Whatever values arrive at a loop head, the widened value changes at
+    most 3 times: once from bottom, then once per bound."""
+    current = ab.Interval.bot()
+    changes = 0
+    for v in values:
+        new = current.widen(current | v)
+        changes += new != current
+        current = new
+    assert changes <= 3

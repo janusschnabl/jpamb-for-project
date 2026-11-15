@@ -348,6 +348,17 @@ class Interval(Abstraction, Lattice):
             if_false=_assume(self, other, OPPOSITE[opr]),
         )
 
+    def widen(self, other: "Interval") -> "Interval":
+        # The widening operator:  self ∇ other.
+        if self.is_bot:
+            return other
+        if other.is_bot:
+            return self
+
+        lo = self.min if other.min >= self.min else INT_MIN
+        hi = self.max if other.max <= self.max else INT_MAX
+        return Interval(lo, hi)
+
 
 @dataclass(frozen=True)
 class Branch:
@@ -450,6 +461,11 @@ class Ref:
 
     def __or__(self, other: "Ref") -> "Ref":
         return Ref(self.null or other.null, self.length | other.length)
+
+    def widen(self, other: "Ref") -> "Ref":
+        # `null` can only change once (False -> True), so it needs no
+        # widening.  The length is an interval that may keep growing.
+        return Ref(self.null or other.null, self.length.widen(other.length))
 
     def __str__(self):
         text = f"len={self.length}"
