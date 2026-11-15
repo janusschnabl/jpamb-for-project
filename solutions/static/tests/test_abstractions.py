@@ -1,6 +1,6 @@
 import abstractions as ab
 import pytest
-from hypothesis import given
+from hypothesis import assume, given
 from hypothesis import strategies as st
 
 import jvm
@@ -178,6 +178,36 @@ def test_interval_arithmetic(opr: jvm.BinaryOpr, xs: set[int], ys: set[int]):
             else:
                 r = jvm_arithmetic(opr, x, y)
                 assert jvms.StackInt(r) in result, f"{x} {opr} {y} = {r} not in {result}"
+
+
+def jvm_compare(opr: jvm.CmpOpr, x: int, y: int) -> bool:
+    match opr:
+        case jvm.CmpOpr.Eq:
+            return x == y
+        case jvm.CmpOpr.Ne:
+            return x != y
+        case jvm.CmpOpr.Lt:
+            return x < y
+        case jvm.CmpOpr.Le:
+            return x <= y
+        case jvm.CmpOpr.Gt:
+            return x > y
+        case jvm.CmpOpr.Ge:
+            return x >= y
+
+
+@given(st.sampled_from(list(jvm.CmpOpr)), st_interval(), st_interval(), st_int_bound(), st_int_bound())
+def test_interval_compare(opr: jvm.CmpOpr, a: ab.Interval, b: ab.Interval, x: int, y: int):
+    """Refinement may only throw away pairs for which the condition is false:
+    every concrete pair (x, y) survives on the branch it really takes."""
+    assume(jvms.StackInt(x) in a and jvms.StackInt(y) in b)
+    split = a.compare(b, opr)
+    branch = split.if_true if jvm_compare(opr, x, y) else split.if_false
+    assert branch.possible
+    assert jvms.StackInt(x) in branch.left and jvms.StackInt(y) in branch.right
+    # refining never makes an interval bigger
+    for side in (split.if_true, split.if_false):
+        assert side.left <= a and side.right <= b
 
 
 @given(st.sampled_from(list(jvm.BinaryOpr)), st_interval())

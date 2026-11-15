@@ -240,7 +240,7 @@ from typing import Self
 
 INT_MIN = -(2**31)
 INT_MAX = 2**31 - 1
-
+    
 @dataclass(frozen=True)
 class Interval(Abstraction, Lattice):
     min: int
@@ -339,10 +339,81 @@ class Interval(Abstraction, Lattice):
             case _:
                 raise NotImplementedError(f"TODO: {opr}")
 
-    def compare(
-        self, other: "Interval", opr: jvm.CmpOpr
-    ) -> tuple["Interval", "Interval"]:
-        return 
+
+    def compare(self, other: "Interval", opr: jvm.CmpOpr) -> "IntervalSplit":
+        """Split on `self opr other`: what each operand can be when the
+        condition is true, and when it is false."""
+        return IntervalSplit(
+            if_true=_assume(self, other, opr),
+            if_false=_assume(self, other, OPPOSITE[opr]),
+        )
+
+
+@dataclass(frozen=True)
+class Branch:
+    left: Interval
+    right: Interval
+
+    @property
+    def possible(self) -> bool:
+        return not self.left.is_bot
+
+
+@dataclass(frozen=True)
+class IntervalSplit:
+    if_true: Branch
+    if_false: Branch
+
+
+OPPOSITE = {
+    jvm.CmpOpr.Eq: jvm.CmpOpr.Ne,
+    jvm.CmpOpr.Ne: jvm.CmpOpr.Eq,
+    jvm.CmpOpr.Lt: jvm.CmpOpr.Ge,
+    jvm.CmpOpr.Ge: jvm.CmpOpr.Lt,
+    jvm.CmpOpr.Gt: jvm.CmpOpr.Le,
+    jvm.CmpOpr.Le: jvm.CmpOpr.Gt,
+}
+
+
+def _assume(a: Interval, b: Interval, opr: jvm.CmpOpr) -> Branch:
+    """Shrink a and b to the values for which `a opr b` can be true.
+    Returns two bottoms if it can never be true."""
+    bot = Interval.bot()
+    if a.is_bot or b.is_bot:
+        return Branch(bot, bot)
+
+    match opr:
+        case jvm.CmpOpr.Lt:
+            a2 = a & Interval(INT_MIN, b.max - 1)
+            b2 = b & Interval(a.min + 1, INT_MAX)
+        case jvm.CmpOpr.Le:
+            a2 = a & Interval(INT_MIN, b.max)
+            b2 = b & Interval(a.min, INT_MAX)
+        case jvm.CmpOpr.Gt:
+            flipped = _assume(b, a, jvm.CmpOpr.Lt)
+            a2, b2 = flipped.right, flipped.left
+        case jvm.CmpOpr.Ge:
+            flipped = _assume(b, a, jvm.CmpOpr.Le)
+            a2, b2 = flipped.right, flipped.left
+        case jvm.CmpOpr.Eq:
+            a2 = b2 = a & b
+        case jvm.CmpOpr.Ne:
+            a2 = _remove(a, b.min) if b.min == b.max else a
+            b2 = _remove(b, a.min) if a.min == a.max else b
+
+    if a2.is_bot or b2.is_bot:
+        return Branch(bot, bot)
+    return Branch(a2, b2)
+
+
+def _remove(a: Interval, n: int) -> Interval:
+    """a without the number n, as well as an interval can express it."""
+    if a.min == n:
+        return Interval(a.min + 1, a.max)  # becomes bottom if a was [n, n]
+    if a.max == n:
+        return Interval(a.min, a.max - 1)
+    return a
+
 
 def _fit(lo: int, hi: int) -> Interval:
     if lo < INT_MIN or hi > INT_MAX:
@@ -365,8 +436,8 @@ def _div(a: Interval, b: Interval) -> Interval:
 
 def _rem(a: Interval, b: Interval) -> Interval:
     if a.min == a.max and b.min == b.max:
-        return Interval(_trem(a.min, b.min), _trem(a.min, b.min))  # both constants: exact
-    m = max(abs(b.min), abs(b.max)) - 1  # the largest possible |result|
+        return Interval(_trem(a.min, b.min), _trem(a.min, b.min))
+    m = max(abs(b.min), abs(b.max)) - 1 
     lo = 0 if a.min >= 0 else -min(m, -a.min)
     hi = 0 if a.max <= 0 else min(m, a.max)
     return Interval(lo, hi)
