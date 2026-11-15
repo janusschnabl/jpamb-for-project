@@ -9,7 +9,10 @@ import jvm
 from jpamb.case import Array, Boolean, Char, Input, Int, String
 
 MAX_LENGTH = 16    # Longest array or string we generate
+BURST_PROBABILITY = 0.1 # Share of rounds that stack many mutations
+BURST_SIZE = (4, 16) # How many mutations a burst stacks
 BOUNDARY_INTS = (0, 1, -1, INT_MAX, INT_MIN)
+# Characters we generate. No single quote: the input syntax cannot represent it
 PRINTABLE = "".join(chr(i) for i in range(32, 127) if chr(i) != "'")
 
 @dataclass(frozen=True)
@@ -26,6 +29,14 @@ def _dictionary_chars(d: Dictionary) -> list[str]:
 
 def _dictionary_strings(d: Dictionary) -> list[str]:
     return sorted(s for s in d.strings if "'" not in s)
+
+def _resize_target(rng: random.Random, d: Dictionary) -> int:
+    """A new length for an array or string: half the time a constant from the
+    program (if it fits), otherwise a random length."""
+    sizes = sorted({i for i in d.ints if 0 <= i <= MAX_LENGTH})
+    if sizes and rng.random() < 0.5:
+        return rng.choice(sizes)
+    return rng.randint(0, MAX_LENGTH)
 
 def mutate_int(rng: random.Random, value: int, d: Dictionary) -> int:
     moves = ["one", "small", "negate", "boundary", "bit", "random"]
@@ -61,7 +72,7 @@ def mutate_char(rng: random.Random, value: str, d: Dictionary) -> str:
 
 def mutate_string(rng: random.Random, value: str, d: Dictionary) -> str:
     strings = _dictionary_strings(d)
-    moves = []
+    moves = ["resize"]
     if len(value) < MAX_LENGTH:
         moves.append("insert")
     if value:
@@ -69,6 +80,12 @@ def mutate_string(rng: random.Random, value: str, d: Dictionary) -> str:
     if strings:
         moves += ["replace", "splice"]
     move = rng.choice(moves)
+    if move == "resize":
+        target = _resize_target(rng, d)
+        value = value[:target]
+        while len(value) < target:
+            value += rng.choice(PRINTABLE)
+        return value
     if move == "insert":
         i = rng.randint(0, len(value))
         return value[:i] + rng.choice(PRINTABLE) + value[i:]
@@ -89,14 +106,19 @@ def mutate_array(rng: random.Random, array: Array, d: Dictionary) -> Array:
     default = 0 if is_int else "a"
     values = list(array.values)
 
-    moves = []
+    moves = ["resize"]
     if len(values) < MAX_LENGTH:
         moves.append("insert")
     if values:
         moves += ["change", "delete", "clear"]
     move = rng.choice(moves)
 
-    if move == "insert":
+    if move == "resize":
+        target = _resize_target(rng, d)
+        del values[target:]
+        while len(values) < target:
+            values.append(mutate_element(rng, default, d))
+    elif move == "insert":
         values.insert(rng.randint(0, len(values)), mutate_element(rng, default, d))
     elif move == "change":
         i = rng.randrange(len(values))
@@ -125,11 +147,15 @@ def mutate_value(rng: random.Random, value, d: Dictionary):
 
 
 def mutate_input(rng: random.Random, input: Input, d: Dictionary) -> Input:
-    """Mutate one to three arguments of an input (mostly one)."""
+    """Mutate one to three arguments of an input (mostly one). About one round in ten is a burst that stacks many more mutations"""
     values = list(input.values)
     if not values:
         return input
-    for _ in range(rng.choice((1, 1, 1, 1, 2, 3))):
+    if rng.random() < BURST_PROBABILITY:
+        count = rng.randint(*BURST_SIZE)
+    else:
+        count = rng.choice((1, 1, 1, 1, 2, 3))
+    for _ in range(count):
         i = rng.randrange(len(values))
         values[i] = mutate_value(rng, values[i], d)
     return Input(tuple(values))

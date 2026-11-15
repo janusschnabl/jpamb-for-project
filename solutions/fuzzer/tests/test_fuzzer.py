@@ -1,3 +1,4 @@
+import pytest
 from fuzzer import fuzz
 from mutators import Dictionary
 
@@ -60,3 +61,22 @@ def test_empty_focus_means_nothing_counts_as_progress():
 def test_time_limit_stops_the_run():
     r = fuzz(bc, method(HARD), budget=10**9, seed=0, time_limit=0.2)
     assert 0 < r.executions < 10**9
+
+SECRET = "Fuzzing.secretThenDivide:([C)I"
+
+def _built(name):
+    try:
+        bc.getmethod(method(name))
+        return True
+    except Exception:
+        return False
+
+needs_fuzzing_class = pytest.mark.skipif(
+    not _built(SECRET), reason="the Fuzzing benchmark class is not built on this branch"
+)
+
+@needs_fuzzing_class
+def test_finds_the_secret_with_resize_and_dictionary():
+    k = Dictionary(ints=(6, 115, 101, 99, 114, 116))
+    r = fuzz(bc, method(SECRET), budget=5000, seed=0, dictionary=k)
+    assert "divide by zero" in r.witnesses

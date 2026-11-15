@@ -1,7 +1,15 @@
 import random
 
+import mutators
 from javaint import INT_MAX, INT_MIN
-from mutators import MAX_LENGTH, Dictionary, initial_input, mutate_input
+from mutators import (
+    MAX_LENGTH,
+    Dictionary,
+    initial_input,
+    mutate_array,
+    mutate_input,
+    mutate_string,
+)
 
 import jvm
 from jpamb.case import Array, Boolean, Char, Input, Int, String
@@ -71,3 +79,38 @@ def test_initial_input_matches_the_signature():
     assert initial_input(m) == Input((Array(jvm.Char(), ()),))
     m = jvm.AbsMethodID.decode("jpamb.cases.Simple.divideZeroByZero:(II)I")
     assert initial_input(m) == Input((Int(0), Int(0)))
+
+def test_resize_can_jump_to_a_dictionary_length():
+    rng = random.Random(0)
+    empty = Array(jvm.Char(), ())
+    lengths = {len(mutate_array(rng, empty, Dictionary(ints=(6,))).values) for _ in range(300)}
+    assert 6 in lengths
+
+def test_resize_never_exceeds_the_limit():
+    rng = random.Random(1)
+    d = Dictionary(ints=(6, 1000, -3))
+    array, text = Array(jvm.Int(), (1, 2, 3)), "abc"
+    for _ in range(1000):
+        array = mutate_array(rng, array, d)
+        text = mutate_string(rng, text, d)
+        assert len(array.values) <= MAX_LENGTH
+        assert len(text) <= MAX_LENGTH
+
+def changed_positions(a, b):
+    return sum(x != y for x, y in zip(a.values, b.values))
+
+def test_bursts_change_many_arguments_at_once():
+    start = Input(tuple(Int(0) for _ in range(5)))
+    rng = random.Random(3)
+    widest = max(changed_positions(start, mutate_input(rng, start, Dictionary()))
+                 for _ in range(2000))
+    assert widest >= 4
+
+def test_without_bursts_at_most_three_arguments_change(monkeypatch):
+    monkeypatch.setattr(mutators, "BURST_PROBABILITY", 0.0)
+    start = Input(tuple(Int(0) for _ in range(5)))
+    rng = random.Random(3)
+    widest = max(changed_positions(start, mutate_input(rng, start, Dictionary()))
+                 for _ in range(2000))
+    assert widest <= 3
+    
