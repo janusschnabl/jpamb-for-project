@@ -94,6 +94,23 @@ def manystep(
             val = state.stack[-1]
             yield (pc + 1, state.push(val))
 
+        case jvm.ArrayStore(type=t):
+            [ref, index, value], after = state.pop(3)
+
+            if ref.null:
+                yield "null pointer"
+
+            if index.min < 0 or index.max >= ref.length.min:
+                yield "out of bounds"
+
+            possible = index & Interval(0, ref.length.max - 1)
+            if not possible.is_bot:
+                yield (pc + 1, after)
+                
+        case jvm.Store(index=i):
+            [val], after = state.pop(1)
+            yield (pc + 1, after.store(i, val))
+
         case jvm.Goto(target=t):
             yield (pc % t, state)
 
