@@ -238,37 +238,135 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from typing import Self
 
+INT_MIN = -(2**31)
+INT_MAX = 2**31 - 1
 
 @dataclass(frozen=True)
 class Interval(Abstraction, Lattice):
-    min: int | None
-    max: int | None
+    min: int
+    max: int
+
+    def __post_init__(self):
+        # Every empty interval ([5, 3], [9, -1], ...) is turned into the one
+        # canonical bottom, so that == compares empty intervals correctly.
+        if self.min > self.max:
+            object.__setattr__(self, "min", INT_MAX)
+            object.__setattr__(self, "max", INT_MIN)
+
+    @property
+    def is_bot(self) -> bool:
+        return self.min > self.max
 
     def __str__(self):
-        return f"{self.min if self.min is not None else '-inf'}:{self.max if self.max is not None else 'inf'}"
+        if self.is_bot:
+            return "⊥"
+        return f"[{self.min}, {self.max}]"
 
     def __sexpr__(self):
         return str(self)
 
     @classmethod
     def abstract(cls, values: Iterable[jvms.StackValue]) -> Self:
-        raise NotImplementedError("TODO")
+        numbers = []
+        for value in values:
+            match value:
+                case jvms.StackInt(v):
+                    numbers.append(v)
+                case _:
+                    raise NotImplementedError(f"Unsupported value {value!r}")
+
+        if not numbers:
+            return cls(INT_MAX, INT_MIN)
+
+        return cls(min(numbers), max(numbers))
 
     def __contains__(self, value: jvms.StackValue) -> bool:
-        raise NotImplementedError("TODO")
+        match value:
+            case jvms.StackInt(v):
+                return self.min <= v <= self.max
+            case _:
+                return False
 
     @classmethod
     def top(cls) -> Self:
-        raise NotImplementedError("TODO")
+        return cls(INT_MIN, INT_MAX)
 
     def __or__(self, other: "Interval") -> "Interval":
-        raise NotImplementedError("TODO")
+        return Interval(min(self.min, other.min), max(self.max, other.max))
 
     def __and__(self, other: "Interval") -> "Interval":
-        raise NotImplementedError("TODO")
+        return Interval(max(self.min, other.min), min(self.max, other.max))
 
     def __lt__(self, other: "Interval") -> bool:
-        raise NotImplementedError("TODO")
+        # strictly smaller: inside other, and not equal to it
+        return other.min <= self.min and self.max <= other.max and self != other
 
     def __gt__(self, other: "Interval") -> bool:
-        raise NotImplementedError("TODO")
+        return other < self
+    
+    def arithmetic(
+        self, other: "Interval", opr: jvm.BinaryOpr
+    ) -> tuple["Interval", set[str]]:
+        if self.is_bot or other.is_bot:
+            return (Interval.bot(), set())
+
+        a, b = self, other
+        match opr:
+            case jvm.BinaryOpr.Add:
+                return (_fit(a.min + b.min, a.max + b.max), set())
+
+            case jvm.BinaryOpr.Sub:
+                return (_fit(a.min - b.max, a.max - b.min), set())
+
+            case jvm.BinaryOpr.Mul:
+                corners = [a.min * b.min, a.min * b.max, a.max * b.min, a.max * b.max]
+                return (_fit(min(corners), max(corners)), set())
+
+            case jvm.BinaryOpr.Div | jvm.BinaryOpr.Rem:
+                errors = {"divide by zero"} if b.min <= 0 <= b.max else set()
+                negative = b & Interval(INT_MIN, -1)
+                positive = b & Interval(1, INT_MAX)
+                result = Interval.bot()
+                for part in (negative, positive):
+                    if part.is_bot:
+                        continue
+                    if opr == jvm.BinaryOpr.Div:
+                        result = result | _div(a, part)
+                    else:
+                        result = result | _rem(a, part)
+                return (result, errors)
+
+            case _:
+                raise NotImplementedError(f"TODO: {opr}")
+
+    def compare(
+        self, other: "Interval", opr: jvm.CmpOpr
+    ) -> tuple["Interval", "Interval"]:
+        return 
+
+def _fit(lo: int, hi: int) -> Interval:
+    if lo < INT_MIN or hi > INT_MAX:
+        return Interval.top()
+    return Interval(lo, hi)
+
+def _tdiv(x: int, y: int) -> int:
+    q = abs(x) // abs(y)
+    return q if (x < 0) == (y < 0) else -q
+
+
+def _trem(x: int, y: int) -> int:
+    return x - _tdiv(x, y) * y
+
+
+def _div(a: Interval, b: Interval) -> Interval:
+    corners = [_tdiv(x, y) for x in (a.min, a.max) for y in (b.min, b.max)]
+    return _fit(min(corners), max(corners))
+
+
+def _rem(a: Interval, b: Interval) -> Interval:
+    if a.min == a.max and b.min == b.max:
+        return Interval(_trem(a.min, b.min), _trem(a.min, b.min))  # both constants: exact
+    m = max(abs(b.min), abs(b.max)) - 1  # the largest possible |result|
+    lo = 0 if a.min >= 0 else -min(m, -a.min)
+    hi = 0 if a.max <= 0 else min(m, a.max)
+    return Interval(lo, hi)
