@@ -247,7 +247,7 @@ class Interval(Abstraction, Lattice):
     max: int
 
     def __post_init__(self):
-        # Every empty interval ([5, 3], [9, -1], ...) is turned into the one
+        # Every empty interval - intervals where min > max - is turned into the one
         # canonical bottom, so that == compares empty intervals correctly.
         if self.min > self.max:
             object.__setattr__(self, "min", INT_MAX)

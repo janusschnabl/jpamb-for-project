@@ -50,6 +50,7 @@ class State(sexpr.AsSExpr):
         )
 
 
+
 def manystep(
     bc: jpamb.Bytecode,
     pc: PC,
@@ -69,11 +70,11 @@ def manystep(
         case jvm.Ifz(condition=op, target=target):
             [val], after = state.pop(1)
             split = val.compare(Interval(0, 0), op)
-            
+
             if split.if_true.possible:
-                yield (pc % target, after)    # jump taken
+                yield (pc % target, after)  # jump taken
             if split.if_false.possible:
-                yield (pc + 1, after)         # fall through
+                yield (pc + 1, after)  # fall through
 
         case jvm.Load(index=i):
             va = state.load(i)
@@ -84,11 +85,10 @@ def manystep(
 
         case jvm.Binary(operant=op):
             [v1, v2], after = state.pop(2)
-            for res in Interval.arithmetic(v1, v2, op):
-                if isinstance(res, str):
-                    yield res
-                else:
-                    yield (pc + 1, after.push(res))
+            result, errors = v1.arithmetic(v2, op)
+            yield from errors  # e.g. "divide by zero"
+            if not result.is_bot:  # ⊥: nothing continues
+                yield (pc + 1, after.push(result))
 
         case jvm.Return(type=None):
             yield "ok"
@@ -101,6 +101,9 @@ def manystep(
             # Hack -- if we create an assertion error, we probably also throw it.
             yield "assertion error"
 
+        case _:
+            raise NotImplementedError(f"Instruction not handled: {opr}")
+
 
 def initialstate(
     bc: jpamb.Bytecode,
@@ -111,17 +114,30 @@ def initialstate(
     locals = [Interval.bot()] * method.max_locals
 
     if inputs is None:
+        # any input: use the range of each parameter's TYPE
         for i, p in enumerate(methodid.extension.params):
-            locals[i] = Interval.top()
+            match p:
+                case jvm.Boolean():
+                    locals[i] = Interval(0, 1)
+                case jvm.Char():
+                    locals[i] = Interval(0, 65535)
+                case jvm.Short():
+                    locals[i] = Interval(-(2**15), 2**15 - 1)
+                case jvm.Byte():
+                    locals[i] = Interval(-(2**7), 2**7 - 1)
+                case jvm.Int():
+                    locals[i] = Interval.top()
+                case _:
+                    raise NotImplementedError(f"Unsupported parameter type {p}")
     else:
         for i, x in enumerate(inputs.values):
             match x:
-                case jpamb.case.Boolean(value=value):
-                    locals[i] = Interval.alpha([StackInt(int(value))])
-                case jpamb.case.Int(value=value):
-                    locals[i] = Interval.alpha([StackInt(int(value))])
-                case jpamb.case.Array():
-                    locals[i] = Interval.from_sign("+")
+                case jpamb.case.Int(value=v):
+                    locals[i] = Interval.alpha([StackInt(v)])
+                case jpamb.case.Boolean(value=v):
+                    locals[i] = Interval.alpha([StackInt(int(v))])
+                case jpamb.case.Char(value=v):
+                    locals[i] = Interval.alpha([StackInt(ord(v))])
                 case _:
                     raise NotImplementedError(f"Unsupported value {x!r}")
 
@@ -209,13 +225,19 @@ def analyse():
 
     steps = 300
 
-    ai = AbstractInterpreter.initial(bc, methodid, None)
-
     final = set()
-    while steps > 0 and ai.worklist:
-        _pc, finals = ai.step()
-        final |= finals
-        steps -= 1
+    try:
+        ai = AbstractInterpreter.initial(bc, methodid, None)
+        while steps > 0 and ai.worklist:
+            _pc, finals = ai.step()
+            final |= finals
+            steps -= 1
+    except NotImplementedError as e:
+        # Something we cannot analyse yet: "maybe" is the only safe answer.
+        print(f"Not analysed: {e}", file=sys.stderr)
+        for f in jpamb.QUERIES:
+            print(f"{f};maybe")
+        return
 
     for f in jpamb.QUERIES:
         if f not in final:
