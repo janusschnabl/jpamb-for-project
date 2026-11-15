@@ -11,6 +11,27 @@ from jpamb import jvm
 from jvm.state import PC, StackInt
 
 
+def type_range(t: jvm.Type) -> Interval | None:
+    """All the values a JVM type allows, as an interval.
+
+    boolean, char, short and byte are stored as ints on the JVM, but with a
+    smaller range.  Returns None for types that are not int-like (arrays,
+    objects, long, double, ...)."""
+    match t:
+        case jvm.Boolean():
+            return Interval(0, 1)
+        case jvm.Char():
+            return Interval(0, 65535)
+        case jvm.Short():
+            return Interval(-(2**15), 2**15 - 1)
+        case jvm.Byte():
+            return Interval(-(2**7), 2**7 - 1)
+        case jvm.Int():
+            return Interval.top()
+        case _:
+            return None
+
+
 @dataclass(frozen=True)
 class State(sexpr.AsSExpr):
     locals: tuple[Interval | Ref, ...]
@@ -114,6 +135,29 @@ def manystep(
         case jvm.Goto(target=t):
             yield (pc % t, state)
 
+        case jvm.InvokeStatic(method=m):
+            yield "assertion error"
+            yield "divide by zero"
+            yield "null pointer"
+            yield "out of bounds"
+            yield "*"
+
+            n = len(m.extension.params)
+            if n > 0:
+                _, after = state.pop(n)
+            else:
+                after = state
+
+            ret = m.extension.return_type
+            if ret is None:
+                yield (pc + 1, after)
+            elif (rng := type_range(ret)) is not None:
+                yield (pc + 1, after.push(rng))
+            elif isinstance(ret, (jvm.Array, jvm.Object)):
+                yield (pc + 1, after.push(Ref(null=True, length=Interval(0, INT_MAX))))
+            else:
+                raise NotImplementedError(f"Unsupported return type {ret}")
+
         case jvm.Binary(operant=op):
             [v1, v2], after = state.pop(2)
             result, errors = v1.arithmetic(v2, op)
@@ -147,19 +191,10 @@ def initialstate(
     if inputs is None:
         # any input: use the range of each parameter's TYPE
         for i, p in enumerate(methodid.extension.params):
-            match p:
-                case jvm.Boolean():
-                    locals[i] = Interval(0, 1)
-                case jvm.Char():
-                    locals[i] = Interval(0, 65535)
-                case jvm.Short():
-                    locals[i] = Interval(-(2**15), 2**15 - 1)
-                case jvm.Byte():
-                    locals[i] = Interval(-(2**7), 2**7 - 1)
-                case jvm.Int():
-                    locals[i] = Interval.top()
-                case _:
-                    raise NotImplementedError(f"Unsupported parameter type {p}")
+            rng = type_range(p)
+            if rng is None:
+                raise NotImplementedError(f"Unsupported parameter type {p}")
+            locals[i] = rng
     else:
         for i, x in enumerate(inputs.values):
             match x:
