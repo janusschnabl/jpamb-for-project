@@ -3,7 +3,7 @@ from collections import deque
 from collections.abc import Iterable
 from dataclasses import dataclass
 
-from abstractions import Interval
+from abstractions import INT_MAX, Interval, Ref
 
 import jpamb
 import sexpr
@@ -13,8 +13,8 @@ from jvm.state import PC, StackInt
 
 @dataclass(frozen=True)
 class State(sexpr.AsSExpr):
-    locals: tuple[Interval, ...]
-    stack: tuple[Interval, ...]
+    locals: tuple[Interval | Ref, ...]
+    stack: tuple[Interval | Ref, ...]
 
     def __post_init__(self):
         assert isinstance(self.locals, tuple)
@@ -33,8 +33,8 @@ class State(sexpr.AsSExpr):
             tuple(s1 | s2 for s1, s2 in zip(self.stack, other.stack)),
         )
 
-    def push(self, value: Interval):
-        assert isinstance(value, Interval), f"Expected sign set but got {value}"
+    def push(self, value: Interval | Ref):
+        assert isinstance(value, (Interval, Ref)), f"Expected a value but got {value}"
         return State(self.locals, self.stack + (value,))
 
     def pop(self, number=1):
@@ -80,8 +80,18 @@ def manystep(
             val = Interval.alpha([StackInt(v)])
             yield (pc + 1, state.push(val))
 
+        case jvm.NewArray(type=t, dim=1):
+            [size], after = state.pop(1)
+            size = size & Interval(0, INT_MAX)
+            if not size.is_bot:
+                yield (pc + 1, after.push(Ref(null=False, length=size)))
+
         case jvm.Load(index=i):
             val = state.load(i)
+            yield (pc + 1, state.push(val))
+
+        case jvm.Dup(words=1):
+            val = state.stack[-1]
             yield (pc + 1, state.push(val))
 
         case jvm.Goto(target=t):

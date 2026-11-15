@@ -441,3 +441,16 @@ def _rem(a: Interval, b: Interval) -> Interval:
     lo = 0 if a.min >= 0 else -min(m, -a.min)
     hi = 0 if a.max <= 0 else min(m, a.max)
     return Interval(lo, hi)
+
+
+@dataclass(frozen=True)
+class Ref:
+    null: bool
+    length: Interval
+
+    def __or__(self, other: "Ref") -> "Ref":
+        return Ref(self.null or other.null, self.length | other.length)
+
+    def __str__(self):
+        text = f"len={self.length}"
+        return f"null|{text}" if self.null else text
