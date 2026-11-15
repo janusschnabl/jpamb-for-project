@@ -63,9 +63,9 @@ def manystep(
             assert field.extension.name == "$assertionsDisabled"
 
             # Hack - Assuming assertions are never disabled
-            va = Interval.alpha([StackInt(0)])
+            val = Interval.alpha([StackInt(0)])
 
-            yield (pc + 1, state.push(va))
+            yield (pc + 1, state.push(val))
 
         case jvm.Ifz(condition=op, target=target):
             [val], after = state.pop(1)
@@ -75,10 +75,14 @@ def manystep(
                 yield (pc % target, after)  # jump taken
             if split.if_false.possible:
                 yield (pc + 1, after)  # fall through
+                
+        case jvm.Push(type=jvm.Int(), value=v):
+            val = Interval.alpha([StackInt(v)])
+            yield (pc + 1, state.push(val))
 
         case jvm.Load(index=i):
-            va = state.load(i)
-            yield (pc + 1, state.push(va))
+            val = state.load(i)
+            yield (pc + 1, state.push(val))
 
         case jvm.Goto(target=t):
             yield (pc % t, state)
@@ -171,6 +175,12 @@ class AbstractInterpreter:
             else:
                 pc_, st = res
 
+                if pc_.offset <= pc.offset:
+                    # A jump back to an earlier (or the same) instruction is
+                    # reachable.  That is the only way an instruction can run
+                    # twice, so only then can the method run forever.
+                    finals.add("*")
+
                 before = self.states.get(pc_, None)
                 if before is None:
                     after = st
@@ -235,6 +245,16 @@ def analyse():
     except NotImplementedError as e:
         # Something we cannot analyse yet: "maybe" is the only safe answer.
         print(f"Not analysed: {e}", file=sys.stderr)
+        for f in jpamb.QUERIES:
+            print(f"{f};maybe")
+        return
+
+    if ai.worklist:
+        # TEMPORARY, until widening: we ran out of steps before reaching a
+        # fixed point.  The states still on the worklist were never explored,
+        # and they might lead to an error we have not seen.  "no" would be a
+        # guess, so "maybe" is the only safe answer.
+        print("Not analysed: no fixed point within the step limit", file=sys.stderr)
         for f in jpamb.QUERIES:
             print(f"{f};maybe")
         return
