@@ -78,6 +78,51 @@ class State(sexpr.AsSExpr):
             self.stack,
         )
 
+def jump_targets(opcodes) -> set[int]:
+    targets = set()
+    for op in opcodes:
+        match op:
+            case jvm.Goto(target=t) | jvm.If(target=t) | jvm.Ifz(target=t):
+                targets.add(t)
+    return targets
+
+
+def origin(bc: jpamb.Bytecode, pc: PC, depth: int = 0):
+    opcodes = bc.getmethod(pc.method).opcodes
+    targets = jump_targets(opcodes)
+    j = pc.offset
+    while True:
+        if j == 0 or j in targets:
+            return None
+        j -= 1
+        match opcodes[j]:
+            case jvm.Load(index=i):
+                if depth == 0:
+                    return ("local", i)
+                depth -= 1
+            case jvm.Push():
+                if depth == 0:
+                    return None
+                depth -= 1
+            case jvm.ArrayLength():
+                if depth == 0:
+                    match origin(bc, pc % j, 0):  # where did the array come from?
+                        case ("local", i):
+                            return ("len", i)
+                    return None
+            case _:
+                return None
+
+
+def backtrack(state: State, org, value: Interval) -> State:
+    match org:
+        case ("local", i):
+            return state.store(i, value)
+        case ("len", i):
+            ref = state.load(i)
+            return state.store(i, Ref(ref.null, ref.length & value))
+        case _:
+            return state
 
 
 def manystep(
@@ -99,11 +144,12 @@ def manystep(
         case jvm.Ifz(condition=op, target=target):
             [val], after = state.pop(1)
             split = val.compare(Interval(0, 0), op)
+            org = origin(bc, pc)
 
             if split.if_true.possible:
-                yield (pc % target, after)  # jump taken
+                yield (pc % target, backtrack(after, org, split.if_true.left))
             if split.if_false.possible:
-                yield (pc + 1, after)  # fall through
+                yield (pc + 1, backtrack(after, org, split.if_false.left))
                 
         case jvm.Push(type=jvm.Int(), value=v):
             val = Interval.alpha([StackInt(v)])
@@ -124,7 +170,7 @@ def manystep(
             yield (pc + 1, state.push(val))
 
         case jvm.ArrayStore(type=t):
-            [ref, index, value], after = state.pop(3)
+            [ref, index, _], after = state.pop(3)
 
             if ref.null:
                 yield "null pointer"
@@ -144,27 +190,23 @@ def manystep(
             yield (pc % t, state)
 
         case jvm.InvokeStatic(method=m):
-            yield "assertion error"
-            yield "divide by zero"
-            yield "null pointer"
-            yield "out of bounds"
-            yield "*"
-
             n = len(m.extension.params)
             if n > 0:
-                _, after = state.pop(n)
+                args, after = state.pop(n)
             else:
-                after = state
+                args, after = (), state
 
-            ret = m.extension.return_type
-            if ret is None:
-                yield (pc + 1, after)
-            elif (rng := type_range(ret)) is not None:
-                yield (pc + 1, after.push(rng))
-            elif isinstance(ret, (jvm.Array, jvm.Object)):
-                yield (pc + 1, after.push(Ref(null=True, length=Interval(0, INT_MAX))))
-            else:
-                raise NotImplementedError(f"Unsupported return type {ret}")
+            outcomes, result = call(bc, m, args)
+
+            for outcome in outcomes:
+                if outcome != "ok":
+                    yield outcome
+
+            if "ok" in outcomes:
+                if m.extension.return_type is None:
+                    yield (pc + 1, after)
+                elif result is not None:
+                    yield (pc + 1, after.push(result))
             
         case jvm.ArrayLength():
             [ref], after = state.pop()
@@ -178,11 +220,17 @@ def manystep(
         case jvm.If(condition=op, target=target):
             [v1, v2], after = state.pop(2)
             split = v1.compare(v2, op)
-            
+            org1 = origin(bc, pc, 1)
+            org2 = origin(bc, pc, 0)
+
             if split.if_true.possible:
-                yield (pc % target, after)
+                st = backtrack(after, org1, split.if_true.left)
+                st = backtrack(st, org2, split.if_true.right)
+                yield (pc % target, st)
             if split.if_false.possible:
-                yield (pc + 1, after) 
+                st = backtrack(after, org1, split.if_false.left)
+                st = backtrack(st, org2, split.if_false.right)
+                yield (pc + 1, st)
                 
         case jvm.ArrayLoad(type=t):
             [ref, index], after = state.pop(2)
@@ -191,11 +239,11 @@ def manystep(
                 yield "null pointer"
             
             allowed_indices = ref.length.min - 1
-            
+
             if not index <= Interval(0, allowed_indices):
                 yield "out of bounds"
-        
-            possible = index & Interval(0, allowed_indices)
+
+            possible = index & Interval(0, ref.length.max - 1)
             if not possible.is_bot:
                 yield (pc + 1, after.push(type_range(t)))
 
@@ -217,24 +265,24 @@ def manystep(
             yield (pc + 1, after.push(negated))
             
         case jvm.Cast(from_=jvm.Int(), to_=to):
-            rng = type_range(to)
-            if rng is None:
+            range = type_range(to)
+            if range is None:
                 raise NotImplementedError(f"Unsupported cast to {to}")
 
             [val], after = state.pop(1)
 
-            if val <= rng:
+            if val <= range:
                 casted = val
             else:
-                casted = rng
+                casted = range
 
             yield (pc + 1, after.push(casted))
             
         case jvm.Binary(operant=op):
             [v1, v2], after = state.pop(2)
             result, errors = v1.arithmetic(v2, op)
-            yield from errors  # e.g. "divide by zero"
-            if not result.is_bot:  # ⊥: nothing continues
+            yield from errors
+            if not result.is_bot:
                 yield (pc + 1, after.push(result))
 
         case jvm.Return(type=None):
@@ -250,6 +298,56 @@ def manystep(
 
         case _:
             raise NotImplementedError(f"Instruction not handled: {opr}")
+
+ACTIVE: list[jvm.AbsMethodID] = []
+
+def unknown_call(m: jvm.AbsMethodID):
+    outcomes = {"assertion error", "divide by zero", "null pointer", "out of bounds", "*", "ok"}
+    ret = m.extension.return_type
+    if ret is None:
+        return outcomes, None
+    if (range := type_range(ret)) is not None:
+        return outcomes, range
+    if isinstance(ret, (jvm.Array, jvm.Object)):
+        return outcomes, Ref(null=True, length=Interval(0, INT_MAX))
+    raise NotImplementedError(f"Unsupported return type {ret}")
+
+
+def call(bc: jpamb.Bytecode, m: jvm.AbsMethodID, args):
+    if m in ACTIVE:
+        return unknown_call(m)
+
+    try:
+        method = bc.getmethod(m)
+    except Exception:
+        return unknown_call(m)
+
+
+    locals = [Interval.bot()] * method.max_locals
+    for i, arg in enumerate(args):
+        locals[i] = arg
+    start = PC(m, 0)
+    ai = AbstractInterpreter(bc, deque([start]), {start: State(tuple(locals), ())}, loop_heads(bc, m))
+
+    ACTIVE.append(m)
+    try:
+        outcomes = set()
+        while ai.worklist:
+            _pc, finals = ai.step()
+            outcomes |= finals
+    except NotImplementedError:
+        return unknown_call(m)
+    finally:
+        ACTIVE.pop()
+
+    result = None
+    for pc, state in ai.states.items():
+        match bc[pc]:
+            case jvm.Return(type=t) if t is not None:
+                value = state.stack[-1]
+                result = value if result is None else result | value
+    return outcomes, result
+
 
 def loop_heads(bc: jpamb.Bytecode, methodid: jvm.AbsMethodID) -> set[int]:
     heads = set()
@@ -269,15 +367,20 @@ def initialstate(
     locals = [Interval.bot()] * method.max_locals
 
     if inputs is None:
-        # any input: use the range of each parameter's TYPE
         for i, p in enumerate(methodid.extension.params):
-            rng = type_range(p)
-            if rng is None:
+            range = type_range(p)
+            if range is not None:
+                locals[i] = range
+            elif isinstance(p, jvm.Array) and type_range(p.contains) is not None:
+                locals[i] = Ref(null=False, length=Interval(0, INT_MAX))
+            else:
                 raise NotImplementedError(f"Unsupported parameter type {p}")
-            locals[i] = rng
     else:
         for i, x in enumerate(inputs.values):
             match x:
+                case jpamb.case.Array(values=values):
+                    n = len(values)
+                    locals[i] = Ref(null=False, length=Interval(n, n))
                 case jpamb.case.Int(value=v):
                     locals[i] = Interval.alpha([StackInt(v)])
                 case jpamb.case.Boolean(value=v):
@@ -319,18 +422,15 @@ class AbstractInterpreter:
                 pc_, st = res
 
                 if pc_.offset <= pc.offset:
-                    # A jump back to an earlier (or the same) instruction is
-                    # reachable.  That is the only way an instruction can run
-                    # twice, so only then can the method run forever.
                     finals.add("*")
 
                 before = self.states.get(pc_, None)
                 if before is None:
                     after = st
                 elif pc_.offset in self.heads:
-                    after = before.widen(before | st)  # loop head: widen
+                    after = before.widen(before | st)
                 else:
-                    after = before | st  # everywhere else: plain join
+                    after = before | st
                 if before is None or after != before:
                     self.states[pc_] = after
                     self.worklist.append(pc_)
@@ -381,12 +481,11 @@ def analyse():
     try:
         ai = AbstractInterpreter.initial(bc, methodid, None)
         # No step limit: widening at the loop heads guarantees that the
-        # worklist runs empty, i.e. that we reach a fixed point.
+        # worklist runs empty.
         while ai.worklist:
             _pc, finals = ai.step()
             final |= finals
     except NotImplementedError as e:
-        # Something we cannot analyse yet: "maybe" is the only safe answer.
         print(f"Not analysed: {e}", file=sys.stderr)
         for f in jpamb.QUERIES:
             print(f"{f};maybe")

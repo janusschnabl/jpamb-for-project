@@ -247,8 +247,8 @@ class Interval(Abstraction, Lattice):
     max: int
 
     def __post_init__(self):
-        # Every empty interval - intervals where min > max - is turned into the one
-        # canonical bottom, so that == compares empty intervals correctly.
+        # Every empty interval - intervals where min > max - is bottom (empty interval), 
+        # so that == compares empty intervals correctly.
         if self.min > self.max:
             object.__setattr__(self, "min", INT_MAX)
             object.__setattr__(self, "max", INT_MIN)
@@ -292,13 +292,14 @@ class Interval(Abstraction, Lattice):
         return cls(INT_MIN, INT_MAX)
 
     def __or__(self, other: "Interval") -> "Interval":
+        if isinstance(other, Ref):
+            return _mixed(self, other)
         return Interval(min(self.min, other.min), max(self.max, other.max))
 
     def __and__(self, other: "Interval") -> "Interval":
         return Interval(max(self.min, other.min), min(self.max, other.max))
 
     def __lt__(self, other: "Interval") -> bool:
-        # strictly smaller: inside other, and not equal to it
         return other.min <= self.min and self.max <= other.max and self != other
 
     def __gt__(self, other: "Interval") -> bool:
@@ -350,6 +351,8 @@ class Interval(Abstraction, Lattice):
 
     def widen(self, other: "Interval") -> "Interval":
         # The widening operator:  self ∇ other.
+        if isinstance(other, Ref):
+            return _mixed(self, other)
         if self.is_bot:
             return other
         if other.is_bot:
@@ -418,7 +421,6 @@ def _assume(a: Interval, b: Interval, opr: jvm.CmpOpr) -> Branch:
 
 
 def _remove(a: Interval, n: int) -> Interval:
-    """a without the number n, as well as an interval can express it."""
     if a.min == n:
         return Interval(a.min + 1, a.max)  # becomes bottom if a was [n, n]
     if a.max == n:
@@ -460,13 +462,21 @@ class Ref:
     length: Interval
 
     def __or__(self, other: "Ref") -> "Ref":
+        if isinstance(other, Interval):
+            return _mixed(other, self)
         return Ref(self.null or other.null, self.length | other.length)
 
     def widen(self, other: "Ref") -> "Ref":
-        # `null` can only change once (False -> True), so it needs no
-        # widening.  The length is an interval that may keep growing.
+        if isinstance(other, Interval):
+            return _mixed(other, self)
         return Ref(self.null or other.null, self.length.widen(other.length))
 
     def __str__(self):
         text = f"len={self.length}"
         return f"null|{text}" if self.null else text
+
+
+def _mixed(interval: Interval, ref: Ref) -> Ref:
+    if interval.is_bot:
+        return ref
+    raise NotImplementedError("an int and a reference in the same variable")
