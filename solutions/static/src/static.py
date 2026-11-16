@@ -437,6 +437,87 @@ class AbstractInterpreter:
 
         return pc, finals
 
+ERRORS = ("assertion error", "divide by zero", "null pointer", "out of bounds")
+
+@dataclass(frozen=True)
+class Alarm:
+    pc: PC
+    error: str
+    instruction: jvm.Opcode
+    line: int | None
+    state: State
+
+    def __str__(self):
+        return f"{self.error} at {self.instruction} (line {self.line}): {self.state}"
+
+
+@dataclass(frozen=True)
+class Result:
+    methodid: jvm.AbsMethodID
+    analysed: bool
+    verdicts: dict[str, str]
+    alarms: tuple[Alarm, ...]
+    states: dict[PC, State] 
+    reason: str | None = None
+
+    def proven(self, query: str) -> bool:
+        return self.verdicts[query] == "no"
+
+    def unproven(self, error: str | None = None) -> list[Alarm]:
+        return [a for a in self.alarms if error is None or a.error == error]
+
+
+def source_lines(bc: jpamb.Bytecode, methodid: jvm.AbsMethodID) -> list[tuple[int, int]]:
+    method = bc.suite.findmethod(methodid, eff=bc.eff)
+    return sorted((entry["offset"], entry["line"]) for entry in method["code"]["lines"])
+
+
+def line_of(lines: list[tuple[int, int]], offset: int) -> int | None:
+    found = None
+    for start, line in lines:
+        if start <= offset:
+            found = line
+    return found
+
+
+def analyse_method(methodid: str | jvm.AbsMethodID, bc: jpamb.Bytecode | None = None) -> Result:
+    if isinstance(methodid, str):
+        methodid = jpamb.parse_methodid(methodid)
+    if bc is None:
+        suite, eff = jpamb.setup()
+        bc = jpamb.Bytecode(suite, eff, {})
+
+    final = set()
+    try:
+        ai = AbstractInterpreter.initial(bc, methodid, None)
+        while ai.worklist:
+            _pc, finals = ai.step()
+            final |= finals
+    except NotImplementedError as e:
+        return Result(
+            methodid,
+            analysed=False,
+            verdicts={q: "maybe" for q in jpamb.QUERIES},
+            alarms=(),
+            states={},
+            reason=str(e),
+        )
+
+    lines = source_lines(bc, methodid)
+    alarms = []
+    for pc, state in sorted(ai.states.items(), key=lambda item: item[0].offset):
+        for res in manystep(bc, pc, state):
+            if res in ERRORS:
+                alarms.append(Alarm(pc, res, bc[pc], line_of(lines, pc.offset), state))
+
+    return Result(
+        methodid,
+        analysed=True,
+        verdicts={q: "maybe" if q in final else "no" for q in jpamb.QUERIES},
+        alarms=tuple(alarms),
+        states=dict(ai.states),
+    )
+
 
 def interpret():
     """The static analysis"""
@@ -474,25 +555,12 @@ def analyse():
         for_science=True,
     )
 
-    suite, eff = jpamb.setup()
-    bc = jpamb.Bytecode(suite, eff, {})
+    result = analyse_method(methodid)
 
-    final = set()
-    try:
-        ai = AbstractInterpreter.initial(bc, methodid, None)
-        # No step limit: widening at the loop heads guarantees that the
-        # worklist runs empty.
-        while ai.worklist:
-            _pc, finals = ai.step()
-            final |= finals
-    except NotImplementedError as e:
-        print(f"Not analysed: {e}", file=sys.stderr)
-        for f in jpamb.QUERIES:
-            print(f"{f};maybe")
-        return
+    if not result.analysed:
+        print(f"Not analysed: {result.reason}", file=sys.stderr)
+    for alarm in result.alarms:
+        print(f"Alarm: {alarm}", file=sys.stderr)
 
     for f in jpamb.QUERIES:
-        if f not in final:
-            print(f"{f};no")
-        else:
-            print(f"{f};maybe")
+        print(f"{f};{result.verdicts[f]}")
