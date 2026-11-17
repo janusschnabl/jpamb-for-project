@@ -1,9 +1,9 @@
 """Tier 0b: constant mining.
 
-Collects every integer literal a method's bytecode pushes or adds
-via `iinc`. The constant dictionary `K`, forwarded to parametrize 
-the interval tier's widening thresholds (`∇K`) and to seed the
-fuzzing tier's mutator.
+Collects every integer literal a method's bytecode pushes, adds via
+`iinc`, or implicitly compares against via an int `ifz`. The result is the constant dictionary `K`,
+forwarded to parametrize the interval tier's widening thresholds (`∇K`)
+and to seed the fuzzing tier's mutator.
 """
 
 import sys
@@ -14,7 +14,7 @@ import jvm
 
 
 def extract_constants(opcodes: Iterable[jvm.Opcode]) -> set[int]:
-    """The set K: every integer constant occurring literally in `opcodes`."""
+    """The set K: every integer constant occurring in `opcodes`."""
     constants: set[int] = set()
 
     for op in opcodes:

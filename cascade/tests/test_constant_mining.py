@@ -2,7 +2,6 @@ from cascade.tier0.constant_mining import extract_constants
 
 import jvm
 
-
 def test_collects_pushed_int_literals():
     opcodes = [
         jvm.Push(offset=0, type=jvm.Int(), value=1),
@@ -12,12 +11,10 @@ def test_collects_pushed_int_literals():
 
     assert extract_constants(opcodes) == {0, 1}
 
-
 def test_collects_iinc_amount():
     opcodes = [jvm.Incr(offset=0, index=1, amount=42)]
 
     assert extract_constants(opcodes) == {42}
-
 
 def test_ignores_non_integer_pushes():
     opcodes = [
@@ -27,7 +24,6 @@ def test_ignores_non_integer_pushes():
 
     assert extract_constants(opcodes) == set()
 
-
 def test_deduplicates_repeated_constants():
     opcodes = [
         jvm.Push(offset=0, type=jvm.Int(), value=7),
@@ -36,9 +32,24 @@ def test_deduplicates_repeated_constants():
 
     assert extract_constants(opcodes) == {7}
 
-
 def test_collects_negative_literals():
     # e.g. Arrays.arrayContentAboveMinus13's `array[i] >= -13`
     opcodes = [jvm.Push(offset=0, type=jvm.Int(), value=-13)]
 
     assert extract_constants(opcodes) == {-13}
+
+def test_ifz_int_comparison_mines_implicit_zero():
+    opcodes = [
+        jvm.Load(offset=0, type=jvm.Int(), index=0),
+        jvm.Ifz(offset=1, condition=jvm.CmpOpr.Ne, target=8),
+    ]
+
+    assert extract_constants(opcodes) == {0}
+
+def test_ifz_null_comparison_also_mines_zero_known_limitation():
+    opcodes = [
+        jvm.Load(offset=0, type=jvm.Reference(), index=0),
+        jvm.Ifz(offset=1, condition=jvm.CmpOpr.Eq, target=4),
+    ]
+
+    assert extract_constants(opcodes) == {0}
