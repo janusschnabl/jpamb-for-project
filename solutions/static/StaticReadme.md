@@ -75,7 +75,8 @@ Run your script with `uv run --with-editable solutions/static python your_script
 so that `static` can be imported.
 
 `analyse_method` also accepts a `jvm.AbsMethodID`, and an existing
-`jpamb.Bytecode` as a second argument if you already have one.
+`jpamb.Bytecode` as a second argument if you already have one, and the
+constants `K` from Tier 1 as a third (see below).
 
 ### `Result`
 
@@ -113,8 +114,18 @@ alarm:     divide by zero at `binary:I div`, pc 2, line 46
 
 ## What each tier can do with it
 
-**Tier 1 → Tier 2.** Nothing yet. If we add threshold widening (`∇K`), Tier 2
-will take Tier 1's constant dictionary `K` as an argument.
+**Tier 1 → Tier 2.** Tier 2 widens with thresholds (`∇K`), and takes Tier 1's
+constant dictionary `K` as an argument:
+
+```python
+from cascade.tier0.constant_mining import extract_constants
+
+K = extract_constants(bc.getmethod(methodid).opcodes)
+result = analyse_method(methodid, bc, constants=K)
+```
+
+Without `constants`, Tier 2 collects the same constants itself, so it also
+works on its own. `constants=set()` turns thresholds off (plain widening).
 
 **Tier 2 → Tier 3 (fuzzing).**
 - Skip every query whose verdict is `"no"`. It is proven impossible, so no
@@ -143,9 +154,12 @@ will take Tier 1's constant dictionary `K` as an argument.
 - **One state per instruction.** The analysis keeps, for every instruction, the
   intervals of all locals and stack values, and updates them until nothing
   changes (a *fixed point*). Where paths meet, intervals are joined.
-- **Widening.** At the start of a loop, a bound that keeps growing jumps
-  straight to the int limit, so every loop stabilises. There is no step limit:
-  the result covers every execution, however long.
+- **Widening with thresholds (`∇K`).** At the start of a loop, a bound that
+  keeps growing jumps to the next constant of the method (the set `K`), and
+  past the last one to the int limit, so every loop stabilises. There is no
+  step limit: the result covers every execution, however long. For
+  `for (i = 0; i != 8; i++)`, `i` stops at `[0, 8]` instead of `[0, INT_MAX]`,
+  which is what proves `arrayFillUntilEqual` in bounds.
 - **Branches.** After `if (i < 8)`, each branch knows more about `i`, and that
   knowledge is written back to the variable (`origin` and `backtrack` in
   `static.py`). This is what proves loops like `for (i = 0; i < a.length; i++) a[i]`
@@ -162,8 +176,9 @@ bytecode instruction in `manystep`.
 
 ## Results
 
-On the 47 JPAMB methods: **187** outcomes proven impossible, **no wrong
-answers**, JPAMB score **197.66**.
+On all 80 JPAMB cases (55 methods, including our own `Group21Cases`):
+**207** outcomes proven impossible and **no wrong answers**. Without
+thresholds it is 206; the difference is `arrayFillUntilEqual`.
 
 ## Questions
 

@@ -349,8 +349,7 @@ class Interval(Abstraction, Lattice):
             if_false=_assume(self, other, OPPOSITE[opr]),
         )
 
-    def widen(self, other: "Interval") -> "Interval":
-        # The widening operator:  self ∇ other.
+    def widen(self, other: "Interval", K: Iterable[int] = ()) -> "Interval":
         if isinstance(other, Ref):
             return _mixed(self, other)
         if self.is_bot:
@@ -358,8 +357,14 @@ class Interval(Abstraction, Lattice):
         if other.is_bot:
             return self
 
-        lo = self.min if other.min >= self.min else INT_MIN
-        hi = self.max if other.max <= self.max else INT_MAX
+        lo = self.min
+        if other.min < self.min:
+            lo = max([k for k in K if k <= other.min] + [INT_MIN])
+
+        hi = self.max
+        if other.max > self.max:
+            hi = min([k for k in K if k >= other.max] + [INT_MAX])
+
         return Interval(lo, hi)
 
 
@@ -466,10 +471,10 @@ class Ref:
             return _mixed(other, self)
         return Ref(self.null or other.null, self.length | other.length)
 
-    def widen(self, other: "Ref") -> "Ref":
+    def widen(self, other: "Ref", K: Iterable[int] = ()) -> "Ref":
         if isinstance(other, Interval):
             return _mixed(other, self)
-        return Ref(self.null or other.null, self.length.widen(other.length))
+        return Ref(self.null or other.null, self.length.widen(other.length, K))
 
     def __str__(self):
         text = f"len={self.length}"

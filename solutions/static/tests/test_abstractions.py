@@ -238,3 +238,51 @@ def test_widening_chain_stabilises(values: list[ab.Interval]):
         changes += new != current
         current = new
     assert changes <= 3
+
+
+# ---------------------------------------------------------------- widening with thresholds
+
+
+def st_thresholds():
+    return st.sets(st_int_bound(), max_size=8)
+
+
+@given(st_interval(), st_interval(), st_thresholds())
+def test_threshold_widening_is_an_upper_bound(a: ab.Interval, b: ab.Interval, K):
+    w = a.widen(b, K)
+    assert a <= w and b <= w
+
+
+@given(st_interval(), st_interval(), st_thresholds())
+def test_threshold_widening_keeps_a_stable_value(a: ab.Interval, b: ab.Interval, K):
+    # if nothing new arrives, nothing changes: a fixed point is recognised
+    assume(b <= a)
+    assert a.widen(b, K) == a
+
+
+@given(st.lists(st_interval(), max_size=40), st_thresholds())
+def test_threshold_widening_chain_stabilises(values: list[ab.Interval], K):
+    """The TWI property: whatever values arrive at a loop head, the widened
+    value changes at most 2 * (|K| + 1) + 1 times.  Once from bottom, then
+    each bound can only move outwards through K and then to the int limit."""
+    current = ab.Interval.bot()
+    changes = 0
+    for v in values:
+        new = current.widen(current | v, K)
+        assert current <= new
+        changes += new != current
+        current = new
+    assert changes <= 2 * (len(K) + 1) + 1
+
+
+def test_threshold_widening_stops_at_the_next_constant():
+    # for (i = 0; i != 8; i++): after one round i is [0, 1]
+    K = {0, 1, 8}
+    assert ab.Interval(0, 0).widen(ab.Interval(0, 1), K) == ab.Interval(0, 1)
+    assert ab.Interval(0, 1).widen(ab.Interval(0, 2), K) == ab.Interval(0, 8)
+    # without thresholds the bound goes all the way
+    assert ab.Interval(0, 1).widen(ab.Interval(0, 2)) == ab.Interval(0, ab.INT_MAX)
+    # past the last constant: the int limit
+    assert ab.Interval(0, 8).widen(ab.Interval(0, 9), K) == ab.Interval(0, ab.INT_MAX)
+    # the lower bound works the same way, downwards
+    assert ab.Interval(0, 5).widen(ab.Interval(-1, 5), {-10, 3}) == ab.Interval(-10, 5)

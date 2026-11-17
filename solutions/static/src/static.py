@@ -54,12 +54,11 @@ class State(sexpr.AsSExpr):
             tuple(s1 | s2 for s1, s2 in zip(self.stack, other.stack)),
         )
 
-    def widen(self, other):
-        # Widening: like __or__, but with widen instead of the join, for
-        # every local and every stack value.
+    def widen(self, other, K=()):
+
         return State(
-            tuple(s1.widen(s2) for s1, s2 in zip(self.locals, other.locals)),
-            tuple(s1.widen(s2) for s1, s2 in zip(self.stack, other.stack)),
+            tuple(s1.widen(s2, K) for s1, s2 in zip(self.locals, other.locals)),
+            tuple(s1.widen(s2, K) for s1, s2 in zip(self.stack, other.stack)),
         )
 
     def push(self, value: Interval | Ref):
@@ -327,7 +326,9 @@ def call(bc: jpamb.Bytecode, m: jvm.AbsMethodID, args):
     for i, arg in enumerate(args):
         locals[i] = arg
     start = PC(m, 0)
-    ai = AbstractInterpreter(bc, deque([start]), {start: State(tuple(locals), ())}, loop_heads(bc, m))
+    ai = AbstractInterpreter(
+        bc, deque([start]), {start: State(tuple(locals), ())}, loop_heads(bc, m), frozenset(method_constants(bc, m))
+    )
 
     ACTIVE.append(m)
     try:
@@ -347,6 +348,19 @@ def call(bc: jpamb.Bytecode, m: jvm.AbsMethodID, args):
                 value = state.stack[-1]
                 result = value if result is None else result | value
     return outcomes, result
+
+
+def method_constants(bc: jpamb.Bytecode, methodid: jvm.AbsMethodID) -> set[int]:
+    constants = set()
+    for op in bc.getmethod(methodid).opcodes:
+        match op:
+            case jvm.Push(type=jvm.Int(), value=int(v)):
+                constants.add(v)
+            case jvm.Incr(amount=c):
+                constants.add(c)
+            case jvm.Ifz():
+                constants.add(0)
+    return constants
 
 
 def loop_heads(bc: jpamb.Bytecode, methodid: jvm.AbsMethodID) -> set[int]:
@@ -400,13 +414,16 @@ class AbstractInterpreter:
     worklist: deque[PC]
     states: dict[PC, State]
     heads: set[int]  # the loop heads: where we widen instead of join
+    K: frozenset[int] = frozenset()  # the widening thresholds
 
     @staticmethod
-    def initial(bc: jpamb.Bytecode, methodid: jvm.AbsMethodID, inputs):
+    def initial(bc: jpamb.Bytecode, methodid: jvm.AbsMethodID, inputs, constants=None):
         states = initialstate(bc, methodid, inputs)
         worklist = deque(states.keys())
+        if constants is None:
+            constants = method_constants(bc, methodid)
 
-        return AbstractInterpreter(bc, worklist, states, loop_heads(bc, methodid))
+        return AbstractInterpreter(bc, worklist, states, loop_heads(bc, methodid), frozenset(constants))
 
     def step(self) -> tuple[PC, set[str]]:
         pc = self.worklist.pop()
@@ -428,7 +445,7 @@ class AbstractInterpreter:
                 if before is None:
                     after = st
                 elif pc_.offset in self.heads:
-                    after = before.widen(before | st)
+                    after = before.widen(before | st, self.K)
                 else:
                     after = before | st
                 if before is None or after != before:
@@ -480,7 +497,11 @@ def line_of(lines: list[tuple[int, int]], offset: int) -> int | None:
     return found
 
 
-def analyse_method(methodid: str | jvm.AbsMethodID, bc: jpamb.Bytecode | None = None) -> Result:
+def analyse_method(
+    methodid: str | jvm.AbsMethodID,
+    bc: jpamb.Bytecode | None = None,
+    constants: set[int] | None = None,
+) -> Result:
     if isinstance(methodid, str):
         methodid = jpamb.parse_methodid(methodid)
     if bc is None:
@@ -489,7 +510,7 @@ def analyse_method(methodid: str | jvm.AbsMethodID, bc: jpamb.Bytecode | None = 
 
     final = set()
     try:
-        ai = AbstractInterpreter.initial(bc, methodid, None)
+        ai = AbstractInterpreter.initial(bc, methodid, None, constants)
         while ai.worklist:
             _pc, finals = ai.step()
             final |= finals
