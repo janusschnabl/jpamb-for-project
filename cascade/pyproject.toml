@@ -11,6 +11,7 @@ dependencies = ["jpamb"]
 
 [project.scripts]
 tier0-absence = "cascade.tier0.opcode_absence:main"
+tier0-constants = "cascade.tier0.constant_mining:main"
 
 [tool.uv.sources]
 jpamb = { path = "../", editable = true }
