@@ -23,6 +23,8 @@ def extract_constants(opcodes: Iterable[jvm.Opcode]) -> set[int]:
                 constants.add(value)
             case jvm.Incr(amount=amount):
                 constants.add(amount)
+            # case jvm.Ifz(condition=jvm.CmpOpr.Eq | jvm.CmpOpr.Ne | jvm.CmpOpr.Lt | jvm.CmpOpr.Ge | jvm.CmpOpr.Gt | jvm.CmpOpr.Le):
+            #     constants.add(0)
 
     return constants
 
