@@ -95,15 +95,16 @@ def _job(job):
     return rows
 
 
-def _methods(extras):
-    """{method text: set of listed errors}: from the answer sheet, plus --extra."""
-    lines = Path("target/stats/cases.txt").read_text().splitlines()
-    cases = [Case.decode(line) for line in lines if line.strip()]
+def _methods(extras, include_sheet=True):
+    """{method text: set of listed errors}: from the answer sheet (unless skipped), plus --extra."""
     methods = {}
-    for methodid, method_cases in Case.by_entry(cases):
-        expected = {c.result for c in method_cases} & ERRORS
-        if expected:
-            methods[methodid.encode()] = expected
+    if include_sheet:
+        lines = Path("target/stats/cases.txt").read_text().splitlines()
+        cases = [Case.decode(line) for line in lines if line.strip()]
+        for methodid, method_cases in Case.by_entry(cases):
+            expected = {c.result for c in method_cases} & ERRORS
+            if expected:
+                methods[methodid.encode()] = expected
     for extra in extras:
         method_text, _, error = extra.rpartition("=")
         if error not in ERRORS:
@@ -128,9 +129,14 @@ def main():
     parser.add_argument(
         "--out", type=Path, default=Path("solutions/fuzzer/results/experiment.csv")
     )
+    parser.add_argument(
+        "--only-extra",
+        action="store_true",
+        help="skip the answer-sheet methods, run only the --extra ones",
+    )
     args = parser.parse_args()
 
-    methods = _methods(args.extra)
+    methods = _methods(args.extra, include_sheet=not args.only_extra)
     jobs = [
         (variant, text, tuple(sorted(errors)), seed, args.budget)
         for variant in args.variants

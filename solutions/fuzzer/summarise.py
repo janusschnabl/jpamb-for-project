@@ -70,9 +70,14 @@ def main():
     never, differing, same = [], [], 0
     for key, by_variant in sorted(cells.items()):
         counts = {v: sum(r["found"] for r in by_variant[v]) for v in variants}
+        medians = [
+            median([r["first_execution"] for r in by_variant[v] if r["found"]])
+            for v in variants
+            if counts[v] > 0
+        ]
         if sum(counts.values()) == 0:
             never.append(key)
-        elif len(set(counts.values())) > 1:
+        elif len(set(counts.values())) > 1 or max(medians) >= 2 * min(medians):
             differing.append(key)
         else:
             same += 1
