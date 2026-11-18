@@ -1,0 +1,1361 @@
+variant,method,seed,error,found,first_execution,executions,corpus_size,interpreter_failures,seconds
+full,jpamb.cases.Arrays.arrayContent:()V,0,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayContent:()V,2,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayContent:()V,1,assertion error,True,1,1,1,0,0.03
+full,jpamb.cases.Arrays.arrayContent:()V,3,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayContent:()V,4,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayContent:()V,8,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayContent:()V,6,assertion error,True,1,1,1,0,0.02
+full,jpamb.cases.Arrays.arrayContent:()V,9,assertion error,True,1,1,1,0,0.02
+full,jpamb.cases.Arrays.arrayIsNull:()V,0,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayContent:()V,5,assertion error,True,1,1,1,0,0.02
+full,jpamb.cases.Arrays.arrayIsNull:()V,1,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNull:()V,2,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayContent:()V,7,assertion error,True,1,1,1,0,0.03
+full,jpamb.cases.Arrays.arrayIsNull:()V,5,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNull:()V,6,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNull:()V,9,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNull:()V,3,null pointer,True,1,1,1,0,0.02
+full,jpamb.cases.Arrays.arrayIsNull:()V,7,null pointer,True,1,1,1,0,0.02
+full,jpamb.cases.Arrays.arrayIsNull:()V,4,null pointer,True,1,1,1,0,0.02
+full,jpamb.cases.Arrays.arrayIsNullLength:()V,1,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNull:()V,8,null pointer,True,1,1,1,0,0.02
+full,jpamb.cases.Arrays.arrayIsNullLength:()V,3,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNullLength:()V,5,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNullLength:()V,7,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNullLength:()V,4,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNullLength:()V,2,null pointer,True,1,1,1,0,0.02
+full,jpamb.cases.Arrays.arrayIsNullLength:()V,0,null pointer,True,1,1,1,0,0.03
+full,jpamb.cases.Arrays.arrayIsNullLength:()V,8,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNullLength:()V,9,null pointer,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayIsNullLength:()V,6,null pointer,True,1,1,1,0,0.02
+full,jpamb.cases.Arrays.arrayNotEmpty:([I)V,0,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Arrays.arrayNotEmpty:([I)V,1,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Arrays.arrayNotEmpty:([I)V,4,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Arrays.arrayNotEmpty:([I)V,6,assertion error,True,1,1000,2,0,0.05
+full,jpamb.cases.Arrays.arrayNotEmpty:([I)V,2,assertion error,True,1,1000,2,0,0.05
+full,jpamb.cases.Arrays.arrayNotEmpty:([I)V,3,assertion error,True,1,1000,2,0,0.06
+full,jpamb.cases.Arrays.arrayOutOfBounds:()V,1,out of bounds,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayOutOfBounds:()V,0,out of bounds,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayNotEmpty:([I)V,5,assertion error,True,1,1000,2,0,0.06
+full,jpamb.cases.Arrays.arrayOutOfBounds:()V,2,out of bounds,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayOutOfBounds:()V,3,out of bounds,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayOutOfBounds:()V,4,out of bounds,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayOutOfBounds:()V,5,out of bounds,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayOutOfBounds:()V,7,out of bounds,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayOutOfBounds:()V,8,out of bounds,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayOutOfBounds:()V,9,out of bounds,True,1,1,1,0,0.01
+full,jpamb.cases.Arrays.arrayNotEmpty:([I)V,7,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Arrays.arrayOutOfBounds:()V,6,out of bounds,True,1,1,1,0,0.02
+full,jpamb.cases.Arrays.arrayNotEmpty:([I)V,9,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Arrays.arrayNotEmpty:([I)V,8,assertion error,True,1,1000,2,0,0.08
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,0,null pointer,True,4,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,0,out of bounds,True,1,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,2,null pointer,True,4,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,2,out of bounds,True,1,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,5,null pointer,True,6,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,5,out of bounds,True,1,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,1,null pointer,True,6,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,1,out of bounds,True,1,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,3,null pointer,True,2,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,3,out of bounds,True,1,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,4,null pointer,True,2,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,4,out of bounds,True,1,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,8,null pointer,True,3,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,8,out of bounds,True,1,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,7,null pointer,True,3,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,7,out of bounds,True,1,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,9,null pointer,True,6,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,9,out of bounds,True,1,1000,1,0,0.05
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,6,null pointer,True,4,1000,1,0,0.09
+full,jpamb.cases.Arrays.arraySometimesNull:(I)V,6,out of bounds,True,1,1000,1,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,1,assertion error,True,2,1000,7,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,1,out of bounds,True,1,1000,7,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,0,assertion error,True,2,1000,3,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,0,out of bounds,True,1,1000,3,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,2,assertion error,True,2,1000,5,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,2,out of bounds,True,1,1000,5,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,4,assertion error,True,2,1000,7,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,4,out of bounds,True,1,1000,7,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,5,assertion error,True,2,1000,8,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,5,out of bounds,True,1,1000,8,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,3,assertion error,True,2,1000,7,0,0.1
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,3,out of bounds,True,1,1000,7,0,0.1
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,6,assertion error,True,2,1000,7,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,6,out of bounds,True,1,1000,7,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,8,assertion error,True,2,1000,8,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,8,out of bounds,True,1,1000,8,0,0.09
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,7,assertion error,True,2,1000,8,0,0.1
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,7,out of bounds,True,1,1000,8,0,0.1
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,9,assertion error,True,2,1000,6,0,0.12
+full,jpamb.cases.Arrays.arraySpellsHello:([C)V,9,out of bounds,True,1,1000,6,0,0.12
+full,jpamb.cases.Arrays.arraySumIsLarge:([I)V,0,assertion error,True,1,1000,3,0,0.29
+full,jpamb.cases.Arrays.arraySumIsLarge:([I)V,1,assertion error,True,1,1000,3,0,0.29
+full,jpamb.cases.Arrays.arraySumIsLarge:([I)V,5,assertion error,True,1,1000,3,0,0.27
+full,jpamb.cases.Arrays.arraySumIsLarge:([I)V,3,assertion error,True,1,1000,3,0,0.3
+full,jpamb.cases.Arrays.arraySumIsLarge:([I)V,2,assertion error,True,1,1000,3,0,0.34
+full,jpamb.cases.Arrays.arraySumIsLarge:([I)V,6,assertion error,True,1,1000,3,0,0.29
+full,jpamb.cases.Arrays.arraySumIsLarge:([I)V,4,assertion error,True,1,1000,2,0,0.38
+full,jpamb.cases.Arrays.arraySumIsLarge:([I)V,7,assertion error,True,1,1000,2,0,0.28
+full,jpamb.cases.Arrays.arraySumIsLarge:([I)V,8,assertion error,True,1,1000,3,0,0.3
+full,jpamb.cases.Arrays.binarySearch:(I)V,0,assertion error,True,1,1000,2,0,0.32
+full,jpamb.cases.Arrays.arraySumIsLarge:([I)V,9,assertion error,True,1,1000,2,0,0.35
+full,jpamb.cases.Arrays.binarySearch:(I)V,2,assertion error,True,1,1000,3,0,0.33
+full,jpamb.cases.Arrays.binarySearch:(I)V,1,assertion error,True,1,1000,3,0,0.35
+full,jpamb.cases.Arrays.binarySearch:(I)V,3,assertion error,True,1,1000,3,0,0.35
+full,jpamb.cases.Arrays.binarySearch:(I)V,4,assertion error,True,1,1000,3,0,0.33
+full,jpamb.cases.Arrays.binarySearch:(I)V,5,assertion error,True,1,1000,3,0,0.31
+full,jpamb.cases.Arrays.binarySearch:(I)V,6,assertion error,True,1,1000,3,0,0.32
+full,jpamb.cases.Arrays.binarySearch:(I)V,7,assertion error,True,1,1000,3,0,0.32
+full,jpamb.cases.Arrays.binarySearch:(I)V,9,assertion error,True,1,1000,3,0,0.31
+full,jpamb.cases.Arrays.binarySearch:(I)V,8,assertion error,True,1,1000,3,0,0.32
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,0,assertion error,True,3,1000,4,424,7.56
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,0,out of bounds,True,1,1000,4,424,7.56
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,6,assertion error,True,2,1000,4,449,7.97
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,6,out of bounds,True,1,1000,4,449,7.97
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,5,assertion error,True,3,1000,4,426,8.25
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,5,out of bounds,True,1,1000,4,426,8.25
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,2,assertion error,True,2,1000,4,407,8.56
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,2,out of bounds,True,1,1000,4,407,8.56
+full,jpamb.cases.Calls.callsAssertFalse:()V,0,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Calls.callsAssertFalse:()V,1,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Calls.callsAssertFalse:()V,2,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Calls.callsAssertFalse:()V,3,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Calls.callsAssertFalse:()V,4,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Calls.callsAssertFalse:()V,5,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Calls.callsAssertFalse:()V,6,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Calls.callsAssertFalse:()V,7,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Calls.callsAssertFalse:()V,8,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Calls.callsAssertFalse:()V,9,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,4,assertion error,True,6,1000,4,428,11.83
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,4,out of bounds,True,1,1000,4,428,11.83
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,3,assertion error,True,12,1000,4,428,11.88
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,3,out of bounds,True,1,1000,4,428,11.88
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,1,assertion error,True,6,1000,5,426,12.56
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,1,out of bounds,True,1,1000,5,426,12.56
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,7,assertion error,True,2,1000,4,447,7.97
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,7,out of bounds,True,1,1000,4,447,7.97
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,9,assertion error,True,2,1000,4,403,8.69
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,9,out of bounds,True,1,1000,4,403,8.69
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,8,assertion error,True,2,1000,4,401,13.86
+full,jpamb.cases.Calls.allPrimesArePositive:(I)V,8,out of bounds,True,1,1000,4,401,13.86
+full,jpamb.cases.Calls.callsAssertFib:(I)V,2,assertion error,True,1,1000,4,0,71.18
+full,jpamb.cases.Calls.callsAssertFib:(I)V,0,assertion error,True,1,1000,6,0,84.32
+full,jpamb.cases.Calls.callsAssertFib:(I)V,1,assertion error,True,1,1000,5,0,81.06
+full,jpamb.cases.Calls.callsAssertFib:(I)V,3,assertion error,True,1,1000,5,0,81.27
+full,jpamb.cases.Calls.callsAssertIf:(Z)V,0,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Calls.callsAssertIf:(Z)V,1,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Calls.callsAssertIf:(Z)V,2,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Calls.callsAssertIf:(Z)V,3,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Calls.callsAssertIf:(Z)V,4,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Calls.callsAssertIf:(Z)V,5,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Calls.callsAssertIf:(Z)V,6,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Calls.callsAssertIf:(Z)V,7,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Calls.callsAssertIf:(Z)V,8,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Calls.callsAssertIf:(Z)V,9,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Dependent.badNormalizedDistance:(II)I,0,divide by zero,True,1,1000,5,0,0.07
+full,jpamb.cases.Dependent.badNormalizedDistance:(II)I,1,divide by zero,True,1,1000,5,0,0.07
+full,jpamb.cases.Dependent.badNormalizedDistance:(II)I,2,divide by zero,True,1,1000,4,0,0.06
+full,jpamb.cases.Dependent.badNormalizedDistance:(II)I,3,divide by zero,True,1,1000,5,0,0.07
+full,jpamb.cases.Dependent.badNormalizedDistance:(II)I,4,divide by zero,True,1,1000,4,0,0.08
+full,jpamb.cases.Dependent.badNormalizedDistance:(II)I,5,divide by zero,True,1,1000,4,0,0.06
+full,jpamb.cases.Dependent.badNormalizedDistance:(II)I,6,divide by zero,True,1,1000,4,0,0.06
+full,jpamb.cases.Dependent.badNormalizedDistance:(II)I,7,divide by zero,True,1,1000,4,0,0.08
+full,jpamb.cases.Dependent.badNormalizedDistance:(II)I,8,divide by zero,True,1,1000,4,0,0.08
+full,jpamb.cases.Dependent.badNormalizedDistance:(II)I,9,divide by zero,True,1,1000,4,0,0.06
+full,jpamb.cases.Dependent.divisionLoop:(I)V,0,assertion error,True,38,1000,2,0,0.16
+full,jpamb.cases.Dependent.divisionLoop:(I)V,1,assertion error,True,23,1000,2,0,0.2
+full,jpamb.cases.Dependent.divisionLoop:(I)V,2,assertion error,True,294,1000,2,0,0.17
+full,jpamb.cases.Dependent.divisionLoop:(I)V,3,assertion error,True,9,1000,2,0,0.15
+full,jpamb.cases.Dependent.divisionLoop:(I)V,4,assertion error,True,85,1000,2,0,0.18
+full,jpamb.cases.Dependent.divisionLoop:(I)V,5,assertion error,True,393,1000,2,0,0.15
+full,jpamb.cases.Calls.callsAssertFib:(I)V,5,assertion error,True,1,1000,5,0,79.14
+full,jpamb.cases.Dependent.divisionLoop:(I)V,6,assertion error,True,56,1000,2,0,0.16
+full,jpamb.cases.Dependent.divisionLoop:(I)V,7,assertion error,True,306,1000,2,0,0.16
+full,jpamb.cases.Dependent.divisionLoop:(I)V,8,assertion error,True,124,1000,2,0,0.17
+full,jpamb.cases.Fuzzing.secretThenDivide:([C)I,0,divide by zero,False,,1000,4,0,0.06
+full,jpamb.cases.Fuzzing.secretThenDivide:([C)I,1,divide by zero,False,,1000,4,0,0.07
+full,jpamb.cases.Dependent.divisionLoop:(I)V,9,assertion error,True,52,1000,2,0,0.19
+full,jpamb.cases.Fuzzing.secretThenDivide:([C)I,2,divide by zero,False,,1000,4,0,0.07
+full,jpamb.cases.Fuzzing.secretThenDivide:([C)I,3,divide by zero,False,,1000,4,0,0.07
+full,jpamb.cases.Fuzzing.secretThenDivide:([C)I,4,divide by zero,False,,1000,6,0,0.05
+full,jpamb.cases.Fuzzing.secretThenDivide:([C)I,5,divide by zero,False,,1000,5,0,0.07
+full,jpamb.cases.Fuzzing.secretThenDivide:([C)I,6,divide by zero,False,,1000,3,0,0.07
+full,jpamb.cases.Fuzzing.secretThenDivide:([C)I,7,divide by zero,False,,1000,3,0,0.05
+full,jpamb.cases.Fuzzing.secretThenDivide:([C)I,8,divide by zero,False,,1000,5,0,0.07
+full,jpamb.cases.Fuzzing.secretThenDivide:([C)I,9,divide by zero,False,,1000,5,0,0.06
+full,jpamb.cases.Loops.terminates:()V,0,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Loops.terminates:()V,2,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Loops.terminates:()V,1,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Loops.terminates:()V,4,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Loops.terminates:()V,3,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Loops.terminates:()V,5,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Loops.terminates:()V,6,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Loops.terminates:()V,7,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Loops.terminates:()V,8,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Loops.terminates:()V,9,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertBoolean:(Z)V,1,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Simple.assertBoolean:(Z)V,0,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.assertBoolean:(Z)V,3,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Simple.assertBoolean:(Z)V,2,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.assertBoolean:(Z)V,5,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Simple.assertBoolean:(Z)V,4,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.assertBoolean:(Z)V,7,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Simple.assertBoolean:(Z)V,6,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.assertBoolean:(Z)V,8,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.assertBoolean:(Z)V,9,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.assertFalse:()V,0,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertFalse:()V,1,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertFalse:()V,2,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertFalse:()V,3,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertFalse:()V,4,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertFalse:()V,5,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertFalse:()V,6,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertFalse:()V,7,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertFalse:()V,8,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertFalse:()V,9,assertion error,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.assertInteger:(I)V,0,assertion error,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.assertInteger:(I)V,1,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.assertInteger:(I)V,2,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.assertInteger:(I)V,3,assertion error,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.assertInteger:(I)V,5,assertion error,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.assertInteger:(I)V,4,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.assertInteger:(I)V,6,assertion error,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.assertInteger:(I)V,7,assertion error,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.assertInteger:(I)V,9,assertion error,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.assertInteger:(I)V,8,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.assertPositive:(I)V,0,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.assertPositive:(I)V,1,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.assertPositive:(I)V,2,assertion error,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.assertPositive:(I)V,3,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.assertPositive:(I)V,4,assertion error,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.assertPositive:(I)V,5,assertion error,True,1,1000,2,0,0.05
+full,jpamb.cases.Simple.assertPositive:(I)V,6,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.assertPositive:(I)V,7,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.assertPositive:(I)V,8,assertion error,True,1,1000,2,0,0.05
+full,jpamb.cases.Simple.assertPositive:(I)V,9,assertion error,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.checkBeforeAssert:(I)V,1,assertion error,True,3,1000,3,0,0.05
+full,jpamb.cases.Simple.checkBeforeAssert:(I)V,0,assertion error,True,3,1000,3,0,0.07
+full,jpamb.cases.Simple.checkBeforeAssert:(I)V,2,assertion error,True,2,1000,3,0,0.05
+full,jpamb.cases.Simple.checkBeforeAssert:(I)V,3,assertion error,True,2,1000,3,0,0.06
+full,jpamb.cases.Simple.checkBeforeAssert:(I)V,5,assertion error,True,3,1000,3,0,0.05
+full,jpamb.cases.Simple.checkBeforeAssert:(I)V,4,assertion error,True,2,1000,3,0,0.07
+full,jpamb.cases.Simple.checkBeforeAssert:(I)V,6,assertion error,True,2,1000,3,0,0.06
+full,jpamb.cases.Simple.checkBeforeAssert:(I)V,7,assertion error,True,2,1000,3,0,0.07
+full,jpamb.cases.Simple.checkBeforeAssert:(I)V,8,assertion error,True,2,1000,3,0,0.06
+full,jpamb.cases.Simple.checkBeforeAssert:(I)V,9,assertion error,True,2,1000,3,0,0.07
+full,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,0,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,1,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,2,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,3,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,4,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,5,assertion error,True,1,1000,2,0,0.05
+full,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,6,assertion error,True,1,1000,2,0,0.05
+full,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,7,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,8,assertion error,True,1,1000,2,0,0.05
+full,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,9,assertion error,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.divideByN:(I)I,0,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.divideByN:(I)I,1,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.divideByN:(I)I,2,divide by zero,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.divideByN:(I)I,3,divide by zero,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.divideByN:(I)I,4,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.divideByN:(I)I,5,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.divideByN:(I)I,6,divide by zero,True,1,1000,2,0,0.04
+full,jpamb.cases.Simple.divideByN:(I)I,7,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.divideByN:(I)I,8,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.divideByN:(I)I,9,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.divideByNMinus10054203:(I)I,0,divide by zero,True,23,1000,1,0,0.04
+full,jpamb.cases.Simple.divideByNMinus10054203:(I)I,1,divide by zero,True,15,1000,1,0,0.04
+full,jpamb.cases.Simple.divideByNMinus10054203:(I)I,2,divide by zero,True,66,1000,1,0,0.03
+full,jpamb.cases.Simple.divideByNMinus10054203:(I)I,3,divide by zero,True,10,1000,1,0,0.05
+full,jpamb.cases.Simple.divideByNMinus10054203:(I)I,4,divide by zero,True,21,1000,1,0,0.04
+full,jpamb.cases.Simple.divideByNMinus10054203:(I)I,5,divide by zero,True,27,1000,1,0,0.03
+full,jpamb.cases.Simple.divideByNMinus10054203:(I)I,6,divide by zero,True,4,1000,1,0,0.03
+full,jpamb.cases.Simple.divideByNMinus10054203:(I)I,7,divide by zero,True,49,1000,1,0,0.03
+full,jpamb.cases.Simple.divideByNMinus10054203:(I)I,8,divide by zero,True,35,1000,1,0,0.03
+full,jpamb.cases.Simple.divideByZero:()I,0,divide by zero,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.divideByNMinus10054203:(I)I,9,divide by zero,True,21,1000,1,0,0.03
+full,jpamb.cases.Simple.divideByZero:()I,1,divide by zero,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.divideByZero:()I,2,divide by zero,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.divideByZero:()I,3,divide by zero,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.divideByZero:()I,4,divide by zero,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.divideByZero:()I,5,divide by zero,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.divideByZero:()I,6,divide by zero,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.divideByZero:()I,7,divide by zero,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.divideByZero:()I,8,divide by zero,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.divideByZero:()I,9,divide by zero,True,1,1,1,0,0.01
+full,jpamb.cases.Simple.divideZeroByZero:(II)I,0,divide by zero,True,1,1000,2,0,0.02
+full,jpamb.cases.Simple.divideZeroByZero:(II)I,1,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.divideZeroByZero:(II)I,2,divide by zero,True,1,1000,2,0,0.02
+full,jpamb.cases.Simple.divideZeroByZero:(II)I,3,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.divideZeroByZero:(II)I,4,divide by zero,True,1,1000,2,0,0.02
+full,jpamb.cases.Simple.divideZeroByZero:(II)I,6,divide by zero,True,1,1000,2,0,0.02
+full,jpamb.cases.Simple.divideZeroByZero:(II)I,5,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.divideZeroByZero:(II)I,7,divide by zero,True,1,1000,2,0,0.02
+full,jpamb.cases.Simple.divideZeroByZero:(II)I,8,divide by zero,True,1,1000,2,0,0.02
+full,jpamb.cases.Simple.divideZeroByZero:(II)I,9,divide by zero,True,1,1000,2,0,0.03
+full,jpamb.cases.Simple.multiError:(Z)I,0,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Simple.multiError:(Z)I,0,divide by zero,True,2,2,2,0,0.05
+full,jpamb.cases.Simple.multiError:(Z)I,1,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Simple.multiError:(Z)I,1,divide by zero,True,2,2,2,0,0.05
+full,jpamb.cases.Simple.multiError:(Z)I,2,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.multiError:(Z)I,2,divide by zero,True,2,2,2,0,0.06
+full,jpamb.cases.Simple.multiError:(Z)I,3,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.multiError:(Z)I,3,divide by zero,True,2,2,2,0,0.06
+full,jpamb.cases.Simple.multiError:(Z)I,4,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Simple.multiError:(Z)I,4,divide by zero,True,2,2,2,0,0.05
+full,jpamb.cases.Simple.multiError:(Z)I,5,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.multiError:(Z)I,5,divide by zero,True,2,2,2,0,0.06
+full,jpamb.cases.Simple.multiError:(Z)I,6,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Simple.multiError:(Z)I,6,divide by zero,True,2,2,2,0,0.05
+full,jpamb.cases.Simple.multiError:(Z)I,7,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.multiError:(Z)I,7,divide by zero,True,2,2,2,0,0.06
+full,jpamb.cases.Simple.multiError:(Z)I,8,assertion error,True,1,2,2,0,0.05
+full,jpamb.cases.Simple.multiError:(Z)I,8,divide by zero,True,2,2,2,0,0.05
+full,jpamb.cases.Simple.multiError:(Z)I,9,assertion error,True,1,2,2,0,0.06
+full,jpamb.cases.Simple.multiError:(Z)I,9,divide by zero,True,2,2,2,0,0.06
+full,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,0,assertion error,True,1,1000,2,0,0.08
+full,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,1,assertion error,True,1,1000,2,0,0.06
+full,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,2,assertion error,True,1,1000,2,0,0.06
+full,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,3,assertion error,True,1,1000,2,0,0.06
+full,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,4,assertion error,True,1,1000,2,0,0.07
+full,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,5,assertion error,True,1,1000,2,0,0.06
+full,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,6,assertion error,True,1,1000,2,0,0.07
+full,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,7,assertion error,True,1,1000,2,0,0.06
+full,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,8,assertion error,True,1,1000,2,0,0.06
+full,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,9,assertion error,True,1,1000,2,0,0.06
+full,jpamb.cases.Calls.callsAssertFib:(I)V,4,assertion error,True,1,1000,5,0,83.95
+full,jpamb.cases.Calls.callsAssertFib:(I)V,6,assertion error,True,1,1000,4,0,80.45
+full,jpamb.cases.Tricky.collatz:(I)V,1,assertion error,True,1,1000,4,0,15.67
+full,jpamb.cases.Tricky.collatz:(I)V,2,assertion error,True,1,1000,2,0,18.93
+full,jpamb.cases.Tricky.collatz:(I)V,0,assertion error,True,1,1000,4,0,21.93
+full,jpamb.cases.Tricky.collatz:(I)V,3,assertion error,True,1,1000,3,0,24.82
+full,jpamb.cases.Tricky.collatz:(I)V,4,assertion error,True,1,1000,3,0,17.83
+full,jpamb.cases.Tricky.collatz:(I)V,5,assertion error,True,1,1000,3,0,18.22
+full,jpamb.cases.Tricky.collatz:(I)V,6,assertion error,True,1,1000,3,0,17.59
+no-dictionary,jpamb.cases.Arrays.arrayContent:()V,0,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayContent:()V,1,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayContent:()V,2,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayContent:()V,3,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayContent:()V,4,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayContent:()V,5,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayContent:()V,6,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayContent:()V,7,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayContent:()V,8,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayContent:()V,9,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNull:()V,0,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNull:()V,1,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNull:()V,2,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNull:()V,3,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNull:()V,4,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNull:()V,5,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNull:()V,6,null pointer,True,1,1,1,0,0.02
+no-dictionary,jpamb.cases.Arrays.arrayIsNull:()V,7,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNull:()V,8,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNull:()V,9,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNullLength:()V,0,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNullLength:()V,1,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNullLength:()V,2,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNullLength:()V,3,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNullLength:()V,4,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNullLength:()V,5,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNullLength:()V,6,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNullLength:()V,7,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNullLength:()V,8,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayIsNullLength:()V,9,null pointer,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayNotEmpty:([I)V,0,assertion error,True,1,1000,2,0,0.05
+no-dictionary,jpamb.cases.Arrays.arrayNotEmpty:([I)V,1,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Arrays.arrayNotEmpty:([I)V,2,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Arrays.arrayNotEmpty:([I)V,3,assertion error,True,1,1000,2,0,0.05
+no-dictionary,jpamb.cases.Arrays.arrayNotEmpty:([I)V,4,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Arrays.arrayNotEmpty:([I)V,5,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Arrays.arrayNotEmpty:([I)V,6,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Arrays.arrayNotEmpty:([I)V,7,assertion error,True,1,1000,2,0,0.05
+no-dictionary,jpamb.cases.Arrays.arrayNotEmpty:([I)V,8,assertion error,True,1,1000,2,0,0.05
+no-dictionary,jpamb.cases.Arrays.arrayNotEmpty:([I)V,9,assertion error,True,1,1000,2,0,0.05
+no-dictionary,jpamb.cases.Arrays.arrayOutOfBounds:()V,0,out of bounds,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayOutOfBounds:()V,1,out of bounds,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayOutOfBounds:()V,2,out of bounds,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayOutOfBounds:()V,3,out of bounds,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayOutOfBounds:()V,4,out of bounds,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayOutOfBounds:()V,5,out of bounds,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayOutOfBounds:()V,6,out of bounds,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayOutOfBounds:()V,7,out of bounds,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayOutOfBounds:()V,8,out of bounds,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arrayOutOfBounds:()V,9,out of bounds,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,0,null pointer,True,4,1000,1,0,0.04
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,0,out of bounds,True,1,1000,1,0,0.04
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,1,null pointer,True,4,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,1,out of bounds,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,2,null pointer,True,6,1000,1,0,0.05
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,2,out of bounds,True,1,1000,1,0,0.05
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,3,null pointer,True,2,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,3,out of bounds,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,4,null pointer,True,2,1000,1,0,0.04
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,4,out of bounds,True,1,1000,1,0,0.04
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,5,null pointer,True,6,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,5,out of bounds,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,6,null pointer,True,3,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,6,out of bounds,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,7,null pointer,True,3,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,7,out of bounds,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,8,null pointer,True,3,1000,1,0,0.04
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,8,out of bounds,True,1,1000,1,0,0.04
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,9,null pointer,True,5,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySometimesNull:(I)V,9,out of bounds,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,0,assertion error,True,2,1000,5,0,0.09
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,0,out of bounds,True,1,1000,5,0,0.09
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,1,assertion error,True,2,1000,4,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,1,out of bounds,True,1,1000,4,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,2,assertion error,True,2,1000,4,0,0.08
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,2,out of bounds,True,1,1000,4,0,0.08
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,3,assertion error,True,2,1000,5,0,0.07
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,3,out of bounds,True,1,1000,5,0,0.07
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,4,assertion error,True,2,1000,3,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,4,out of bounds,True,1,1000,3,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,5,assertion error,True,2,1000,4,0,0.08
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,5,out of bounds,True,1,1000,4,0,0.08
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,6,assertion error,True,2,1000,6,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,6,out of bounds,True,1,1000,6,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,7,assertion error,True,2,1000,3,0,0.08
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,7,out of bounds,True,1,1000,3,0,0.08
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,8,assertion error,True,2,1000,5,0,0.08
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,8,out of bounds,True,1,1000,5,0,0.08
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,9,assertion error,True,2,1000,6,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySpellsHello:([C)V,9,out of bounds,True,1,1000,6,0,0.06
+no-dictionary,jpamb.cases.Arrays.arraySumIsLarge:([I)V,0,assertion error,True,1,1000,3,0,0.29
+no-dictionary,jpamb.cases.Arrays.arraySumIsLarge:([I)V,1,assertion error,True,1,1000,2,0,0.4
+no-dictionary,jpamb.cases.Arrays.arraySumIsLarge:([I)V,2,assertion error,True,1,1000,3,0,0.4
+no-dictionary,jpamb.cases.Arrays.arraySumIsLarge:([I)V,3,assertion error,True,1,1000,3,0,0.29
+no-dictionary,jpamb.cases.Arrays.arraySumIsLarge:([I)V,4,assertion error,True,1,1000,3,0,0.38
+no-dictionary,jpamb.cases.Arrays.arraySumIsLarge:([I)V,5,assertion error,True,1,1000,3,0,0.3
+no-dictionary,jpamb.cases.Arrays.arraySumIsLarge:([I)V,6,assertion error,True,1,1000,3,0,0.26
+no-dictionary,jpamb.cases.Arrays.arraySumIsLarge:([I)V,7,assertion error,True,1,1000,2,0,0.33
+no-dictionary,jpamb.cases.Arrays.arraySumIsLarge:([I)V,8,assertion error,True,1,1000,3,0,0.29
+no-dictionary,jpamb.cases.Arrays.arraySumIsLarge:([I)V,9,assertion error,True,1,1000,3,0,0.39
+no-dictionary,jpamb.cases.Arrays.binarySearch:(I)V,0,assertion error,True,1,1000,3,0,0.28
+no-dictionary,jpamb.cases.Arrays.binarySearch:(I)V,1,assertion error,True,1,1000,3,0,0.31
+no-dictionary,jpamb.cases.Arrays.binarySearch:(I)V,2,assertion error,True,1,1000,3,0,0.3
+no-dictionary,jpamb.cases.Arrays.binarySearch:(I)V,3,assertion error,True,1,1000,3,0,0.33
+full,jpamb.cases.Tricky.collatz:(I)V,7,assertion error,True,1,1000,2,0,18.35
+no-dictionary,jpamb.cases.Arrays.binarySearch:(I)V,4,assertion error,True,1,1000,3,0,0.32
+no-dictionary,jpamb.cases.Arrays.binarySearch:(I)V,5,assertion error,True,1,1000,3,0,0.29
+no-dictionary,jpamb.cases.Arrays.binarySearch:(I)V,6,assertion error,True,1,1000,2,0,0.29
+no-dictionary,jpamb.cases.Arrays.binarySearch:(I)V,8,assertion error,True,1,1000,3,0,0.31
+no-dictionary,jpamb.cases.Arrays.binarySearch:(I)V,7,assertion error,True,1,1000,3,0,0.35
+no-dictionary,jpamb.cases.Arrays.binarySearch:(I)V,9,assertion error,True,1,1000,3,0,0.3
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,0,assertion error,True,3,1000,4,442,6.46
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,0,out of bounds,True,1,1000,4,442,6.46
+full,jpamb.cases.Tricky.collatz:(I)V,8,assertion error,True,1,1000,3,0,20.86
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,1,assertion error,True,6,1000,5,429,12.0
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,1,out of bounds,True,1,1000,5,429,12.0
+full,jpamb.cases.Tricky.collatz:(I)V,9,assertion error,True,1,1000,3,0,22.81
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,2,assertion error,True,2,1000,4,408,10.21
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,2,out of bounds,True,1,1000,4,408,10.21
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,3,assertion error,True,13,1000,4,419,10.74
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,3,out of bounds,True,1,1000,4,419,10.74
+full,jpamb.cases.Calls.callsAssertFib:(I)V,7,assertion error,True,1,1000,5,0,81.27
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,5,assertion error,True,3,1000,4,440,6.8
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,5,out of bounds,True,1,1000,4,440,6.8
+full,jpamb.cases.Calls.callsAssertFib:(I)V,9,assertion error,True,1,1000,4,0,75.16
+no-dictionary,jpamb.cases.Calls.callsAssertFalse:()V,0,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFalse:()V,1,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFalse:()V,2,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFalse:()V,3,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFalse:()V,4,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFalse:()V,5,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFalse:()V,6,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFalse:()V,7,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFalse:()V,8,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFalse:()V,9,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,6,assertion error,True,2,1000,3,434,6.43
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,6,out of bounds,True,1,1000,3,434,6.43
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,4,assertion error,True,4,1000,4,431,10.88
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,4,out of bounds,True,1,1000,4,431,10.88
+full,jpamb.cases.Calls.callsAssertFib:(I)V,8,assertion error,True,1,1000,5,0,77.53
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,7,assertion error,True,2,1000,4,462,7.43
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,7,out of bounds,True,1,1000,4,462,7.43
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,9,assertion error,True,2,1000,4,410,10.74
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,9,out of bounds,True,1,1000,4,410,10.74
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,8,assertion error,True,2,1000,4,396,13.82
+no-dictionary,jpamb.cases.Calls.allPrimesArePositive:(I)V,8,out of bounds,True,1,1000,4,396,13.82
+no-dictionary,jpamb.cases.Calls.callsAssertFib:(I)V,2,assertion error,True,1,1000,6,0,76.43
+no-dictionary,jpamb.cases.Calls.callsAssertFib:(I)V,0,assertion error,True,1,1000,6,0,78.53
+no-dictionary,jpamb.cases.Calls.callsAssertFib:(I)V,1,assertion error,True,1,1000,5,0,79.21
+no-dictionary,jpamb.cases.Calls.callsAssertFib:(I)V,3,assertion error,True,1,1000,5,0,78.44
+no-dictionary,jpamb.cases.Calls.callsAssertIf:(Z)V,0,assertion error,True,1,2,2,0,0.07
+no-dictionary,jpamb.cases.Calls.callsAssertIf:(Z)V,1,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Calls.callsAssertIf:(Z)V,2,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Calls.callsAssertIf:(Z)V,3,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Calls.callsAssertIf:(Z)V,4,assertion error,True,1,2,2,0,0.06
+no-dictionary,jpamb.cases.Calls.callsAssertIf:(Z)V,5,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Calls.callsAssertIf:(Z)V,6,assertion error,True,1,2,2,0,0.06
+no-dictionary,jpamb.cases.Calls.callsAssertIf:(Z)V,7,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Calls.callsAssertIf:(Z)V,8,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Calls.callsAssertIf:(Z)V,9,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Dependent.badNormalizedDistance:(II)I,0,divide by zero,True,1,1000,5,0,0.07
+no-dictionary,jpamb.cases.Dependent.badNormalizedDistance:(II)I,1,divide by zero,True,1,1000,5,0,0.06
+no-dictionary,jpamb.cases.Dependent.badNormalizedDistance:(II)I,2,divide by zero,True,1,1000,4,0,0.07
+no-dictionary,jpamb.cases.Dependent.badNormalizedDistance:(II)I,3,divide by zero,True,1,1000,5,0,0.07
+no-dictionary,jpamb.cases.Dependent.badNormalizedDistance:(II)I,4,divide by zero,True,1,1000,4,0,0.07
+no-dictionary,jpamb.cases.Dependent.badNormalizedDistance:(II)I,5,divide by zero,True,1,1000,4,0,0.07
+no-dictionary,jpamb.cases.Dependent.badNormalizedDistance:(II)I,6,divide by zero,True,1,1000,4,0,0.07
+no-dictionary,jpamb.cases.Dependent.badNormalizedDistance:(II)I,7,divide by zero,True,1,1000,4,0,0.06
+no-dictionary,jpamb.cases.Dependent.badNormalizedDistance:(II)I,8,divide by zero,True,1,1000,4,0,0.07
+no-dictionary,jpamb.cases.Dependent.badNormalizedDistance:(II)I,9,divide by zero,True,1,1000,3,0,0.06
+no-dictionary,jpamb.cases.Dependent.divisionLoop:(I)V,0,assertion error,True,43,1000,2,0,0.15
+no-dictionary,jpamb.cases.Dependent.divisionLoop:(I)V,1,assertion error,True,33,1000,2,0,0.16
+no-dictionary,jpamb.cases.Dependent.divisionLoop:(I)V,2,assertion error,True,248,1000,2,0,0.17
+no-dictionary,jpamb.cases.Dependent.divisionLoop:(I)V,3,assertion error,True,48,1000,2,0,0.15
+no-dictionary,jpamb.cases.Dependent.divisionLoop:(I)V,4,assertion error,True,192,1000,2,0,0.15
+no-dictionary,jpamb.cases.Dependent.divisionLoop:(I)V,5,assertion error,True,99,1000,2,0,0.15
+no-dictionary,jpamb.cases.Dependent.divisionLoop:(I)V,6,assertion error,True,68,1000,2,0,0.17
+no-dictionary,jpamb.cases.Dependent.divisionLoop:(I)V,7,assertion error,True,188,1000,2,0,0.14
+no-dictionary,jpamb.cases.Dependent.divisionLoop:(I)V,8,assertion error,True,122,1000,2,0,0.18
+no-dictionary,jpamb.cases.Dependent.divisionLoop:(I)V,9,assertion error,True,54,1000,2,0,0.18
+no-dictionary,jpamb.cases.Fuzzing.secretThenDivide:([C)I,0,divide by zero,False,,1000,2,0,0.06
+no-dictionary,jpamb.cases.Fuzzing.secretThenDivide:([C)I,1,divide by zero,False,,1000,3,0,0.05
+no-dictionary,jpamb.cases.Fuzzing.secretThenDivide:([C)I,2,divide by zero,False,,1000,3,0,0.06
+no-dictionary,jpamb.cases.Fuzzing.secretThenDivide:([C)I,3,divide by zero,False,,1000,2,0,0.05
+no-dictionary,jpamb.cases.Fuzzing.secretThenDivide:([C)I,4,divide by zero,False,,1000,3,0,0.05
+no-dictionary,jpamb.cases.Fuzzing.secretThenDivide:([C)I,5,divide by zero,False,,1000,3,0,0.05
+no-dictionary,jpamb.cases.Fuzzing.secretThenDivide:([C)I,6,divide by zero,False,,1000,4,0,0.06
+no-dictionary,jpamb.cases.Fuzzing.secretThenDivide:([C)I,7,divide by zero,False,,1000,2,0,0.05
+no-dictionary,jpamb.cases.Fuzzing.secretThenDivide:([C)I,8,divide by zero,False,,1000,2,0,0.05
+no-dictionary,jpamb.cases.Fuzzing.secretThenDivide:([C)I,9,divide by zero,False,,1000,2,0,0.05
+no-dictionary,jpamb.cases.Loops.terminates:()V,0,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Loops.terminates:()V,1,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Loops.terminates:()V,2,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Loops.terminates:()V,3,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Loops.terminates:()V,4,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Loops.terminates:()V,5,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Loops.terminates:()V,6,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFib:(I)V,4,assertion error,True,1,1000,5,0,80.68
+no-dictionary,jpamb.cases.Loops.terminates:()V,7,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Loops.terminates:()V,8,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Loops.terminates:()V,9,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.assertBoolean:(Z)V,0,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.assertBoolean:(Z)V,1,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.assertBoolean:(Z)V,2,assertion error,True,1,2,2,0,0.06
+no-dictionary,jpamb.cases.Simple.assertBoolean:(Z)V,3,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.assertBoolean:(Z)V,4,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.assertBoolean:(Z)V,5,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.assertBoolean:(Z)V,6,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.assertBoolean:(Z)V,7,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.assertBoolean:(Z)V,8,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.assertBoolean:(Z)V,9,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.assertFalse:()V,0,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.assertFalse:()V,1,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.assertFalse:()V,2,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Calls.callsAssertFib:(I)V,5,assertion error,True,1,1000,5,0,75.8
+no-dictionary,jpamb.cases.Simple.assertFalse:()V,3,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.assertFalse:()V,5,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.assertFalse:()V,6,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.assertFalse:()V,4,assertion error,True,1,1,1,0,0.02
+no-dictionary,jpamb.cases.Simple.assertFalse:()V,7,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.assertFalse:()V,8,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.assertFalse:()V,9,assertion error,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.assertInteger:(I)V,0,assertion error,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.assertInteger:(I)V,1,assertion error,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.assertInteger:(I)V,2,assertion error,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.assertInteger:(I)V,3,assertion error,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.assertInteger:(I)V,4,assertion error,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.assertInteger:(I)V,5,assertion error,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.assertInteger:(I)V,6,assertion error,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.assertInteger:(I)V,9,assertion error,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.assertInteger:(I)V,8,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.assertInteger:(I)V,7,assertion error,True,1,1000,2,0,0.06
+no-dictionary,jpamb.cases.Simple.assertPositive:(I)V,0,assertion error,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.assertPositive:(I)V,1,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.assertPositive:(I)V,2,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.assertPositive:(I)V,4,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.assertPositive:(I)V,3,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.assertPositive:(I)V,5,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.assertPositive:(I)V,7,assertion error,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.assertPositive:(I)V,6,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.assertPositive:(I)V,8,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.assertPositive:(I)V,9,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.checkBeforeAssert:(I)V,0,assertion error,True,3,1000,3,0,0.05
+no-dictionary,jpamb.cases.Simple.checkBeforeAssert:(I)V,1,assertion error,True,3,1000,3,0,0.06
+no-dictionary,jpamb.cases.Simple.checkBeforeAssert:(I)V,2,assertion error,True,2,1000,3,0,0.05
+no-dictionary,jpamb.cases.Simple.checkBeforeAssert:(I)V,3,assertion error,True,2,1000,3,0,0.05
+no-dictionary,jpamb.cases.Simple.checkBeforeAssert:(I)V,4,assertion error,True,2,1000,3,0,0.05
+no-dictionary,jpamb.cases.Simple.checkBeforeAssert:(I)V,5,assertion error,True,3,1000,3,0,0.05
+no-dictionary,jpamb.cases.Simple.checkBeforeAssert:(I)V,6,assertion error,True,2,1000,3,0,0.05
+no-dictionary,jpamb.cases.Simple.checkBeforeAssert:(I)V,7,assertion error,True,2,1000,3,0,0.07
+no-dictionary,jpamb.cases.Simple.checkBeforeAssert:(I)V,8,assertion error,True,2,1000,3,0,0.05
+no-dictionary,jpamb.cases.Simple.checkBeforeAssert:(I)V,9,assertion error,True,2,1000,3,0,0.05
+no-dictionary,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,1,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,0,assertion error,True,1,1000,2,0,0.05
+no-dictionary,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,2,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,3,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,5,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,4,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,6,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,7,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,8,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,9,assertion error,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.divideByN:(I)I,1,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByN:(I)I,0,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByN:(I)I,4,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByN:(I)I,3,divide by zero,True,1,1000,2,0,0.04
+no-dictionary,jpamb.cases.Simple.divideByN:(I)I,2,divide by zero,True,1,1000,2,0,0.05
+no-dictionary,jpamb.cases.Simple.divideByN:(I)I,5,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByN:(I)I,6,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByN:(I)I,7,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByN:(I)I,8,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByN:(I)I,9,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByNMinus10054203:(I)I,0,divide by zero,False,,1000,1,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByNMinus10054203:(I)I,1,divide by zero,False,,1000,1,0,0.04
+no-dictionary,jpamb.cases.Simple.divideByNMinus10054203:(I)I,2,divide by zero,False,,1000,1,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByNMinus10054203:(I)I,3,divide by zero,False,,1000,1,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByNMinus10054203:(I)I,5,divide by zero,False,,1000,1,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByNMinus10054203:(I)I,4,divide by zero,False,,1000,1,0,0.04
+no-dictionary,jpamb.cases.Simple.divideByNMinus10054203:(I)I,6,divide by zero,False,,1000,1,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByNMinus10054203:(I)I,8,divide by zero,False,,1000,1,0,0.03
+no-dictionary,jpamb.cases.Simple.divideByNMinus10054203:(I)I,7,divide by zero,False,,1000,1,0,0.04
+no-dictionary,jpamb.cases.Simple.divideByZero:()I,0,divide by zero,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.divideByZero:()I,2,divide by zero,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.divideByZero:()I,1,divide by zero,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.divideByZero:()I,3,divide by zero,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.divideByZero:()I,4,divide by zero,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.divideByNMinus10054203:(I)I,9,divide by zero,False,,1000,1,0,0.05
+no-dictionary,jpamb.cases.Simple.divideByZero:()I,5,divide by zero,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.divideByZero:()I,6,divide by zero,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.divideByZero:()I,7,divide by zero,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.divideByZero:()I,8,divide by zero,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.divideByZero:()I,9,divide by zero,True,1,1,1,0,0.01
+no-dictionary,jpamb.cases.Simple.divideZeroByZero:(II)I,0,divide by zero,True,1,1000,2,0,0.02
+no-dictionary,jpamb.cases.Simple.divideZeroByZero:(II)I,1,divide by zero,True,1,1000,2,0,0.02
+no-dictionary,jpamb.cases.Simple.divideZeroByZero:(II)I,2,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideZeroByZero:(II)I,4,divide by zero,True,1,1000,2,0,0.02
+no-dictionary,jpamb.cases.Simple.divideZeroByZero:(II)I,3,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideZeroByZero:(II)I,5,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideZeroByZero:(II)I,7,divide by zero,True,1,1000,2,0,0.02
+no-dictionary,jpamb.cases.Simple.divideZeroByZero:(II)I,6,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.divideZeroByZero:(II)I,8,divide by zero,True,1,1000,2,0,0.02
+no-dictionary,jpamb.cases.Simple.divideZeroByZero:(II)I,9,divide by zero,True,1,1000,2,0,0.03
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,1,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,1,divide by zero,True,2,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,0,assertion error,True,1,2,2,0,0.06
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,0,divide by zero,True,2,2,2,0,0.06
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,2,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,2,divide by zero,True,2,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,3,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,3,divide by zero,True,2,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,4,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,4,divide by zero,True,2,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,5,assertion error,True,1,2,2,0,0.06
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,5,divide by zero,True,2,2,2,0,0.06
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,6,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,6,divide by zero,True,2,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,7,assertion error,True,1,2,2,0,0.07
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,7,divide by zero,True,2,2,2,0,0.07
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,8,assertion error,True,1,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,8,divide by zero,True,2,2,2,0,0.05
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,9,assertion error,True,1,2,2,0,0.06
+no-dictionary,jpamb.cases.Simple.multiError:(Z)I,9,divide by zero,True,2,2,2,0,0.06
+no-dictionary,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,0,assertion error,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,1,assertion error,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,2,assertion error,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,4,assertion error,True,1,1000,1,0,0.05
+no-dictionary,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,3,assertion error,True,1,1000,1,0,0.07
+no-dictionary,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,5,assertion error,True,1,1000,1,0,0.07
+no-dictionary,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,7,assertion error,True,1,1000,1,0,0.05
+no-dictionary,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,6,assertion error,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,8,assertion error,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,9,assertion error,True,1,1000,1,0,0.06
+no-dictionary,jpamb.cases.Calls.callsAssertFib:(I)V,6,assertion error,True,1,1000,4,0,76.53
+no-dictionary,jpamb.cases.Tricky.collatz:(I)V,0,assertion error,True,1,1000,4,0,16.87
+no-dictionary,jpamb.cases.Tricky.collatz:(I)V,1,assertion error,True,1,1000,4,0,17.1
+no-dictionary,jpamb.cases.Tricky.collatz:(I)V,2,assertion error,True,1,1000,3,0,19.3
+no-dictionary,jpamb.cases.Tricky.collatz:(I)V,3,assertion error,True,1,1000,3,0,23.72
+no-dictionary,jpamb.cases.Tricky.collatz:(I)V,4,assertion error,True,1,1000,3,0,17.25
+no-dictionary,jpamb.cases.Tricky.collatz:(I)V,5,assertion error,True,1,1000,3,0,21.71
+no-dictionary,jpamb.cases.Tricky.collatz:(I)V,6,assertion error,True,1,1000,2,0,19.76
+no-guidance,jpamb.cases.Arrays.arrayContent:()V,0,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayContent:()V,1,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayContent:()V,2,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayContent:()V,3,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayContent:()V,4,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayContent:()V,5,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayContent:()V,6,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayContent:()V,7,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayContent:()V,8,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayContent:()V,9,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNull:()V,0,null pointer,True,1,1,0,0,0.02
+no-guidance,jpamb.cases.Arrays.arrayIsNull:()V,1,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNull:()V,2,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNull:()V,3,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNull:()V,4,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNull:()V,5,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNull:()V,6,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNull:()V,7,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNull:()V,8,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNull:()V,9,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNullLength:()V,0,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNullLength:()V,1,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNullLength:()V,2,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNullLength:()V,3,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNullLength:()V,4,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNullLength:()V,5,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNullLength:()V,6,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNullLength:()V,7,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNullLength:()V,8,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayIsNullLength:()V,9,null pointer,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayNotEmpty:([I)V,0,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Arrays.arrayNotEmpty:([I)V,1,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Arrays.arrayNotEmpty:([I)V,2,assertion error,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Arrays.arrayNotEmpty:([I)V,3,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Arrays.arrayNotEmpty:([I)V,4,assertion error,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arrayNotEmpty:([I)V,5,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Arrays.arrayNotEmpty:([I)V,6,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Arrays.arrayNotEmpty:([I)V,7,assertion error,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arrayNotEmpty:([I)V,8,assertion error,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arrayNotEmpty:([I)V,9,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Arrays.arrayOutOfBounds:()V,0,out of bounds,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayOutOfBounds:()V,1,out of bounds,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayOutOfBounds:()V,2,out of bounds,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayOutOfBounds:()V,3,out of bounds,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayOutOfBounds:()V,4,out of bounds,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayOutOfBounds:()V,5,out of bounds,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayOutOfBounds:()V,6,out of bounds,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayOutOfBounds:()V,7,out of bounds,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayOutOfBounds:()V,8,out of bounds,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arrayOutOfBounds:()V,9,out of bounds,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,0,null pointer,True,4,1000,0,0,0.06
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,0,out of bounds,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,1,null pointer,True,6,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,1,out of bounds,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,2,null pointer,True,4,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,2,out of bounds,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,3,null pointer,True,2,1000,0,0,0.06
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,3,out of bounds,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,4,null pointer,True,2,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,4,out of bounds,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,5,null pointer,True,6,1000,0,0,0.06
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,5,out of bounds,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,6,null pointer,True,4,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,6,out of bounds,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,7,null pointer,True,3,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,7,out of bounds,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,8,null pointer,True,3,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,8,out of bounds,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,9,null pointer,True,6,1000,0,0,0.04
+no-guidance,jpamb.cases.Arrays.arraySometimesNull:(I)V,9,out of bounds,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,0,assertion error,True,2,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,0,out of bounds,True,1,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,1,assertion error,True,2,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,1,out of bounds,True,1,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,2,assertion error,True,2,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,2,out of bounds,True,1,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,3,assertion error,True,2,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,3,out of bounds,True,1,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,4,assertion error,True,2,1000,0,0,0.09
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,4,out of bounds,True,1,1000,0,0,0.09
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,5,assertion error,True,2,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,5,out of bounds,True,1,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,6,assertion error,True,2,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,6,out of bounds,True,1,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,7,assertion error,True,2,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,7,out of bounds,True,1,1000,0,0,0.08
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,8,assertion error,True,2,1000,0,0,0.09
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,8,out of bounds,True,1,1000,0,0,0.09
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,9,assertion error,True,2,1000,0,0,0.09
+no-guidance,jpamb.cases.Arrays.arraySpellsHello:([C)V,9,out of bounds,True,1,1000,0,0,0.09
+no-guidance,jpamb.cases.Arrays.arraySumIsLarge:([I)V,0,assertion error,True,1,1000,0,0,0.33
+no-guidance,jpamb.cases.Arrays.arraySumIsLarge:([I)V,1,assertion error,True,1,1000,0,0,0.27
+no-guidance,jpamb.cases.Arrays.arraySumIsLarge:([I)V,2,assertion error,True,1,1000,0,0,0.26
+no-guidance,jpamb.cases.Arrays.arraySumIsLarge:([I)V,3,assertion error,True,1,1000,0,0,0.26
+no-guidance,jpamb.cases.Arrays.arraySumIsLarge:([I)V,4,assertion error,True,1,1000,0,0,0.27
+no-guidance,jpamb.cases.Arrays.arraySumIsLarge:([I)V,5,assertion error,True,1,1000,0,0,0.27
+no-guidance,jpamb.cases.Arrays.arraySumIsLarge:([I)V,6,assertion error,True,1,1000,0,0,0.28
+no-guidance,jpamb.cases.Arrays.arraySumIsLarge:([I)V,7,assertion error,True,1,1000,0,0,0.28
+no-guidance,jpamb.cases.Arrays.arraySumIsLarge:([I)V,8,assertion error,True,1,1000,0,0,0.3
+no-dictionary,jpamb.cases.Tricky.collatz:(I)V,7,assertion error,True,1,1000,2,0,19.45
+no-guidance,jpamb.cases.Arrays.arraySumIsLarge:([I)V,9,assertion error,True,1,1000,0,0,0.27
+no-guidance,jpamb.cases.Arrays.binarySearch:(I)V,0,assertion error,True,1,1000,0,0,0.29
+no-guidance,jpamb.cases.Arrays.binarySearch:(I)V,1,assertion error,True,1,1000,0,0,0.29
+no-guidance,jpamb.cases.Arrays.binarySearch:(I)V,2,assertion error,True,1,1000,0,0,0.29
+no-guidance,jpamb.cases.Arrays.binarySearch:(I)V,3,assertion error,True,1,1000,0,0,0.29
+no-guidance,jpamb.cases.Arrays.binarySearch:(I)V,4,assertion error,True,1,1000,0,0,0.31
+no-guidance,jpamb.cases.Arrays.binarySearch:(I)V,5,assertion error,True,1,1000,0,0,0.28
+no-guidance,jpamb.cases.Arrays.binarySearch:(I)V,6,assertion error,True,1,1000,0,0,0.29
+no-guidance,jpamb.cases.Arrays.binarySearch:(I)V,7,assertion error,True,1,1000,0,0,0.3
+no-guidance,jpamb.cases.Arrays.binarySearch:(I)V,8,assertion error,True,1,1000,0,0,0.28
+no-guidance,jpamb.cases.Arrays.binarySearch:(I)V,9,assertion error,True,1,1000,0,0,0.29
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,0,assertion error,True,3,1000,0,446,6.87
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,0,out of bounds,True,1,1000,0,446,6.87
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,1,assertion error,True,3,1000,0,469,8.66
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,1,out of bounds,True,1,1000,0,469,8.66
+no-dictionary,jpamb.cases.Tricky.collatz:(I)V,8,assertion error,True,1,1000,3,0,21.76
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,2,assertion error,True,2,1000,0,413,6.91
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,2,out of bounds,True,1,1000,0,413,6.91
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,3,assertion error,True,10,1000,0,457,7.05
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,3,out of bounds,True,1,1000,0,457,7.05
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,4,assertion error,True,6,1000,0,454,6.26
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,4,out of bounds,True,1,1000,0,454,6.26
+no-dictionary,jpamb.cases.Tricky.collatz:(I)V,9,assertion error,True,1,1000,3,0,23.98
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,5,assertion error,True,3,1000,0,431,6.61
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,5,out of bounds,True,1,1000,0,431,6.61
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,6,assertion error,True,2,1000,0,449,7.53
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,6,out of bounds,True,1,1000,0,449,7.53
+no-guidance,jpamb.cases.Calls.callsAssertFalse:()V,0,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Calls.callsAssertFalse:()V,1,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Calls.callsAssertFalse:()V,2,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Calls.callsAssertFalse:()V,3,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Calls.callsAssertFalse:()V,4,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Calls.callsAssertFalse:()V,5,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Calls.callsAssertFalse:()V,6,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Calls.callsAssertFalse:()V,7,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Calls.callsAssertFalse:()V,8,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Calls.callsAssertFalse:()V,9,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,7,assertion error,True,2,1000,0,456,6.8
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,7,out of bounds,True,1,1000,0,456,6.8
+no-dictionary,jpamb.cases.Calls.callsAssertFib:(I)V,8,assertion error,True,1,1000,5,0,76.84
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,8,assertion error,True,2,1000,0,428,7.41
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,8,out of bounds,True,1,1000,0,428,7.41
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,9,assertion error,True,2,1000,0,444,5.1
+no-guidance,jpamb.cases.Calls.allPrimesArePositive:(I)V,9,out of bounds,True,1,1000,0,444,5.1
+no-dictionary,jpamb.cases.Calls.callsAssertFib:(I)V,9,assertion error,True,1,1000,5,0,77.51
+no-dictionary,jpamb.cases.Calls.callsAssertFib:(I)V,7,assertion error,True,1,1000,5,0,81.12
+no-guidance,jpamb.cases.Calls.callsAssertFib:(I)V,2,assertion error,True,1,1000,0,0,72.53
+no-guidance,jpamb.cases.Calls.callsAssertFib:(I)V,0,assertion error,True,1,1000,0,0,75.95
+no-guidance,jpamb.cases.Calls.callsAssertFib:(I)V,5,assertion error,True,1,1000,0,0,73.98
+no-guidance,jpamb.cases.Calls.callsAssertFib:(I)V,4,assertion error,True,1,1000,0,0,75.93
+no-guidance,jpamb.cases.Calls.callsAssertIf:(Z)V,0,assertion error,True,1,2,0,0,0.08
+no-guidance,jpamb.cases.Calls.callsAssertIf:(Z)V,1,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Calls.callsAssertIf:(Z)V,2,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Calls.callsAssertIf:(Z)V,3,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Calls.callsAssertIf:(Z)V,4,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Calls.callsAssertIf:(Z)V,5,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Calls.callsAssertIf:(Z)V,6,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Calls.callsAssertIf:(Z)V,7,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Calls.callsAssertIf:(Z)V,8,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Calls.callsAssertIf:(Z)V,9,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Dependent.badNormalizedDistance:(II)I,0,divide by zero,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Dependent.badNormalizedDistance:(II)I,1,divide by zero,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Dependent.badNormalizedDistance:(II)I,2,divide by zero,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Dependent.badNormalizedDistance:(II)I,3,divide by zero,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Dependent.badNormalizedDistance:(II)I,4,divide by zero,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Dependent.badNormalizedDistance:(II)I,5,divide by zero,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Dependent.badNormalizedDistance:(II)I,6,divide by zero,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Dependent.badNormalizedDistance:(II)I,7,divide by zero,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Dependent.badNormalizedDistance:(II)I,8,divide by zero,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Dependent.badNormalizedDistance:(II)I,9,divide by zero,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Dependent.divisionLoop:(I)V,0,assertion error,True,38,1000,0,0,0.16
+no-guidance,jpamb.cases.Dependent.divisionLoop:(I)V,1,assertion error,True,23,1000,0,0,0.15
+no-guidance,jpamb.cases.Dependent.divisionLoop:(I)V,2,assertion error,True,294,1000,0,0,0.17
+no-guidance,jpamb.cases.Calls.callsAssertFib:(I)V,3,assertion error,True,1,1000,0,0,78.41
+no-guidance,jpamb.cases.Dependent.divisionLoop:(I)V,3,assertion error,True,9,1000,0,0,0.15
+no-guidance,jpamb.cases.Dependent.divisionLoop:(I)V,4,assertion error,True,85,1000,0,0,0.15
+no-guidance,jpamb.cases.Dependent.divisionLoop:(I)V,5,assertion error,True,393,1000,0,0,0.15
+no-guidance,jpamb.cases.Dependent.divisionLoop:(I)V,6,assertion error,True,56,1000,0,0,0.16
+no-guidance,jpamb.cases.Dependent.divisionLoop:(I)V,7,assertion error,True,306,1000,0,0,0.15
+no-guidance,jpamb.cases.Dependent.divisionLoop:(I)V,8,assertion error,True,124,1000,0,0,0.17
+no-guidance,jpamb.cases.Dependent.divisionLoop:(I)V,9,assertion error,True,52,1000,0,0,0.16
+no-guidance,jpamb.cases.Fuzzing.secretThenDivide:([C)I,0,divide by zero,False,,1000,0,0,0.06
+no-guidance,jpamb.cases.Fuzzing.secretThenDivide:([C)I,1,divide by zero,False,,1000,0,0,0.06
+no-guidance,jpamb.cases.Fuzzing.secretThenDivide:([C)I,2,divide by zero,False,,1000,0,0,0.07
+no-guidance,jpamb.cases.Fuzzing.secretThenDivide:([C)I,3,divide by zero,False,,1000,0,0,0.06
+no-guidance,jpamb.cases.Fuzzing.secretThenDivide:([C)I,4,divide by zero,False,,1000,0,0,0.07
+no-guidance,jpamb.cases.Fuzzing.secretThenDivide:([C)I,5,divide by zero,False,,1000,0,0,0.05
+no-guidance,jpamb.cases.Fuzzing.secretThenDivide:([C)I,6,divide by zero,False,,1000,0,0,0.06
+no-guidance,jpamb.cases.Fuzzing.secretThenDivide:([C)I,7,divide by zero,False,,1000,0,0,0.07
+no-guidance,jpamb.cases.Fuzzing.secretThenDivide:([C)I,8,divide by zero,False,,1000,0,0,0.06
+no-guidance,jpamb.cases.Loops.terminates:()V,0,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Loops.terminates:()V,1,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Loops.terminates:()V,2,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Loops.terminates:()V,3,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Fuzzing.secretThenDivide:([C)I,9,divide by zero,False,,1000,0,0,0.06
+no-guidance,jpamb.cases.Loops.terminates:()V,4,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Loops.terminates:()V,5,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Loops.terminates:()V,6,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Loops.terminates:()V,7,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Loops.terminates:()V,8,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Loops.terminates:()V,9,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.assertBoolean:(Z)V,1,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Simple.assertBoolean:(Z)V,0,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Simple.assertBoolean:(Z)V,2,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.assertBoolean:(Z)V,3,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.assertBoolean:(Z)V,4,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.assertBoolean:(Z)V,5,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Simple.assertBoolean:(Z)V,6,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.assertBoolean:(Z)V,7,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.assertBoolean:(Z)V,8,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Simple.assertFalse:()V,0,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.assertBoolean:(Z)V,9,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.assertFalse:()V,1,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.assertFalse:()V,2,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.assertFalse:()V,3,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.assertFalse:()V,5,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.assertFalse:()V,4,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.assertFalse:()V,7,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.assertFalse:()V,6,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.assertFalse:()V,8,assertion error,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.assertFalse:()V,9,assertion error,True,1,1,0,0,0.02
+no-guidance,jpamb.cases.Simple.assertInteger:(I)V,0,assertion error,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.assertInteger:(I)V,1,assertion error,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.assertInteger:(I)V,2,assertion error,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.assertInteger:(I)V,3,assertion error,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.assertInteger:(I)V,4,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertInteger:(I)V,5,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Calls.callsAssertFib:(I)V,6,assertion error,True,1,1000,0,0,76.94
+no-guidance,jpamb.cases.Simple.assertInteger:(I)V,6,assertion error,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.assertInteger:(I)V,7,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertInteger:(I)V,8,assertion error,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.assertInteger:(I)V,9,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertPositive:(I)V,1,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertPositive:(I)V,0,assertion error,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Simple.assertPositive:(I)V,2,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertPositive:(I)V,3,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertPositive:(I)V,4,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertPositive:(I)V,5,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertPositive:(I)V,6,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertPositive:(I)V,7,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertPositive:(I)V,8,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.assertPositive:(I)V,9,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.checkBeforeAssert:(I)V,0,assertion error,True,3,1000,0,0,0.06
+no-guidance,jpamb.cases.Simple.checkBeforeAssert:(I)V,1,assertion error,True,3,1000,0,0,0.06
+no-guidance,jpamb.cases.Simple.checkBeforeAssert:(I)V,2,assertion error,True,2,1000,0,0,0.05
+no-guidance,jpamb.cases.Simple.checkBeforeAssert:(I)V,3,assertion error,True,2,1000,0,0,0.06
+no-guidance,jpamb.cases.Simple.checkBeforeAssert:(I)V,4,assertion error,True,2,1000,0,0,0.05
+no-guidance,jpamb.cases.Simple.checkBeforeAssert:(I)V,5,assertion error,True,3,1000,0,0,0.06
+no-guidance,jpamb.cases.Simple.checkBeforeAssert:(I)V,6,assertion error,True,2,1000,0,0,0.05
+no-guidance,jpamb.cases.Simple.checkBeforeAssert:(I)V,7,assertion error,True,2,1000,0,0,0.05
+no-guidance,jpamb.cases.Simple.checkBeforeAssert:(I)V,8,assertion error,True,2,1000,0,0,0.06
+no-guidance,jpamb.cases.Simple.checkBeforeAssert:(I)V,9,assertion error,True,2,1000,0,0,0.05
+no-guidance,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,0,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,1,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,2,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,3,assertion error,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,4,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,5,assertion error,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,6,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,7,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,8,assertion error,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,9,assertion error,True,1,1000,0,0,0.05
+no-guidance,jpamb.cases.Simple.divideByN:(I)I,0,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByN:(I)I,1,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByN:(I)I,2,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByN:(I)I,3,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByN:(I)I,4,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByN:(I)I,6,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByN:(I)I,5,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Calls.callsAssertFib:(I)V,1,assertion error,True,1,1000,0,0,81.6
+no-guidance,jpamb.cases.Simple.divideByN:(I)I,7,divide by zero,True,1,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.divideByN:(I)I,9,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByN:(I)I,8,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByNMinus10054203:(I)I,0,divide by zero,True,23,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByNMinus10054203:(I)I,1,divide by zero,True,15,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByNMinus10054203:(I)I,2,divide by zero,True,66,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByNMinus10054203:(I)I,3,divide by zero,True,10,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.divideByNMinus10054203:(I)I,4,divide by zero,True,21,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.divideByNMinus10054203:(I)I,5,divide by zero,True,27,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByNMinus10054203:(I)I,6,divide by zero,True,4,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.divideByNMinus10054203:(I)I,7,divide by zero,True,49,1000,0,0,0.04
+no-guidance,jpamb.cases.Simple.divideByNMinus10054203:(I)I,8,divide by zero,True,35,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideByZero:()I,1,divide by zero,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.divideByZero:()I,0,divide by zero,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.divideByZero:()I,2,divide by zero,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.divideByZero:()I,3,divide by zero,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.divideByZero:()I,4,divide by zero,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.divideByZero:()I,5,divide by zero,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.divideByZero:()I,6,divide by zero,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.divideByZero:()I,7,divide by zero,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.divideByZero:()I,8,divide by zero,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.divideByZero:()I,9,divide by zero,True,1,1,0,0,0.01
+no-guidance,jpamb.cases.Simple.divideByNMinus10054203:(I)I,9,divide by zero,True,21,1000,0,0,0.05
+no-guidance,jpamb.cases.Simple.divideZeroByZero:(II)I,1,divide by zero,True,1,1000,0,0,0.02
+no-guidance,jpamb.cases.Simple.divideZeroByZero:(II)I,0,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideZeroByZero:(II)I,2,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideZeroByZero:(II)I,3,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideZeroByZero:(II)I,4,divide by zero,True,1,1000,0,0,0.02
+no-guidance,jpamb.cases.Simple.divideZeroByZero:(II)I,5,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideZeroByZero:(II)I,6,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideZeroByZero:(II)I,7,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideZeroByZero:(II)I,8,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.divideZeroByZero:(II)I,9,divide by zero,True,1,1000,0,0,0.03
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,0,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,0,divide by zero,True,2,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,2,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,2,divide by zero,True,2,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,1,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,1,divide by zero,True,2,2,0,0,0.06
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,3,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,3,divide by zero,True,2,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,4,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,4,divide by zero,True,2,2,0,0,0.06
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,5,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,5,divide by zero,True,2,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,6,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,6,divide by zero,True,2,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,7,assertion error,True,1,2,0,0,0.06
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,7,divide by zero,True,2,2,0,0,0.06
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,8,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,8,divide by zero,True,2,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,9,assertion error,True,1,2,0,0,0.05
+no-guidance,jpamb.cases.Simple.multiError:(Z)I,9,divide by zero,True,2,2,0,0,0.05
+no-guidance,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,1,assertion error,True,1,1000,0,0,0.07
+no-guidance,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,0,assertion error,True,1,1000,0,0,0.08
+no-guidance,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,2,assertion error,True,1,1000,0,0,0.07
+no-guidance,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,3,assertion error,True,1,1000,0,0,0.07
+no-guidance,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,4,assertion error,True,1,1000,0,0,0.06
+no-guidance,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,5,assertion error,True,1,1000,0,0,0.07
+no-guidance,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,6,assertion error,True,1,1000,0,0,0.07
+no-guidance,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,7,assertion error,True,1,1000,0,0,0.07
+no-guidance,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,8,assertion error,True,1,1000,0,0,0.08
+no-guidance,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,9,assertion error,True,1,1000,0,0,0.07
+no-guidance,jpamb.cases.Tricky.collatz:(I)V,1,assertion error,True,1,1000,0,0,17.37
+no-guidance,jpamb.cases.Tricky.collatz:(I)V,0,assertion error,True,1,1000,0,0,18.58
+no-guidance,jpamb.cases.Tricky.collatz:(I)V,3,assertion error,True,1,1000,0,0,19.04
+no-guidance,jpamb.cases.Tricky.collatz:(I)V,2,assertion error,True,1,1000,0,0,19.52
+no-guidance,jpamb.cases.Tricky.collatz:(I)V,4,assertion error,True,1,1000,0,0,18.59
+no-guidance,jpamb.cases.Tricky.collatz:(I)V,5,assertion error,True,1,1000,0,0,19.42
+no-guidance,jpamb.cases.Tricky.collatz:(I)V,6,assertion error,True,1,1000,0,0,19.78
+no-resize-bursts,jpamb.cases.Arrays.arrayContent:()V,0,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayContent:()V,1,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayContent:()V,2,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayContent:()V,3,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayContent:()V,4,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayContent:()V,5,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayContent:()V,6,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayContent:()V,7,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayContent:()V,8,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayContent:()V,9,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNull:()V,0,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNull:()V,1,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNull:()V,2,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNull:()V,3,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNull:()V,4,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNull:()V,5,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNull:()V,6,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNull:()V,7,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNull:()V,8,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNull:()V,9,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNullLength:()V,0,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNullLength:()V,1,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNullLength:()V,2,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNullLength:()V,3,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNullLength:()V,4,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNullLength:()V,5,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNullLength:()V,6,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNullLength:()V,7,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNullLength:()V,8,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayIsNullLength:()V,9,null pointer,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayNotEmpty:([I)V,0,assertion error,True,1,1000,2,0,0.06
+no-resize-bursts,jpamb.cases.Arrays.arrayNotEmpty:([I)V,1,assertion error,True,1,1000,2,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arrayNotEmpty:([I)V,2,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Arrays.arrayNotEmpty:([I)V,3,assertion error,True,1,1000,2,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arrayNotEmpty:([I)V,4,assertion error,True,1,1000,2,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arrayNotEmpty:([I)V,5,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Arrays.arrayNotEmpty:([I)V,6,assertion error,True,1,1000,2,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arrayNotEmpty:([I)V,7,assertion error,True,1,1000,2,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arrayNotEmpty:([I)V,8,assertion error,True,1,1000,2,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arrayNotEmpty:([I)V,9,assertion error,True,1,1000,2,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arrayOutOfBounds:()V,0,out of bounds,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayOutOfBounds:()V,1,out of bounds,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayOutOfBounds:()V,2,out of bounds,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayOutOfBounds:()V,3,out of bounds,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayOutOfBounds:()V,4,out of bounds,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayOutOfBounds:()V,5,out of bounds,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayOutOfBounds:()V,6,out of bounds,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayOutOfBounds:()V,7,out of bounds,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayOutOfBounds:()V,8,out of bounds,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arrayOutOfBounds:()V,9,out of bounds,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,0,null pointer,True,4,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,0,out of bounds,True,1,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,1,null pointer,True,5,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,1,out of bounds,True,1,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,2,null pointer,True,2,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,2,out of bounds,True,1,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,3,null pointer,True,2,1000,1,0,0.06
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,3,out of bounds,True,1,1000,1,0,0.06
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,4,null pointer,True,2,1000,1,0,0.04
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,4,out of bounds,True,1,1000,1,0,0.04
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,5,null pointer,True,5,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,5,out of bounds,True,1,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,6,null pointer,True,4,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,6,out of bounds,True,1,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,7,null pointer,True,5,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,7,out of bounds,True,1,1000,1,0,0.05
+no-guidance,jpamb.cases.Tricky.collatz:(I)V,7,assertion error,True,1,1000,0,0,20.57
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,8,null pointer,True,3,1000,1,0,0.06
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,8,out of bounds,True,1,1000,1,0,0.06
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,9,null pointer,True,6,1000,1,0,0.04
+no-resize-bursts,jpamb.cases.Arrays.arraySometimesNull:(I)V,9,out of bounds,True,1,1000,1,0,0.04
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,0,assertion error,True,2,1000,11,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,0,out of bounds,True,1,1000,11,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,1,assertion error,True,2,1000,9,0,0.09
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,1,out of bounds,True,1,1000,9,0,0.09
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,2,assertion error,True,2,1000,9,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,2,out of bounds,True,1,1000,9,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,3,assertion error,True,2,1000,11,0,0.07
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,3,out of bounds,True,1,1000,11,0,0.07
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,4,assertion error,True,2,1000,9,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,4,out of bounds,True,1,1000,9,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,5,assertion error,True,2,1000,10,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,5,out of bounds,True,1,1000,10,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,6,assertion error,True,2,1000,9,0,0.1
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,6,out of bounds,True,1,1000,9,0,0.1
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,7,assertion error,True,2,1000,7,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,7,out of bounds,True,1,1000,7,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,8,assertion error,True,2,1000,9,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,8,out of bounds,True,1,1000,9,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,9,assertion error,True,2,1000,9,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySpellsHello:([C)V,9,out of bounds,True,1,1000,9,0,0.08
+no-resize-bursts,jpamb.cases.Arrays.arraySumIsLarge:([I)V,0,assertion error,True,1,1000,3,0,0.14
+no-resize-bursts,jpamb.cases.Arrays.arraySumIsLarge:([I)V,1,assertion error,True,1,1000,3,0,0.13
+no-resize-bursts,jpamb.cases.Arrays.arraySumIsLarge:([I)V,2,assertion error,True,1,1000,2,0,0.12
+no-resize-bursts,jpamb.cases.Arrays.arraySumIsLarge:([I)V,3,assertion error,True,1,1000,3,0,0.14
+no-resize-bursts,jpamb.cases.Arrays.arraySumIsLarge:([I)V,4,assertion error,True,1,1000,2,0,0.12
+no-resize-bursts,jpamb.cases.Arrays.arraySumIsLarge:([I)V,5,assertion error,True,1,1000,2,0,0.12
+no-resize-bursts,jpamb.cases.Arrays.arraySumIsLarge:([I)V,6,assertion error,True,1,1000,2,0,0.13
+no-resize-bursts,jpamb.cases.Arrays.arraySumIsLarge:([I)V,7,assertion error,True,1,1000,3,0,0.13
+no-resize-bursts,jpamb.cases.Arrays.arraySumIsLarge:([I)V,8,assertion error,True,1,1000,3,0,0.14
+no-resize-bursts,jpamb.cases.Arrays.arraySumIsLarge:([I)V,9,assertion error,True,1,1000,3,0,0.16
+no-resize-bursts,jpamb.cases.Arrays.binarySearch:(I)V,0,assertion error,True,1,1000,2,0,0.32
+no-resize-bursts,jpamb.cases.Arrays.binarySearch:(I)V,1,assertion error,True,1,1000,3,0,0.3
+no-resize-bursts,jpamb.cases.Arrays.binarySearch:(I)V,2,assertion error,True,1,1000,3,0,0.31
+no-resize-bursts,jpamb.cases.Arrays.binarySearch:(I)V,3,assertion error,True,1,1000,3,0,0.29
+no-resize-bursts,jpamb.cases.Arrays.binarySearch:(I)V,4,assertion error,True,1,1000,3,0,0.3
+no-resize-bursts,jpamb.cases.Arrays.binarySearch:(I)V,5,assertion error,True,1,1000,3,0,0.3
+no-resize-bursts,jpamb.cases.Arrays.binarySearch:(I)V,6,assertion error,True,1,1000,3,0,0.31
+no-resize-bursts,jpamb.cases.Arrays.binarySearch:(I)V,7,assertion error,True,1,1000,3,0,0.3
+no-resize-bursts,jpamb.cases.Arrays.binarySearch:(I)V,8,assertion error,True,1,1000,3,0,0.29
+no-resize-bursts,jpamb.cases.Arrays.binarySearch:(I)V,9,assertion error,True,1,1000,3,0,0.31
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,0,assertion error,True,3,1000,4,451,6.51
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,0,out of bounds,True,1,1000,4,451,6.51
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,1,assertion error,True,6,1000,5,413,12.81
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,1,out of bounds,True,1,1000,5,413,12.81
+no-guidance,jpamb.cases.Tricky.collatz:(I)V,8,assertion error,True,1,1000,0,0,20.1
+no-guidance,jpamb.cases.Tricky.collatz:(I)V,9,assertion error,True,1,1000,0,0,18.55
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,2,assertion error,True,6,1000,4,391,12.87
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,2,out of bounds,True,1,1000,4,391,12.87
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,5,assertion error,True,3,1000,4,440,7.92
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,5,out of bounds,True,1,1000,4,440,7.92
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,4,assertion error,True,6,1000,4,414,10.38
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,4,out of bounds,True,1,1000,4,414,10.38
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,3,assertion error,True,8,1000,4,411,11.28
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,3,out of bounds,True,1,1000,4,411,11.28
+no-guidance,jpamb.cases.Calls.callsAssertFib:(I)V,8,assertion error,True,1,1000,0,0,73.12
+no-resize-bursts,jpamb.cases.Calls.callsAssertFalse:()V,0,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Calls.callsAssertFalse:()V,1,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Calls.callsAssertFalse:()V,2,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Calls.callsAssertFalse:()V,3,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Calls.callsAssertFalse:()V,4,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Calls.callsAssertFalse:()V,5,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Calls.callsAssertFalse:()V,6,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Calls.callsAssertFalse:()V,7,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Calls.callsAssertFalse:()V,8,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Calls.callsAssertFalse:()V,9,assertion error,True,1,1,1,0,0.01
+no-guidance,jpamb.cases.Calls.callsAssertFib:(I)V,7,assertion error,True,1,1000,0,0,77.58
+no-guidance,jpamb.cases.Calls.callsAssertFib:(I)V,9,assertion error,True,1,1000,0,0,74.23
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,6,assertion error,True,2,1000,4,429,7.86
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,6,out of bounds,True,1,1000,4,429,7.86
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,7,assertion error,True,2,1000,3,430,8.32
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,7,out of bounds,True,1,1000,3,430,8.32
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,9,assertion error,True,2,1000,4,439,8.64
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,9,out of bounds,True,1,1000,4,439,8.64
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,8,assertion error,True,2,1000,4,389,13.32
+no-resize-bursts,jpamb.cases.Calls.allPrimesArePositive:(I)V,8,out of bounds,True,1,1000,4,389,13.32
+no-resize-bursts,jpamb.cases.Calls.callsAssertFib:(I)V,2,assertion error,True,1,1000,5,0,72.96
+no-resize-bursts,jpamb.cases.Calls.callsAssertFib:(I)V,1,assertion error,True,1,1000,5,0,77.69
+no-resize-bursts,jpamb.cases.Calls.callsAssertFib:(I)V,3,assertion error,True,1,1000,5,0,77.97
+no-resize-bursts,jpamb.cases.Calls.callsAssertFib:(I)V,0,assertion error,True,1,1000,6,0,83.07
+no-resize-bursts,jpamb.cases.Calls.callsAssertIf:(Z)V,0,assertion error,True,1,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Calls.callsAssertIf:(Z)V,1,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Calls.callsAssertIf:(Z)V,2,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Calls.callsAssertIf:(Z)V,3,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Calls.callsAssertIf:(Z)V,4,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Calls.callsAssertIf:(Z)V,5,assertion error,True,1,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Calls.callsAssertIf:(Z)V,6,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Calls.callsAssertIf:(Z)V,7,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Calls.callsAssertIf:(Z)V,8,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Calls.callsAssertIf:(Z)V,9,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Dependent.badNormalizedDistance:(II)I,0,divide by zero,True,1,1000,6,0,0.06
+no-resize-bursts,jpamb.cases.Dependent.badNormalizedDistance:(II)I,1,divide by zero,True,1,1000,5,0,0.06
+no-resize-bursts,jpamb.cases.Dependent.badNormalizedDistance:(II)I,2,divide by zero,True,1,1000,5,0,0.05
+no-resize-bursts,jpamb.cases.Dependent.badNormalizedDistance:(II)I,3,divide by zero,True,1,1000,5,0,0.07
+no-resize-bursts,jpamb.cases.Dependent.badNormalizedDistance:(II)I,4,divide by zero,True,1,1000,4,0,0.05
+no-resize-bursts,jpamb.cases.Dependent.badNormalizedDistance:(II)I,5,divide by zero,True,1,1000,4,0,0.06
+no-resize-bursts,jpamb.cases.Dependent.badNormalizedDistance:(II)I,6,divide by zero,True,1,1000,4,0,0.06
+no-resize-bursts,jpamb.cases.Dependent.badNormalizedDistance:(II)I,7,divide by zero,True,1,1000,4,0,0.06
+no-resize-bursts,jpamb.cases.Dependent.badNormalizedDistance:(II)I,8,divide by zero,True,1,1000,4,0,0.07
+no-resize-bursts,jpamb.cases.Dependent.badNormalizedDistance:(II)I,9,divide by zero,True,1,1000,4,0,0.06
+no-resize-bursts,jpamb.cases.Dependent.divisionLoop:(I)V,0,assertion error,True,224,1000,2,0,0.16
+no-resize-bursts,jpamb.cases.Dependent.divisionLoop:(I)V,1,assertion error,True,26,1000,2,0,0.15
+no-resize-bursts,jpamb.cases.Dependent.divisionLoop:(I)V,2,assertion error,True,4,1000,2,0,0.15
+no-resize-bursts,jpamb.cases.Dependent.divisionLoop:(I)V,3,assertion error,True,9,1000,2,0,0.15
+no-resize-bursts,jpamb.cases.Calls.callsAssertFib:(I)V,4,assertion error,True,1,1000,5,0,79.0
+no-resize-bursts,jpamb.cases.Dependent.divisionLoop:(I)V,4,assertion error,True,100,1000,2,0,0.15
+no-resize-bursts,jpamb.cases.Dependent.divisionLoop:(I)V,5,assertion error,True,54,1000,2,0,0.15
+no-resize-bursts,jpamb.cases.Dependent.divisionLoop:(I)V,6,assertion error,True,68,1000,2,0,0.15
+no-resize-bursts,jpamb.cases.Dependent.divisionLoop:(I)V,7,assertion error,True,82,1000,2,0,0.16
+no-resize-bursts,jpamb.cases.Dependent.divisionLoop:(I)V,8,assertion error,True,48,1000,2,0,0.16
+no-resize-bursts,jpamb.cases.Dependent.divisionLoop:(I)V,9,assertion error,True,61,1000,2,0,0.15
+no-resize-bursts,jpamb.cases.Fuzzing.secretThenDivide:([C)I,0,divide by zero,False,,927,1,0,0.15
+no-resize-bursts,jpamb.cases.Fuzzing.secretThenDivide:([C)I,1,divide by zero,False,,950,1,0,0.16
+no-resize-bursts,jpamb.cases.Fuzzing.secretThenDivide:([C)I,2,divide by zero,False,,925,1,0,0.15
+no-resize-bursts,jpamb.cases.Fuzzing.secretThenDivide:([C)I,3,divide by zero,False,,917,1,0,0.15
+no-resize-bursts,jpamb.cases.Fuzzing.secretThenDivide:([C)I,4,divide by zero,False,,911,1,0,0.16
+no-resize-bursts,jpamb.cases.Fuzzing.secretThenDivide:([C)I,5,divide by zero,False,,963,1,0,0.16
+no-resize-bursts,jpamb.cases.Fuzzing.secretThenDivide:([C)I,6,divide by zero,False,,938,1,0,0.15
+no-resize-bursts,jpamb.cases.Fuzzing.secretThenDivide:([C)I,7,divide by zero,False,,953,1,0,0.15
+no-resize-bursts,jpamb.cases.Fuzzing.secretThenDivide:([C)I,8,divide by zero,False,,935,1,0,0.16
+no-resize-bursts,jpamb.cases.Loops.terminates:()V,0,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Loops.terminates:()V,1,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Loops.terminates:()V,2,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Loops.terminates:()V,3,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Loops.terminates:()V,4,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Loops.terminates:()V,5,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Loops.terminates:()V,6,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Loops.terminates:()V,7,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Loops.terminates:()V,8,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Loops.terminates:()V,9,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Fuzzing.secretThenDivide:([C)I,9,divide by zero,False,,964,1,0,0.15
+no-resize-bursts,jpamb.cases.Simple.assertBoolean:(Z)V,0,assertion error,True,1,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.assertBoolean:(Z)V,1,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertBoolean:(Z)V,2,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertBoolean:(Z)V,3,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertBoolean:(Z)V,4,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertBoolean:(Z)V,5,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertBoolean:(Z)V,6,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertBoolean:(Z)V,7,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertBoolean:(Z)V,8,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertBoolean:(Z)V,9,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertFalse:()V,0,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.assertFalse:()V,1,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.assertFalse:()V,2,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.assertFalse:()V,4,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.assertFalse:()V,3,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.assertFalse:()V,5,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.assertFalse:()V,6,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.assertFalse:()V,7,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.assertFalse:()V,8,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.assertFalse:()V,9,assertion error,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.assertInteger:(I)V,0,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertInteger:(I)V,1,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertInteger:(I)V,2,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertInteger:(I)V,3,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertInteger:(I)V,4,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertInteger:(I)V,5,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertInteger:(I)V,6,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertInteger:(I)V,7,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertInteger:(I)V,8,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertInteger:(I)V,9,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertPositive:(I)V,0,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertPositive:(I)V,1,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertPositive:(I)V,2,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertPositive:(I)V,3,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertPositive:(I)V,4,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertPositive:(I)V,5,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertPositive:(I)V,6,assertion error,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.assertPositive:(I)V,7,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertPositive:(I)V,8,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.assertPositive:(I)V,9,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.checkBeforeAssert:(I)V,0,assertion error,True,3,1000,3,0,0.05
+no-resize-bursts,jpamb.cases.Simple.checkBeforeAssert:(I)V,1,assertion error,True,3,1000,3,0,0.06
+no-resize-bursts,jpamb.cases.Simple.checkBeforeAssert:(I)V,2,assertion error,True,2,1000,3,0,0.05
+no-resize-bursts,jpamb.cases.Simple.checkBeforeAssert:(I)V,3,assertion error,True,2,1000,3,0,0.05
+no-resize-bursts,jpamb.cases.Simple.checkBeforeAssert:(I)V,4,assertion error,True,2,1000,3,0,0.05
+no-resize-bursts,jpamb.cases.Simple.checkBeforeAssert:(I)V,5,assertion error,True,3,1000,3,0,0.05
+no-resize-bursts,jpamb.cases.Simple.checkBeforeAssert:(I)V,6,assertion error,True,2,1000,3,0,0.05
+no-resize-bursts,jpamb.cases.Simple.checkBeforeAssert:(I)V,7,assertion error,True,2,1000,3,0,0.05
+no-resize-bursts,jpamb.cases.Simple.checkBeforeAssert:(I)V,8,assertion error,True,2,1000,3,0,0.06
+no-resize-bursts,jpamb.cases.Simple.checkBeforeAssert:(I)V,9,assertion error,True,2,1000,3,0,0.05
+no-resize-bursts,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,0,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,1,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,2,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,3,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,4,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,5,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,6,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,7,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,8,assertion error,True,1,1000,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.checkBeforeDivideByN:(I)I,9,assertion error,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.divideByN:(I)I,0,divide by zero,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByN:(I)I,2,divide by zero,True,1,1000,2,0,0.02
+no-resize-bursts,jpamb.cases.Simple.divideByN:(I)I,1,divide by zero,True,1,1000,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.divideByN:(I)I,3,divide by zero,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByN:(I)I,4,divide by zero,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByN:(I)I,5,divide by zero,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByN:(I)I,6,divide by zero,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByN:(I)I,7,divide by zero,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByN:(I)I,8,divide by zero,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByN:(I)I,9,divide by zero,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByNMinus10054203:(I)I,1,divide by zero,True,18,1000,1,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByNMinus10054203:(I)I,0,divide by zero,True,30,1000,1,0,0.05
+no-resize-bursts,jpamb.cases.Simple.divideByNMinus10054203:(I)I,2,divide by zero,True,36,1000,1,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByNMinus10054203:(I)I,3,divide by zero,True,42,1000,1,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByNMinus10054203:(I)I,4,divide by zero,True,21,1000,1,0,0.04
+no-resize-bursts,jpamb.cases.Simple.divideByNMinus10054203:(I)I,5,divide by zero,True,40,1000,1,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByNMinus10054203:(I)I,6,divide by zero,True,4,1000,1,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByNMinus10054203:(I)I,7,divide by zero,True,102,1000,1,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByNMinus10054203:(I)I,8,divide by zero,True,37,1000,1,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideByNMinus10054203:(I)I,9,divide by zero,True,36,1000,1,0,0.04
+no-resize-bursts,jpamb.cases.Simple.divideByZero:()I,0,divide by zero,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.divideByZero:()I,1,divide by zero,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.divideByZero:()I,3,divide by zero,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.divideByZero:()I,2,divide by zero,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.divideByZero:()I,5,divide by zero,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.divideByZero:()I,4,divide by zero,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.divideByZero:()I,6,divide by zero,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.divideByZero:()I,7,divide by zero,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.divideByZero:()I,8,divide by zero,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.divideByZero:()I,9,divide by zero,True,1,1,1,0,0.01
+no-resize-bursts,jpamb.cases.Simple.divideZeroByZero:(II)I,0,divide by zero,True,1,1000,2,0,0.02
+no-resize-bursts,jpamb.cases.Simple.divideZeroByZero:(II)I,1,divide by zero,True,1,1000,2,0,0.02
+no-resize-bursts,jpamb.cases.Simple.divideZeroByZero:(II)I,2,divide by zero,True,1,1000,2,0,0.02
+no-resize-bursts,jpamb.cases.Simple.divideZeroByZero:(II)I,4,divide by zero,True,1,1000,2,0,0.02
+no-resize-bursts,jpamb.cases.Simple.divideZeroByZero:(II)I,3,divide by zero,True,1,1000,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.divideZeroByZero:(II)I,6,divide by zero,True,1,1000,2,0,0.02
+no-resize-bursts,jpamb.cases.Simple.divideZeroByZero:(II)I,5,divide by zero,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideZeroByZero:(II)I,8,divide by zero,True,1,1000,2,0,0.02
+no-resize-bursts,jpamb.cases.Simple.divideZeroByZero:(II)I,7,divide by zero,True,1,1000,2,0,0.03
+no-resize-bursts,jpamb.cases.Simple.divideZeroByZero:(II)I,9,divide by zero,True,1,1000,2,0,0.02
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,0,assertion error,True,1,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,0,divide by zero,True,2,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,1,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,1,divide by zero,True,2,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,2,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,2,divide by zero,True,2,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,3,assertion error,True,1,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,3,divide by zero,True,2,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,4,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,4,divide by zero,True,2,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,5,assertion error,True,1,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,5,divide by zero,True,2,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,6,assertion error,True,1,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,6,divide by zero,True,2,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,7,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,7,divide by zero,True,2,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,8,assertion error,True,1,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,8,divide by zero,True,2,2,2,0,0.05
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,9,assertion error,True,1,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Simple.multiError:(Z)I,9,divide by zero,True,2,2,2,0,0.04
+no-resize-bursts,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,0,assertion error,True,1,1000,2,0,0.06
+no-resize-bursts,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,1,assertion error,True,1,1000,2,0,0.05
+no-resize-bursts,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,2,assertion error,True,1,1000,2,0,0.06
+no-resize-bursts,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,3,assertion error,True,1,1000,2,0,0.06
+no-resize-bursts,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,4,assertion error,True,1,1000,2,0,0.06
+no-resize-bursts,jpamb.cases.Calls.callsAssertFib:(I)V,6,assertion error,True,1,1000,4,0,75.18
+no-resize-bursts,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,5,assertion error,True,1,1000,2,0,0.06
+no-resize-bursts,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,6,assertion error,True,1,1000,2,0,0.06
+no-resize-bursts,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,8,assertion error,True,1,1000,2,0,0.06
+no-resize-bursts,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,7,assertion error,True,1,1000,2,0,0.06
+no-resize-bursts,jpamb.cases.Strings.sayHello:(Ljava/lang/String;)V,9,assertion error,True,1,1000,2,0,0.06
+no-resize-bursts,jpamb.cases.Calls.callsAssertFib:(I)V,5,assertion error,True,1,1000,5,0,80.28
+no-resize-bursts,jpamb.cases.Tricky.collatz:(I)V,1,assertion error,True,1,1000,4,0,15.33
+no-resize-bursts,jpamb.cases.Tricky.collatz:(I)V,2,assertion error,True,1,1000,2,0,19.52
+no-resize-bursts,jpamb.cases.Tricky.collatz:(I)V,0,assertion error,True,1,1000,4,0,21.69
+no-resize-bursts,jpamb.cases.Tricky.collatz:(I)V,3,assertion error,True,1,1000,3,0,22.71
+no-resize-bursts,jpamb.cases.Tricky.collatz:(I)V,4,assertion error,True,1,1000,3,0,16.43
+no-resize-bursts,jpamb.cases.Tricky.collatz:(I)V,5,assertion error,True,1,1000,3,0,17.58
+no-resize-bursts,jpamb.cases.Tricky.collatz:(I)V,6,assertion error,True,1,1000,3,0,17.54
+no-resize-bursts,jpamb.cases.Tricky.collatz:(I)V,7,assertion error,True,1,1000,3,0,20.22
+no-resize-bursts,jpamb.cases.Tricky.collatz:(I)V,8,assertion error,True,1,1000,3,0,18.53
+no-resize-bursts,jpamb.cases.Tricky.collatz:(I)V,9,assertion error,True,1,1000,3,0,21.64
+no-resize-bursts,jpamb.cases.Calls.callsAssertFib:(I)V,7,assertion error,True,1,1000,4,0,74.85
+no-resize-bursts,jpamb.cases.Calls.callsAssertFib:(I)V,8,assertion error,True,1,1000,5,0,73.43
+no-resize-bursts,jpamb.cases.Calls.callsAssertFib:(I)V,9,assertion error,True,1,1000,4,0,73.32

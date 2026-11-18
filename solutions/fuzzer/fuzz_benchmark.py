@@ -20,8 +20,6 @@ lines = Path("target/stats/cases.txt").read_text().splitlines()
 cases = [Case.decode(line) for line in lines if line.strip()]
 
 
-
-
 expected_total = found_with_k = found_without_k = 0
 started = time.perf_counter()
 for methodid, method_cases in Case.by_entry(cases):
@@ -34,9 +32,17 @@ for methodid, method_cases in Case.by_entry(cases):
     expected_total += len(expected)
     found_with_k += len(with_k)
     found_without_k += len(without_k)
-    missed = "" if with_k == expected else "  <-- missed: " + ", ".join(sorted(expected - with_k))
-    print(f"{methodid.extension.name:28} expected {len(expected)}  "
-          f"with K {len(with_k)}  without K {len(without_k)}{missed}")
+    missed = (
+        ""
+        if with_k == expected
+        else "  <-- missed: " + ", ".join(sorted(expected - with_k))
+    )
+    print(
+        f"{methodid.extension.name:28} expected {len(expected)}  "
+        f"with K {len(with_k)}  without K {len(without_k)}{missed}"
+    )
 
-print(f"\nbudget {BUDGET}: found {found_with_k}/{expected_total} with K, "
-      f"{found_without_k}/{expected_total} without K, in {time.perf_counter() - started:.0f}s")
+print(
+    f"\nbudget {BUDGET}: found {found_with_k}/{expected_total} with K, "
+    f"{found_without_k}/{expected_total} without K, in {time.perf_counter() - started:.0f}s"
+)
