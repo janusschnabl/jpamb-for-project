@@ -71,7 +71,7 @@ def test_time_limit_stops_the_run():
     assert 0 < r.executions < 10**9
 
 
-SECRET = "Fuzzing.secretThenDivide:([C)I"
+SECRET = "Group21Cases.secretThenDivide:([C)I"
 
 
 def _built(name):

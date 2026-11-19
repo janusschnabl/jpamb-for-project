@@ -9,7 +9,7 @@ import jvm
 
 suite, eff = jpamb.setup()
 bc = jpamb.Bytecode(suite, eff, {})
-method = jvm.AbsMethodID.decode("jpamb.cases.Fuzzing.secretThenDivide:([C)I")
+method = jvm.AbsMethodID.decode("jpamb.cases.Group21Cases.secretThenDivide:([C)I")
 constants = class_constants(suite, eff, method.classname)
 
 for label, dictionary in (
