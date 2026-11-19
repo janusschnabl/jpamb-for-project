@@ -7,14 +7,16 @@ name = "cascade"
 version = "0.1.0"
 description = "Cheap Before Expensive: cascading analyses for JPAMB (Group 21)"
 requires-python = ">=3.13"
-dependencies = ["jpamb"]
+dependencies = ["jpamb", "static"]
 
 [project.scripts]
 tier0-absence = "cascade.tier0.opcode_absence:main"
 tier0-constants = "cascade.tier0.constant_mining:main"
+cascade = "cascade.pipeline:main"
 
 [tool.uv.sources]
 jpamb = { path = "../", editable = true }
+static = { path = "../solutions/static", editable = true }
 
 [dependency-groups]
 dev = ["jpamb", "pytest>=8.3.4"]

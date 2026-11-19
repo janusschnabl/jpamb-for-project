@@ -1,9 +1,9 @@
-# Tier 2: interval analysis (AI-generated!)
+# Tier 1: interval analysis (AI-generated!)
 
-This folder is **Tier 2** of our cascade: a sound static analysis that proves
+This folder is **Tier 1** of our cascade: a sound static analysis that proves
 errors **impossible**.
 
-If you build Tier 1, 3 or 4, this is the file to read. It explains what Tier 2
+If you build Tier 0, 2 or 3, this is the file to read. It explains what Tier 1
 gives you, how to call it, and what it cannot do.
 
 ## Where it fits
@@ -11,18 +11,18 @@ gives you, how to call it, and what it cannot do.
 ```
   query (method, error)
         │
-  Tier 1  syntactic analyses     "no"  if the faulting instruction is not there
+  Tier 0  syntactic analyses     "no"  if the faulting instruction is not there
         │   → constants K
-  Tier 2  interval analysis      "no"  if no input can cause the error     ← this folder
+  Tier 1  interval analysis      "no"  if no input can cause the error     ← this folder
         │   → alarms: the instructions it could not prove safe, with the intervals there
-  Tier 3  coverage fuzzing       "yes" if it finds an input that causes the error
+  Tier 2  coverage fuzzing       "yes" if it finds an input that causes the error
         │   → the inputs it tried
-  Tier 4  guard synthesis        a verified guard for what is still undecided
+  Tier 3  guard synthesis        a verified guard for what is still undecided
 ```
 
-Tier 2 can only ever answer **"no"**. A "no" is a proof: the error cannot
+Tier 1 can only ever answer **"no"**. A "no" is a proof: the error cannot
 happen for any input. Everything else is "maybe", and for every "maybe" error
-Tier 2 tells you **where** it could not prove safety. That is what the later
+Tier 1 tells you **where** it could not prove safety. That is what the later
 tiers work on.
 
 ## Quick start
@@ -76,7 +76,7 @@ so that `static` can be imported.
 
 `analyse_method` also accepts a `jvm.AbsMethodID`, and an existing
 `jpamb.Bytecode` as a second argument if you already have one, and the
-constants `K` from Tier 1 as a third (see below).
+constants `K` from Tier 0 as a third (see below).
 
 ### `Result`
 
@@ -84,7 +84,7 @@ constants `K` from Tier 1 as a third (see below).
 | :-- | :-- | :-- |
 | `verdicts` | `dict[str, str]` | for each JPAMB query: `"no"` (proven impossible) or `"maybe"` |
 | `alarms` | tuple of `Alarm` | every instruction where an error could not be ruled out |
-| `analysed` | `bool` | `False` if the method uses something Tier 2 cannot handle; then every verdict is `"maybe"` |
+| `analysed` | `bool` | `False` if the method uses something Tier 1 cannot handle; then every verdict is `"maybe"` |
 | `reason` | `str` or `None` | why it was not analysed |
 | `states` | `dict[PC, State]` | the full result: the abstract state before every reachable instruction |
 
@@ -114,7 +114,7 @@ alarm:     divide by zero at `binary:I div`, pc 2, line 46
 
 ## What each tier can do with it
 
-**Tier 1 → Tier 2.** Tier 2 widens with thresholds (`∇K`), and takes Tier 1's
+**Tier 0 → Tier 1.** Tier 1 widens with thresholds (`∇K`), and takes Tier 0's
 constant dictionary `K` as an argument:
 
 ```python
@@ -124,16 +124,16 @@ K = extract_constants(bc.getmethod(methodid).opcodes)
 result = analyse_method(methodid, bc, constants=K)
 ```
 
-Without `constants`, Tier 2 collects the same constants itself, so it also
+Without `constants`, Tier 1 collects the same constants itself, so it also
 works on its own. `constants=set()` turns thresholds off (plain widening).
 
-**Tier 2 → Tier 3 (fuzzing).**
+**Tier 1 → Tier 2 (fuzzing).**
 - Skip every query whose verdict is `"no"`. It is proven impossible, so no
   input can trigger it and fuzzing for it is wasted time.
 - Aim at the alarms. Their `pc`s are the only instructions worth reaching,
   so coverage feedback can focus on the branches that lead to them.
 
-**Tier 2 → Tier 4 (guards).**
+**Tier 1 → Tier 3 (guards).**
 - `alarm.line` is where in the Java source the guard belongs.
 - `alarm.state` says which values reach the instruction:
 
@@ -167,7 +167,7 @@ works on its own. `constants=set()` turns thresholds off (plain widening).
 - **Arrays.** An array is described by whether it may be null and the interval
   of its length. Its contents are not tracked.
 - **Calls.** A called method is analysed with the actual argument values. A
-  recursive call (a method calling itself) is not followed: there, Tier 2
+  recursive call (a method calling itself) is not followed: there, Tier 1
   assumes anything can happen.
 
 The code: `src/abstractions.py` holds the domains (`Interval`, `Ref`, and the
@@ -182,5 +182,5 @@ thresholds it is 206; the difference is `arrayFillUntilEqual`.
 
 ## Questions
 
-Ask Bastian. If you need something from Tier 2 that is not here, say so early:
+Ask Bastian. If you need something from Tier 1 that is not here, say so early:
 changing what `analyse_method` returns is easy now and harder later.
