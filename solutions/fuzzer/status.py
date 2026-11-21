@@ -23,6 +23,9 @@ ERRORS = {"divide by zero", "assertion error", "out of bounds", "null pointer"}
 # Listed errors the fuzzer is known to miss at these budgets (see results/secret_ablation.csv).
 # They are reported as "info", not counted in the check that must hold.
 KNOWN_HARD = {("jpamb.cases.Group21Cases.secretThenDivide:([C)I", "divide by zero")}
+# The evaluation written to test the fuzzer's features. Its results are shown as
+# info here; experiment.py measures them properly.
+EVALUATION_CLASS = "jpamb.cases.FuzzingHard"
 
 rows = []  # (check, result, verdict)
 
@@ -79,6 +82,7 @@ if not QUICK:
 # 4. The fuzzer against the errors the answer sheet lists
 expected_total = with_k_total = without_k_total = 0
 hard_total = hard_found = 0
+eval_total = eval_found = 0
 started = time.perf_counter()
 for methodid, method_cases in Case.by_entry(cases):
     expected = {c.result for c in method_cases} & ERRORS
@@ -92,6 +96,10 @@ for methodid, method_cases in Case.by_entry(cases):
     found_without_k = expected & set(
         fuzz(bc, methodid, BUDGET, 0, time_limit=10.0).witnesses
     )
+    if methodid.classname.encode() == EVALUATION_CLASS:
+        eval_total += len(expected)
+        eval_found += len(found_with_k)
+        continue
     hard = {e for e in expected if (methodid.encode(), e) in KNOWN_HARD}
     hard_total += len(hard)
     hard_found += len(hard & found_with_k)
@@ -110,6 +118,9 @@ record(
     f"{without_k_total}/{expected_total} listed errors found",
 )
 record("known-hard errors, with constants", f"{hard_found}/{hard_total} found")
+record(
+    "evaluation set, with constants", f"{eval_found}/{eval_total} listed errors found"
+)
 record("time for the fuzzing runs", f"{elapsed:.0f} s")
 
 # Print the table
