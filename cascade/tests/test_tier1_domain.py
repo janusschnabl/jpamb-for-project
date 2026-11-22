@@ -1,0 +1,205 @@
+"""Property tests for the Tier 1 domain (lattice laws, Galois connection, arithmetic, widening)."""
+
+import cascade.tier1 as ab
+import pytest
+from hypothesis import assume, given
+from hypothesis import strategies as st
+
+import jvm
+import jvm.state as jvms
+
+
+def st_int_bound():
+    """A bound for an interval: any JVM int, but with extra weight on small
+    numbers (so that random intervals actually overlap) and on the extremes."""
+    return st.one_of(
+        st.integers(min_value=-20, max_value=20),
+        st.integers(min_value=ab.INT_MIN, max_value=ab.INT_MAX),
+        st.sampled_from([ab.INT_MIN, ab.INT_MAX]),
+    )
+
+
+@st.composite
+def st_interval(draw):
+    # Two random bounds in random order: when min > max this is the empty
+    # interval, so bottom is generated too.
+    return ab.Interval(draw(st_int_bound()), draw(st_int_bound()))
+
+
+@given(st_interval(), st_interval(), st_interval())
+def test_interval_is_poset(a: ab.Interval, b: ab.Interval, c: ab.Interval):
+    ab.is_poset(a, b, c)
+
+
+@given(st_interval(), st_interval(), st_interval())
+def test_interval_is_lattice(a: ab.Interval, b: ab.Interval, c: ab.Interval):
+    ab.is_lattice(a, b, c)
+
+
+@given(st_interval(), st_interval())
+def test_interval_join_and_meet_are_bounds(a: ab.Interval, b: ab.Interval):
+    # is_lattice only checks that the join is the LEAST upper bound,
+    # not that it is an upper bound at all.  This checks the rest.
+    assert a <= (a | b) and b <= (a | b)
+    assert (a & b) <= a and (a & b) <= b
+
+
+@given(st.sets(st_int_bound().map(jvms.StackInt)), st_interval())
+def test_interval_is_galoi(a: set[jvms.StackInt], b: ab.Interval):
+    ab.is_galoi(a, b)
+
+
+# ---------------------------------------------------------------- interval arithmetic
+
+
+def to_i32(v: int) -> int:
+    """Keep the low 32 bits, like the JVM does."""
+    v = v & 0xFFFFFFFF
+    if v >= 2**31:
+        v = v - 2**32
+    return v
+
+
+def jvm_arithmetic(opr: jvm.BinaryOpr, x: int, y: int) -> int:
+    """What the JVM computes (y != 0 for Div and Rem)."""
+    match opr:
+        case jvm.BinaryOpr.Add:
+            return to_i32(x + y)
+        case jvm.BinaryOpr.Sub:
+            return to_i32(x - y)
+        case jvm.BinaryOpr.Mul:
+            return to_i32(x * y)
+        case jvm.BinaryOpr.Div:
+            q = abs(x) // abs(y)
+            return to_i32(q if (x < 0) == (y < 0) else -q)  # rounds towards zero
+        case jvm.BinaryOpr.Rem:
+            q = abs(x) // abs(y)
+            return x - (q if (x < 0) == (y < 0) else -q) * y  # sign of x
+
+
+@given(
+    st.sampled_from(list(jvm.BinaryOpr)),
+    st.sets(st_int_bound(), max_size=5),
+    st.sets(st_int_bound(), max_size=5),
+)
+def test_interval_arithmetic(opr: jvm.BinaryOpr, xs: set[int], ys: set[int]):
+    """Soundness: every concrete result lies in the abstract result, and a
+    division by zero that can happen is reported."""
+    a = ab.Interval.alpha(map(jvms.StackInt, xs))
+    b = ab.Interval.alpha(map(jvms.StackInt, ys))
+    result, errors = a.arithmetic(b, opr)
+    for x in xs:
+        for y in ys:
+            if opr in (jvm.BinaryOpr.Div, jvm.BinaryOpr.Rem) and y == 0:
+                assert "divide by zero" in errors
+            else:
+                r = jvm_arithmetic(opr, x, y)
+                assert jvms.StackInt(r) in result, f"{x} {opr} {y} = {r} not in {result}"
+
+
+def jvm_compare(opr: jvm.CmpOpr, x: int, y: int) -> bool:
+    match opr:
+        case jvm.CmpOpr.Eq:
+            return x == y
+        case jvm.CmpOpr.Ne:
+            return x != y
+        case jvm.CmpOpr.Lt:
+            return x < y
+        case jvm.CmpOpr.Le:
+            return x <= y
+        case jvm.CmpOpr.Gt:
+            return x > y
+        case jvm.CmpOpr.Ge:
+            return x >= y
+
+
+@given(st.sampled_from(list(jvm.CmpOpr)), st_interval(), st_interval(), st_int_bound(), st_int_bound())
+def test_interval_compare(opr: jvm.CmpOpr, a: ab.Interval, b: ab.Interval, x: int, y: int):
+    """Refinement may only throw away pairs for which the condition is false:
+    every concrete pair (x, y) survives on the branch it really takes."""
+    assume(jvms.StackInt(x) in a and jvms.StackInt(y) in b)
+    split = a.compare(b, opr)
+    branch = split.if_true if jvm_compare(opr, x, y) else split.if_false
+    assert branch.possible
+    assert jvms.StackInt(x) in branch.left and jvms.StackInt(y) in branch.right
+    # refining never makes an interval bigger
+    for side in (split.if_true, split.if_false):
+        assert side.left <= a and side.right <= b
+
+
+@given(st.sampled_from(list(jvm.BinaryOpr)), st_interval())
+def test_interval_arithmetic_with_bottom(opr: jvm.BinaryOpr, a: ab.Interval):
+    """No value combined with any value is no value."""
+    bot = ab.Interval.bot()
+    assert a.arithmetic(bot, opr)[0] == bot
+    assert bot.arithmetic(a, opr)[0] == bot
+
+
+# ---------------------------------------------------------------- widening
+
+
+@given(st_interval(), st_interval())
+def test_widening_is_an_upper_bound(a: ab.Interval, b: ab.Interval):
+    w = a.widen(b)
+    assert a <= w and b <= w
+
+
+@given(st.lists(st_interval(), max_size=40))
+def test_widening_chain_stabilises(values: list[ab.Interval]):
+    """Whatever values arrive at a loop head, the widened value changes at
+    most 3 times: once from bottom, then once per bound."""
+    current = ab.Interval.bot()
+    changes = 0
+    for v in values:
+        new = current.widen(current | v)
+        changes += new != current
+        current = new
+    assert changes <= 3
+
+
+# ---------------------------------------------------------------- widening with thresholds
+
+
+def st_thresholds():
+    return st.sets(st_int_bound(), max_size=8)
+
+
+@given(st_interval(), st_interval(), st_thresholds())
+def test_threshold_widening_is_an_upper_bound(a: ab.Interval, b: ab.Interval, K):
+    w = a.widen(b, K)
+    assert a <= w and b <= w
+
+
+@given(st_interval(), st_interval(), st_thresholds())
+def test_threshold_widening_keeps_a_stable_value(a: ab.Interval, b: ab.Interval, K):
+    # if nothing new arrives, nothing changes: a fixed point is recognised
+    assume(b <= a)
+    assert a.widen(b, K) == a
+
+
+@given(st.lists(st_interval(), max_size=40), st_thresholds())
+def test_threshold_widening_chain_stabilises(values: list[ab.Interval], K):
+    """The TWI property: whatever values arrive at a loop head, the widened
+    value changes at most 2 * (|K| + 1) + 1 times.  Once from bottom, then
+    each bound can only move outwards through K and then to the int limit."""
+    current = ab.Interval.bot()
+    changes = 0
+    for v in values:
+        new = current.widen(current | v, K)
+        assert current <= new
+        changes += new != current
+        current = new
+    assert changes <= 2 * (len(K) + 1) + 1
+
+
+def test_threshold_widening_stops_at_the_next_constant():
+    # for (i = 0; i != 8; i++): after one round i is [0, 1]
+    K = {0, 1, 8}
+    assert ab.Interval(0, 0).widen(ab.Interval(0, 1), K) == ab.Interval(0, 1)
+    assert ab.Interval(0, 1).widen(ab.Interval(0, 2), K) == ab.Interval(0, 8)
+    # without thresholds the bound goes all the way
+    assert ab.Interval(0, 1).widen(ab.Interval(0, 2)) == ab.Interval(0, ab.INT_MAX)
+    # past the last constant: the int limit
+    assert ab.Interval(0, 8).widen(ab.Interval(0, 9), K) == ab.Interval(0, ab.INT_MAX)
+    # the lower bound works the same way, downwards
+    assert ab.Interval(0, 5).widen(ab.Interval(-1, 5), {-10, 3}) == ab.Interval(-10, 5)
