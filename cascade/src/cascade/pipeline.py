@@ -26,11 +26,11 @@ from dataclasses import dataclass, field
 
 import jpamb
 import jvm
-from static import Result, analyse_method
 
 from cascade.tier0.constant_mining import extract_constants
 from cascade.tier0.opcode_absence import ALL_OUTCOMES, Program
 from cascade.tier0.opcode_absence import analyse as find_fault_sites
+from cascade.tier1 import Result, analyse_method
 
 
 @dataclass(frozen=True)

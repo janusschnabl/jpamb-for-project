@@ -32,7 +32,7 @@ All commands run from the JPAMB folder (the repository root).
 **Analyse one method** (the JPAMB format, one line per query):
 
 ```bash
-uv run --with-editable solutions/static static-analysis "jpamb.cases.Simple.divideByN:(I)I"
+uv run --with-editable cascade tier1-intervals "jpamb.cases.Simple.divideByN:(I)I"
 ```
 
 ```
@@ -50,19 +50,19 @@ the JPAMB answer.
 **Score it on all of JPAMB:**
 
 ```bash
-uv run --with-editable solutions/static jpamb analyse -N 1 static-analysis
+uv run --with-editable cascade jpamb analyse -N 1 tier1-intervals
 ```
 
 **Run the tests** of the abstract domain:
 
 ```bash
-uv run --with-editable solutions/static --with pytest python -m pytest solutions/static/tests -q
+uv run --with-editable cascade --with pytest --with hypothesis python -m pytest cascade/tests/test_tier1_domain.py -q
 ```
 
 ## Use it from your own code
 
 ```python
-from static import analyse_method
+from cascade.tier1 import analyse_method
 
 result = analyse_method("jpamb.cases.Simple.divideByN:(I)I")
 
@@ -71,8 +71,8 @@ result.proven("null pointer")        # True: proven impossible
 result.unproven("divide by zero")    # [Alarm(...)]: where it could happen
 ```
 
-Run your script with `uv run --with-editable solutions/static python your_script.py`
-so that `static` can be imported.
+Run your script with `uv run --with-editable cascade python your_script.py`
+so that `cascade` can be imported.
 
 `analyse_method` also accepts a `jvm.AbsMethodID`, and an existing
 `jpamb.Bytecode` as a second argument if you already have one, and the
@@ -162,7 +162,7 @@ works on its own. `constants=set()` turns thresholds off (plain widening).
   which is what proves `arrayFillUntilEqual` in bounds.
 - **Branches.** After `if (i < 8)`, each branch knows more about `i`, and that
   knowledge is written back to the variable (`origin` and `backtrack` in
-  `static.py`). This is what proves loops like `for (i = 0; i < a.length; i++) a[i]`
+  `analysis.py`). This is what proves loops like `for (i = 0; i < a.length; i++) a[i]`
   in bounds.
 - **Arrays.** An array is described by whether it may be null and the interval
   of its length. Its contents are not tracked.
@@ -170,13 +170,13 @@ works on its own. `constants=set()` turns thresholds off (plain widening).
   recursive call (a method calling itself) is not followed: there, Tier 1
   assumes anything can happen.
 
-The code: `src/abstractions.py` holds the domains (`Interval`, `Ref`, and the
-lecturer's `SignSet`); `src/static.py` holds the analysis, with one `case` per
-bytecode instruction in `manystep`.
+The code, in this folder: `interval.py` holds the domain (`Interval`, `Ref`),
+`lattice.py` the lecturer's interfaces and law checkers, `analysis.py` the
+analysis with one `case` per bytecode instruction in `manystep`.
 
 ## Results
 
-On all 80 JPAMB cases (55 methods, including our own `Group21Cases`):
+On all 80 JPAMB cases (55 methods, including our own cases):
 **207** outcomes proven impossible and **no wrong answers**. Without
 thresholds it is 206; the difference is `arrayFillUntilEqual`.
 
