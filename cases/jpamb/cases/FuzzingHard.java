@@ -36,17 +36,17 @@ public class FuzzingHard {
         return 0;
     }
 
-    // Each check is easy alone; the division is reached only when all three hold.
-    @Case("(0, 0, 0, 0) -> ok")
-    @Case("(0, 0, 1, 2) -> divide by zero")
-    @Case("(3, 3, 4, 8) -> divide by zero")
-    @Case("(3, 3, 4, 9) -> ok")
-    public static int stagedInts(int a, int b, int c, int d) {
-        if (a == b) {
-            if (b + 1 == c) {
-                if (c * 2 == d) {
-                    return 1 / (a - b);
-                }
+    // Two stages: a must match first, then b. Each stage reaches new code, so
+    // coverage feedback can build on partial progress; guessing both at once is
+    // hopeless.
+    @Case("(0, 0) -> ok")
+    @Case("(1111, 0) -> ok")
+    @Case("(1111, 2222) -> divide by zero")
+    @Case("(0, 2222) -> ok")
+    public static int stagedInts(int a, int b) {
+        if (a == 1111) {
+            if (b == 2222) {
+                return 1 / (a - 1111);
             }
         }
         return 0;

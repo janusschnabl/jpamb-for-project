@@ -42,10 +42,10 @@ jpamb.cases.FuzzingHard.magicIndex:(I)I                      (0) -> ok
 jpamb.cases.FuzzingHard.magicIndex:(I)I                      (4242) -> out of bounds
 jpamb.cases.FuzzingHard.secretPhrase:(Ljava/lang/String;)V   (s'') -> ok
 jpamb.cases.FuzzingHard.secretPhrase:(Ljava/lang/String;)V   (s'open sesame') -> assertion error
-jpamb.cases.FuzzingHard.stagedInts:(IIII)I                   (0, 0, 0, 0) -> ok
-jpamb.cases.FuzzingHard.stagedInts:(IIII)I                   (0, 0, 1, 2) -> divide by zero
-jpamb.cases.FuzzingHard.stagedInts:(IIII)I                   (3, 3, 4, 8) -> divide by zero
-jpamb.cases.FuzzingHard.stagedInts:(IIII)I                   (3, 3, 4, 9) -> ok
+jpamb.cases.FuzzingHard.stagedInts:(II)I                     (0, 0) -> ok
+jpamb.cases.FuzzingHard.stagedInts:(II)I                     (0, 2222) -> ok
+jpamb.cases.FuzzingHard.stagedInts:(II)I                     (1111, 0) -> ok
+jpamb.cases.FuzzingHard.stagedInts:(II)I                     (1111, 2222) -> divide by zero
 jpamb.cases.Group21Cases.arrayFillUntilEqual:()V             () -> ok
 jpamb.cases.Group21Cases.arrayIndexAfterOverflow:(I)I        (0) -> ok
 jpamb.cases.Group21Cases.arrayIndexAfterOverflow:(I)I        (2147483647) -> out of bounds

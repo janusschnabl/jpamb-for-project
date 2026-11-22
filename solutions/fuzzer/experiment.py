@@ -30,6 +30,7 @@ VARIANTS = {
         True,
         MutationConfig(resize=False, burst_probability=0.0),
     ),
+    "ints-only": (True, True, MutationConfig()),
 }
 
 COLUMNS = [
@@ -68,6 +69,8 @@ def _job(job):
     use_constants, guided, config = VARIANTS[variant]
     methodid = jvm.AbsMethodID.decode(method_text)
     dictionary = _dictionary(methodid) if use_constants else Dictionary()
+    if variant == "ints-only":
+        dictionary = Dictionary(ints=dictionary.ints)
 
     started = time.perf_counter()
     result = fuzz(
@@ -134,9 +137,21 @@ def main():
         action="store_true",
         help="skip the answer-sheet methods, run only the --extra ones",
     )
+    parser.add_argument(
+        "--match",
+        nargs="+",
+        metavar="TEXT",
+        help="only run methods whose id contains any of these texts",
+    )
     args = parser.parse_args()
 
     methods = _methods(args.extra, include_sheet=not args.only_extra)
+    if args.match:
+        methods = {
+            text: errors
+            for text, errors in methods.items()
+            if any(m in text for m in args.match)
+        }
     jobs = [
         (variant, text, tuple(sorted(errors)), seed, args.budget)
         for variant in args.variants

@@ -390,37 +390,37 @@
     )
     :results ("assertion error")
   )
-  :"jpamb.cases.FuzzingHard.stagedInts!(0, 0, 0, 0)I" (control
+  :"jpamb.cases.FuzzingHard.stagedInts!(0, 0)I" (control
     :coverage (
-      :"jpamb.cases.FuzzingHard.stagedInts:(IIII)I" (coverage
-        :reachable (0 1 2 3 4 5 6 7 19 20)
+      :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (coverage
+        :reachable (0 1 2 12 13)
       )
     )
     :results (ok)
   )
-  :"jpamb.cases.FuzzingHard.stagedInts!(0, 0, 1, 2)I" (control
+  :"jpamb.cases.FuzzingHard.stagedInts!(0, 2222)I" (control
     :coverage (
-      :"jpamb.cases.FuzzingHard.stagedInts:(IIII)I" (coverage
-        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17)
-      )
-    )
-    :results ("divide by zero")
-  )
-  :"jpamb.cases.FuzzingHard.stagedInts!(3, 3, 4, 8)I" (control
-    :coverage (
-      :"jpamb.cases.FuzzingHard.stagedInts:(IIII)I" (coverage
-        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17)
-      )
-    )
-    :results ("divide by zero")
-  )
-  :"jpamb.cases.FuzzingHard.stagedInts!(3, 3, 4, 9)I" (control
-    :coverage (
-      :"jpamb.cases.FuzzingHard.stagedInts:(IIII)I" (coverage
-        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 19 20)
+      :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (coverage
+        :reachable (0 1 2 12 13)
       )
     )
     :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.stagedInts!(1111, 0)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (coverage
+        :reachable (0 1 2 3 4 5 12 13)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.stagedInts!(1111, 2222)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10)
+      )
+    )
+    :results ("divide by zero")
   )
   :"jpamb.cases.Group21Cases.arrayFillUntilEqual!()V" (control
     :coverage (
@@ -1031,10 +1031,10 @@
     )
     :results ("assertion error" ok)
   )
-  :"jpamb.cases.FuzzingHard.stagedInts:(IIII)I" (control
+  :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (control
     :coverage (
-      :"jpamb.cases.FuzzingHard.stagedInts:(IIII)I" (coverage
-        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 19 20)
+      :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 12 13)
       )
     )
     :results ("divide by zero" ok)
