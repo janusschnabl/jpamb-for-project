@@ -1,4 +1,4 @@
-from cascade.tier0.constant_mining import extract_constants
+from cascade.tier0.constant_mining import extract_constants, extract_string_constants
 
 import jvm
 
@@ -53,3 +53,27 @@ def test_ifz_null_comparison_also_mines_zero_known_limitation():
     ]
 
     assert extract_constants(opcodes) == {0}
+
+def test_collects_pushed_string_literals():
+    # e.g. Strings.sayHello's `assert greeting.equals("hello")`
+    string_type = jvm.Object(jvm.ClassName.from_parts("java", "lang", "String"))
+    opcodes = [
+        jvm.Load(offset=0, type=jvm.Reference(), index=0),
+        jvm.Push(offset=1, type=string_type, value="hello"),
+    ]
+
+    assert extract_string_constants(opcodes) == {"hello"}
+
+def test_string_mining_ignores_int_literals():
+    opcodes = [jvm.Push(offset=0, type=jvm.Int(), value=1)]
+
+    assert extract_string_constants(opcodes) == set()
+
+def test_string_mining_deduplicates_repeated_strings():
+    string_type = jvm.Object(jvm.ClassName.from_parts("java", "lang", "String"))
+    opcodes = [
+        jvm.Push(offset=0, type=string_type, value="secret"),
+        jvm.Push(offset=1, type=string_type, value="secret"),
+    ]
+
+    assert extract_string_constants(opcodes) == {"secret"}
