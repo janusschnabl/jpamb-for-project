@@ -7,7 +7,7 @@ name = "cascade"
 version = "0.1.0"
 description = "Cheap Before Expensive: cascading analyses for JPAMB (Group 21)"
 requires-python = ">=3.13"
-dependencies = ["jpamb"]
+dependencies = ["jpamb", "fuzzer"]
 
 [project.scripts]
 tier0-absence = "cascade.tier0.opcode_absence:main"
@@ -17,6 +17,7 @@ cascade = "cascade.pipeline:main"
 
 [tool.uv.sources]
 jpamb = { path = "../", editable = true }
+fuzzer = { path = "../solutions/fuzzer", editable = true }
 
 [dependency-groups]
 dev = ["jpamb", "pytest>=8.3.4", "hypothesis>=6.165.5"]
