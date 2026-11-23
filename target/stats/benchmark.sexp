@@ -310,26 +310,200 @@
     )
     :results (ok)
   )
-  :"jpamb.cases.Fuzzing.secretThenDivide!([C:'s', 'e', 'c', 'r', 'e', 't'])I" (control
+  :"jpamb.cases.FuzzingHard.arrayShape!([I:0, 0, 0, 0, 0, 0, 0, 0])I" (control
     :coverage (
-      :"jpamb.cases.Fuzzing.secretThenDivide:([C)I" (coverage
+      :"jpamb.cases.FuzzingHard.arrayShape:([I)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+      )
+    )
+    :results ("out of bounds")
+  )
+  :"jpamb.cases.FuzzingHard.arrayShape!([I:0, 0, 0, 1, 0, 0, 0, 0])I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.arrayShape:([I)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 18 19)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.arrayShape!([I:])I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.arrayShape:([I)I" (coverage
+        :reachable (0 1 2 3 18 19)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.linearRelation!(0, 0)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.linearRelation:(II)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 19 20)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.linearRelation!(333321, 7)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.linearRelation:(II)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 19 20)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.linearRelation!(333321, 8)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.linearRelation:(II)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17)
+      )
+    )
+    :results ("out of bounds")
+  )
+  :"jpamb.cases.FuzzingHard.magicIndex!(0)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.magicIndex:(I)I" (coverage
+        :reachable (0 1 2 3 4 5 10 11)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.magicIndex!(4242)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.magicIndex:(I)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8)
+      )
+    )
+    :results ("out of bounds")
+  )
+  :"jpamb.cases.FuzzingHard.secretPhrase!(s'')V" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.secretPhrase:(Ljava/lang/String;)V" (coverage
+        :reachable (0 1 2 3 4 5 10)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.secretPhrase!(s'open sesame')V" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.secretPhrase:(Ljava/lang/String;)V" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9)
+      )
+    )
+    :results ("assertion error")
+  )
+  :"jpamb.cases.FuzzingHard.stagedInts!(0, 0)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (coverage
+        :reachable (0 1 2 12 13)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.stagedInts!(0, 2222)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (coverage
+        :reachable (0 1 2 12 13)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.stagedInts!(1111, 0)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (coverage
+        :reachable (0 1 2 3 4 5 12 13)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.FuzzingHard.stagedInts!(1111, 2222)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10)
+      )
+    )
+    :results ("divide by zero")
+  )
+  :"jpamb.cases.Group21Cases.arrayFillUntilEqual!()V" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.arrayFillUntilEqual:()V" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.Group21Cases.arrayIndexAfterOverflow!(0)I" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.arrayIndexAfterOverflow:(I)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.Group21Cases.arrayIndexAfterOverflow!(2147483647)I" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.arrayIndexAfterOverflow:(I)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14)
+      )
+    )
+    :results ("out of bounds")
+  )
+  :"jpamb.cases.Group21Cases.divideViaHelper!(0)I" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.divideViaHelper:(I)I" (coverage
+        :reachable (0 1 2 3 4 5)
+      )
+      :"jpamb.cases.Group21Cases.scale:(II)I" (coverage
+        :reachable (0 1 2 3)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.Group21Cases.divideViaHelper!(3)I" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.divideViaHelper:(I)I" (coverage
+        :reachable (0 1 2 3 4)
+      )
+      :"jpamb.cases.Group21Cases.scale:(II)I" (coverage
+        :reachable (0 1 2)
+      )
+    )
+    :results ("divide by zero")
+  )
+  :"jpamb.cases.Group21Cases.secretThenDivide!([C:'s', 'e', 'c', 'r', 'e', 't'])I" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.secretThenDivide:([C)I" (coverage
         :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39)
       )
     )
     :results ("divide by zero")
   )
-  :"jpamb.cases.Fuzzing.secretThenDivide!([C:'s', 'e', 'c', 'r', 'e', 'x'])I" (control
+  :"jpamb.cases.Group21Cases.secretThenDivide!([C:'s', 'e', 'c', 'r', 'e', 'x'])I" (control
     :coverage (
-      :"jpamb.cases.Fuzzing.secretThenDivide:([C)I" (coverage
+      :"jpamb.cases.Group21Cases.secretThenDivide:([C)I" (coverage
         :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 41 42)
       )
     )
     :results (ok)
   )
-  :"jpamb.cases.Fuzzing.secretThenDivide!([C:])I" (control
+  :"jpamb.cases.Group21Cases.secretThenDivide!([C:])I" (control
     :coverage (
-      :"jpamb.cases.Fuzzing.secretThenDivide:([C)I" (coverage
+      :"jpamb.cases.Group21Cases.secretThenDivide:([C)I" (coverage
         :reachable (0 1 2 3 41 42)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.Group21Cases.unreachableAssert!(-3)V" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.unreachableAssert:(I)V" (coverage
+        :reachable (0 1 2 3 4 5 6 7 14)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.Group21Cases.unreachableAssert!(7)V" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.unreachableAssert:(I)V" (coverage
+        :reachable (0 1 2 3 4 5 6 7 14)
       )
     )
     :results (ok)
@@ -825,13 +999,88 @@
     )
     :results (ok)
   )
-  :"jpamb.cases.Fuzzing.secretThenDivide:([C)I" (control
+  :"jpamb.cases.FuzzingHard.arrayShape:([I)I" (control
     :coverage (
-      :"jpamb.cases.Fuzzing.secretThenDivide:([C)I" (coverage
+      :"jpamb.cases.FuzzingHard.arrayShape:([I)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 18 19)
+      )
+    )
+    :results (ok "out of bounds")
+  )
+  :"jpamb.cases.FuzzingHard.linearRelation:(II)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.linearRelation:(II)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 19 20)
+      )
+    )
+    :results (ok "out of bounds")
+  )
+  :"jpamb.cases.FuzzingHard.magicIndex:(I)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.magicIndex:(I)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 10 11)
+      )
+    )
+    :results (ok "out of bounds")
+  )
+  :"jpamb.cases.FuzzingHard.secretPhrase:(Ljava/lang/String;)V" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.secretPhrase:(Ljava/lang/String;)V" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10)
+      )
+    )
+    :results ("assertion error" ok)
+  )
+  :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (control
+    :coverage (
+      :"jpamb.cases.FuzzingHard.stagedInts:(II)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 12 13)
+      )
+    )
+    :results ("divide by zero" ok)
+  )
+  :"jpamb.cases.Group21Cases.arrayFillUntilEqual:()V" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.arrayFillUntilEqual:()V" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14)
+      )
+    )
+    :results (ok)
+  )
+  :"jpamb.cases.Group21Cases.arrayIndexAfterOverflow:(I)I" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.arrayIndexAfterOverflow:(I)I" (coverage
+        :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)
+      )
+    )
+    :results (ok "out of bounds")
+  )
+  :"jpamb.cases.Group21Cases.divideViaHelper:(I)I" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.divideViaHelper:(I)I" (coverage
+        :reachable (0 1 2 3 4 5)
+      )
+      :"jpamb.cases.Group21Cases.scale:(II)I" (coverage
+        :reachable (0 1 2 3)
+      )
+    )
+    :results ("divide by zero" ok)
+  )
+  :"jpamb.cases.Group21Cases.secretThenDivide:([C)I" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.secretThenDivide:([C)I" (coverage
         :reachable (0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 41 42)
       )
     )
     :results ("divide by zero" ok)
+  )
+  :"jpamb.cases.Group21Cases.unreachableAssert:(I)V" (control
+    :coverage (
+      :"jpamb.cases.Group21Cases.unreachableAssert:(I)V" (coverage
+        :reachable (0 1 2 3 4 5 6 7 14)
+      )
+    )
+    :results (ok)
   )
   :"jpamb.cases.Loops.forever:()V" (control
     :coverage (

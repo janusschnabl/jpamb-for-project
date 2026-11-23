@@ -32,6 +32,20 @@ jpamb.cases.Dependent.divisionLoop:(I)V                      (0) -> ok
 jpamb.cases.Dependent.divisionLoop:(I)V                      (1024) -> assertion error
 jpamb.cases.Dependent.normalizedDistance:(II)I               (0, 0) -> ok
 jpamb.cases.Dependent.safeDivByN:(I)I                        (0) -> ok
+jpamb.cases.FuzzingHard.arrayShape:([I)I                     ([I:0, 0, 0, 0, 0, 0, 0, 0]) -> out of bounds
+jpamb.cases.FuzzingHard.arrayShape:([I)I                     ([I:0, 0, 0, 1, 0, 0, 0, 0]) -> ok
+jpamb.cases.FuzzingHard.arrayShape:([I)I                     ([I:]) -> ok
+jpamb.cases.FuzzingHard.linearRelation:(II)I                 (0, 0) -> ok
+jpamb.cases.FuzzingHard.linearRelation:(II)I                 (333321, 7) -> ok
+jpamb.cases.FuzzingHard.linearRelation:(II)I                 (333321, 8) -> out of bounds
+jpamb.cases.FuzzingHard.magicIndex:(I)I                      (0) -> ok
+jpamb.cases.FuzzingHard.magicIndex:(I)I                      (4242) -> out of bounds
+jpamb.cases.FuzzingHard.secretPhrase:(Ljava/lang/String;)V   (s'') -> ok
+jpamb.cases.FuzzingHard.secretPhrase:(Ljava/lang/String;)V   (s'open sesame') -> assertion error
+jpamb.cases.FuzzingHard.stagedInts:(II)I                     (0, 0) -> ok
+jpamb.cases.FuzzingHard.stagedInts:(II)I                     (0, 2222) -> ok
+jpamb.cases.FuzzingHard.stagedInts:(II)I                     (1111, 0) -> ok
+jpamb.cases.FuzzingHard.stagedInts:(II)I                     (1111, 2222) -> divide by zero
 jpamb.cases.Group21Cases.arrayFillUntilEqual:()V             () -> ok
 jpamb.cases.Group21Cases.arrayIndexAfterOverflow:(I)I        (0) -> ok
 jpamb.cases.Group21Cases.arrayIndexAfterOverflow:(I)I        (2147483647) -> out of bounds

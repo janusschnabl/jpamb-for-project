@@ -10,25 +10,29 @@ import jpamb.cases.*;
 import jpamb.utils.*;
 import jpamb.utils.CaseContent.ResultType;
 
-/** The runtime method runs a single test-case and print the result or the exeception. */
+/**
+ * The runtime method runs a single test-case and print the result or the
+ * exeception.
+ */
 public class Runtime {
-  static List<Class<?>> caseclasses =
-      List.of(
-          Simple.class,
-          Loops.class,
-          Tricky.class,
-          jpamb.cases.Arrays.class,
-          jpamb.cases.Strings.class,
-          Dependent.class,
-          Calls.class,
-          Group21Cases.class);
+  static List<Class<?>> caseclasses = List.of(
+      Simple.class,
+      Loops.class,
+      Tricky.class,
+      jpamb.cases.Arrays.class,
+      jpamb.cases.Strings.class,
+      Dependent.class,
+      Calls.class,
+      Group21Cases.class,
+      FuzzingHard.class);
 
   public static Case[] cases(Method m) {
     var cases = m.getAnnotation(Cases.class);
     if (cases == null) {
       var c = m.getAnnotation(Case.class);
-      if (c == null) return new Case[] {};
-      return new Case[] {c};
+      if (c == null)
+        return new Case[] {};
+      return new Case[] { c };
     } else {
       return cases.value();
     }
