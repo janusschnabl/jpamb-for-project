@@ -1,5 +1,7 @@
 """Turn Tier 1 alarms into guards on the method's parameters."""
 
+from dataclasses import dataclass
+
 import jpamb
 import jvm
 
@@ -36,3 +38,26 @@ def faulting_parameter(bc: jpamb.Bytecode, alarm: Alarm) -> int | None:
             case jvm.Store(index=j) | jvm.Incr(index=j) if j == i:
                 return None
     return i
+
+
+@dataclass(frozen=True)
+class Guard:
+    """Reject inputs where parameter `param` causes `error`."""
+
+    method: jvm.AbsMethodID
+    param: int
+    error: str
+
+    def condition(self, name: str) -> str:
+        """Java condition that is true for the bad inputs."""
+        return f"{name} == 0"
+
+
+def guard_for(bc: jpamb.Bytecode, alarm: Alarm) -> Guard | None:
+    """A guard for a divide-by-zero alarm, or None if we can't build one."""
+    if alarm.error != "divide by zero":
+        return None
+    param = faulting_parameter(bc, alarm)
+    if param is None:
+        return None
+    return Guard(alarm.pc.method, param, alarm.error)
