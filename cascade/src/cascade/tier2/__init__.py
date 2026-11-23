@@ -5,7 +5,7 @@ from cascade.tier2 import run_tier2
 cascade = Cascade()
 result = cascade.run("jpamb.cases.Simple.divideByN:(I)I")
 tier2 = run_tier2(cascade.bc, result)
-tier2.verdicts["divide by zero"]    Verdict(answer="yes", tier=2)
+tier2.answers["divide by zero"]     "yes"
 tier2.witnesses["divide by zero"]   the input that causes it
 """
 
