@@ -68,6 +68,15 @@ class Guard:
             return f"{a} != null && ({p} < 0 || {p} >= {a}.length)"
         return f"{p} < 0 || {p} >= {self.length}"
 
+    def rejects(self, inp: jpamb.Input) -> bool:
+        """`condition` evaluated on a concrete input (keep the two in sync)."""
+        p = inp.values[self.param].value
+        if self.error == "divide by zero":
+            return p == 0
+        if self.array is not None:
+            return p < 0 or p >= len(inp.values[self.array].values)
+        return p < 0 or p >= self.length
+
 
 def guard_for(bc: jpamb.Bytecode, alarm: Alarm) -> Guard | None:
     """A guard for the alarm, or None if we can't build one."""
@@ -107,3 +116,12 @@ def candidates(bc: jpamb.Bytecode, result: "CascadeResult") -> list[Guard]:
             if guard is not None and guard not in guards:
                 guards.append(guard)
     return guards
+
+
+def over_rejections(guard: Guard, observed: list) -> list:
+    """Observed (input, outcome) pairs the guard rejects that did not end in its error."""
+    return [
+        (inp, outcome)
+        for inp, outcome in observed
+        if guard.rejects(inp) and outcome != guard.error
+    ]
