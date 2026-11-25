@@ -107,7 +107,7 @@ def origin(bc: jpamb.Bytecode, pc: PC, depth: int = 0):
                 depth -= 1
             case jvm.ArrayLength():
                 if depth == 0:
-                    match origin(bc, pc % j, 0):  # where did the array come from?
+                    match origin(bc, pc % j, 0):
                         case ("local", i):
                             return ("len", i)
                     return None

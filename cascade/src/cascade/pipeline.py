@@ -26,25 +26,26 @@ from dataclasses import dataclass, field
 
 import jpamb
 import jvm
-
 from cascade.tier0.constant_mining import extract_constants
 from cascade.tier0.opcode_absence import ALL_OUTCOMES, Program
 from cascade.tier0.opcode_absence import analyse as find_fault_sites
 from cascade.tier1 import Result, analyse_method
+from cascade.tier2 import Tier2Result, run_tier2
 
 
 @dataclass(frozen=True)
 class Verdict:
-    answer: str  
-    tier: int | None = None 
+    answer: str
+    tier: int | None = None
 
 
 @dataclass
 class CascadeResult:
     methodid: jvm.AbsMethodID
     verdicts: dict[str, Verdict]
-    constants: set[int] 
-    tier1: Result | None = None 
+    constants: set[int]
+    tier1: Result | None = None
+    tier2: Tier2Result | None = None
     seconds: dict[int, float] = field(default_factory=dict)
 
     def undecided(self) -> list[str]:
@@ -58,7 +59,7 @@ class Cascade:
         self.bc = jpamb.Bytecode(suite, eff, {})
         self.program = Program(suite, eff)
 
-    def run(self, methodid: str | jvm.AbsMethodID) -> CascadeResult:
+    def run(self, methodid: str | jvm.AbsMethodID, fuzz: bool = False) -> CascadeResult:
         if isinstance(methodid, str):
             methodid = jpamb.parse_methodid(methodid)
         verdicts = {q: Verdict("undecided") for q in jpamb.QUERIES}
@@ -82,7 +83,29 @@ class Cascade:
             result.tier1 = tier1
             result.seconds[1] = time.perf_counter() - start
 
+        if fuzz and result.undecided():
+            start = time.perf_counter()
+            tier2 = run_tier2(self.bc, result)
+            for query, answer in tier2.answers.items():
+                verdicts[query] = Verdict(answer, tier=2)
+            result.tier2 = tier2
+            result.seconds[2] = time.perf_counter() - start
+
         return result
+
+
+def prediction(verdict: Verdict) -> str:
+    """The word JPAMB sees. JPAMB scores each word by how often it was right,
+    so weaker evidence gets its own word and cannot spoil a stronger one."""
+    match verdict.answer, verdict.tier:
+        case "no", 2:
+            return "no-run"  # one finished run of a parameterless method
+        case "no", _:
+            return "no"
+        case "yes", _:
+            return "yes"
+        case _:
+            return "maybe"
 
 
 def main():
@@ -93,13 +116,13 @@ def main():
         ["syntactic", "static", "intervals", "python"],
         for_science=True,
     )
-    result = Cascade().run(methodid)
+    result = Cascade().run(methodid, fuzz=True)
 
     for query in jpamb.QUERIES:
         verdict = result.verdicts[query]
         decided_by = "" if verdict.tier is None else f" (tier {verdict.tier})"
         print(f"{query}: {verdict.answer}{decided_by}", file=sys.stderr)
-        print(f"{query};{'no' if verdict.answer == 'no' else 'maybe'}")
+        print(f"{query};{prediction(verdict)}")
 
 
 if __name__ == "__main__":
