@@ -1,13 +1,25 @@
 """Turn Tier 1 alarms into guards on the method's parameters."""
 
+import contextlib
+import io
 from dataclasses import dataclass
 
 import jpamb
 import jvm
 
-from cascade.tier1 import Alarm, Ref
+from cascade.tier1 import Alarm, Ref, analyse_method
 from cascade.tier1.analysis import origin
-from cascade.tier3.expr import Expr, evaluate, expression_at, parameters, render, unmodified_parameter
+from cascade.tier3.expr import (
+    Expr,
+    evaluate,
+    expression_at,
+    parameters,
+    render,
+    substitute,
+    unmodified_parameter,
+)
+
+MAX_CALL_DEPTH = 3
 
 # stack position of the faulting value (0 = top of stack)
 FAULT_DEPTH = {
@@ -17,10 +29,10 @@ FAULT_DEPTH = {
 }
 
 
-def parameter_at(bc: jpamb.Bytecode, alarm: Alarm, depth: int) -> int | None:
-    """Index of the parameter at stack position `depth`, or None."""
-    match origin(bc, alarm.pc, depth):
-        case ("local", i) if unmodified_parameter(bc, alarm.pc.method, i):
+def parameter_at(bc: jpamb.Bytecode, pc, depth: int) -> int | None:
+    """Index of the parameter at stack position `depth` before `pc`, or None."""
+    match origin(bc, pc, depth):
+        case ("local", i) if unmodified_parameter(bc, pc.method, i):
             return i
     return None
 
@@ -75,7 +87,7 @@ def guard_for(bc: jpamb.Bytecode, alarm: Alarm) -> Guard | None:
 
     if alarm.error == "out of bounds":
         depth += 1  # the array is below the index
-        array = parameter_at(bc, alarm, depth)
+        array = parameter_at(bc, alarm.pc, depth)
         if array is not None:
             return Guard(method, value, alarm.error, array=array)
         ref = alarm.state.stack[-1 - depth]
@@ -83,6 +95,40 @@ def guard_for(bc: jpamb.Bytecode, alarm: Alarm) -> Guard | None:
             return Guard(method, value, alarm.error, length=ref.length.min)
 
     return None
+
+
+def guards_for(bc: jpamb.Bytecode, alarm: Alarm, depth: int = MAX_CALL_DEPTH) -> list[Guard]:
+    """Guards for the alarm; for a call, the callee's guards moved to the caller."""
+    if isinstance(alarm.instruction, jvm.InvokeStatic):
+        return call_guards(bc, alarm, depth) if depth > 0 else []
+    guard = guard_for(bc, alarm)
+    return [] if guard is None else [guard]
+
+
+def call_guards(bc: jpamb.Bytecode, alarm: Alarm, depth: int) -> list[Guard]:
+    callee = alarm.instruction.method
+    n = len(callee.extension.params)
+    # the last argument is on top of the stack
+    args = [expression_at(bc, alarm.pc, n - 1 - i) for i in range(n)]
+    arrays = [parameter_at(bc, alarm.pc, n - 1 - i) for i in range(n)]
+
+    with contextlib.redirect_stderr(io.StringIO()):
+        inner = analyse_method(callee, bc)
+
+    guards = []
+    for inner_alarm in inner.unproven(alarm.error):
+        for g in guards_for(bc, inner_alarm, depth - 1):
+            if any(args[i] is None for i in parameters(g.value)):
+                continue
+            array = None
+            if g.array is not None:
+                array = arrays[g.array]
+                if array is None:
+                    continue
+            moved = Guard(alarm.pc.method, substitute(g.value, args), g.error, array, g.length)
+            if moved not in guards:
+                guards.append(moved)
+    return guards
 
 
 GUARDABLE = ("divide by zero", "out of bounds")
@@ -97,9 +143,9 @@ def candidates(bc: jpamb.Bytecode, result: "CascadeResult") -> list[Guard]:
         if result.verdicts[error].answer == "no":
             continue
         for alarm in result.tier1.unproven(error):
-            guard = guard_for(bc, alarm)
-            if guard is not None and guard not in guards:
-                guards.append(guard)
+            for guard in guards_for(bc, alarm):
+                if guard not in guards:
+                    guards.append(guard)
     return guards
 
 

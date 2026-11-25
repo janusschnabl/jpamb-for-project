@@ -56,6 +56,17 @@ def evaluate(expr: Expr, args: list[int]) -> int:
             return wrap(a + b if op == "+" else a - b if op == "-" else a * b)
 
 
+def substitute(expr: Expr, args: list[Expr]) -> Expr:
+    """Replace each Param(i) by args[i]."""
+    match expr:
+        case Param(i):
+            return args[i]
+        case Const():
+            return expr
+        case BinOp(op, left, right):
+            return BinOp(op, substitute(left, args), substitute(right, args))
+
+
 def parameters(expr: Expr) -> set[int]:
     """The parameters `expr` uses."""
     match expr:
