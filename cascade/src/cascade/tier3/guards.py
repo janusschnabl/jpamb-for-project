@@ -50,6 +50,7 @@ class Guard:
     error: str
     array: int | None = None
     length: int | None = None
+    moved: bool = False  # moved here from a callee
 
     def condition(self, names: list[str]) -> str:
         """Java condition that is true for the bad inputs."""
@@ -125,7 +126,9 @@ def call_guards(bc: jpamb.Bytecode, alarm: Alarm, depth: int) -> list[Guard]:
                 array = arrays[g.array]
                 if array is None:
                     continue
-            moved = Guard(alarm.pc.method, substitute(g.value, args), g.error, array, g.length)
+            moved = Guard(
+                alarm.pc.method, substitute(g.value, args), g.error, array, g.length, moved=True
+            )
             if moved not in guards:
                 guards.append(moved)
     return guards
