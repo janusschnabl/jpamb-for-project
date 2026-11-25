@@ -89,3 +89,21 @@ def guard_for(bc: jpamb.Bytecode, alarm: Alarm) -> Guard | None:
             return Guard(method, param, alarm.error, length=ref.length.min)
 
     return None
+
+
+GUARDABLE = ("divide by zero", "out of bounds")
+
+
+def candidates(bc: jpamb.Bytecode, result: "CascadeResult") -> list[Guard]:
+    """Guards for the guardable errors the cascade did not prove impossible."""
+    if result.tier1 is None:
+        return []
+    guards = []
+    for error in GUARDABLE:
+        if result.verdicts[error].answer == "no":
+            continue
+        for alarm in result.tier1.unproven(error):
+            guard = guard_for(bc, alarm)
+            if guard is not None and guard not in guards:
+                guards.append(guard)
+    return guards
