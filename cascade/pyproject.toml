@@ -7,7 +7,7 @@ name = "cascade"
 version = "0.1.0"
 description = "Cheap Before Expensive: cascading analyses for JPAMB (Group 21)"
 requires-python = ">=3.13"
-dependencies = ["jpamb", "fuzzer"]
+dependencies = ["jpamb", "fuzzer", "tree-sitter>=0.26.0", "tree-sitter-java>=0.23.5"]
 
 [project.scripts]
 tier0-absence = "cascade.tier0.opcode_absence:main"
