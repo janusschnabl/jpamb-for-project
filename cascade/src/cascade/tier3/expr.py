@@ -39,6 +39,34 @@ def render(expr: Expr, names: list[str]) -> str:
             return f"({render(left, names)} {op} {render(right, names)})"
 
 
+def wrap(x: int) -> int:
+    """Java 32-bit int overflow."""
+    return (x + 2**31) % 2**32 - 2**31
+
+
+def evaluate(expr: Expr, args: list[int]) -> int:
+    """Value of `expr` for concrete arguments, with Java int semantics."""
+    match expr:
+        case Param(i):
+            return args[i]
+        case Const(c):
+            return c
+        case BinOp(op, left, right):
+            a, b = evaluate(left, args), evaluate(right, args)
+            return wrap(a + b if op == "+" else a - b if op == "-" else a * b)
+
+
+def parameters(expr: Expr) -> set[int]:
+    """The parameters `expr` uses."""
+    match expr:
+        case Param(i):
+            return {i}
+        case Const():
+            return set()
+        case BinOp(_, left, right):
+            return parameters(left) | parameters(right)
+
+
 def unmodified_parameter(bc: jpamb.Bytecode, method: jvm.AbsMethodID, i: int) -> bool:
     """Local `i` is a parameter that is never written to."""
     if i >= len(method.extension.params):
@@ -89,7 +117,12 @@ def expression_at(bc: jpamb.Bytecode, pc, depth: int) -> Expr | None:
                 case jvm.Push(type=jvm.Int(), value=c):
                     return Const(c)
                 case jvm.Load(type=jvm.Int(), index=i):
-                    return Param(i) if unmodified_parameter(bc, method, i) else None
+                    # booleans and chars are also loaded as ints; only allow real ints
+                    if unmodified_parameter(bc, method, i) and isinstance(
+                        method.extension.params[i], jvm.Int
+                    ):
+                        return Param(i)
+                    return None
                 case jvm.Binary(type=jvm.Int(), operant=o) if o in OPS:
                     left, right = value(j, 1), value(j, 0)
                     if left is None or right is None:
