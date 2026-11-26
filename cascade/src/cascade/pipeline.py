@@ -73,7 +73,8 @@ class Cascade:
         result = CascadeResult(methodid, verdicts, constants)
         result.seconds[0] = time.perf_counter() - start
 
-        if result.undecided():
+        # skip Tier 1 if Tier 0 already decided every error
+        if any(q in ALL_OUTCOMES for q in result.undecided()):
             start = time.perf_counter()
             with contextlib.redirect_stderr(io.StringIO()):
                 tier1 = analyse_method(methodid, self.bc, constants=constants)
